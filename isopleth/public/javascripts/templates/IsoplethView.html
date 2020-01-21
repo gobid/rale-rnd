@@ -1,0 +1,108 @@
+
+<div id="deckView">
+  <div id="deckHeader">
+    <div class="logo"><img src="/images/isopleth.png"/></div>
+    <ul>
+      <li id="filterMouse" class="nav">Mouse</li>
+      <li id="filterKeyboard" class="nav">Keyboard</li>
+      <li id="filterSetup" class="nav">Setup</li>
+      <li id="filterAJAX" class="nav">AJAX</li>
+      <li id="filterDom" class="nav">DOM</li>
+      <li id="filterAdd" class="nav">+</li>
+    </ul>
+  </div>
+  <div id="deck"></div>
+</div>
+<div id="graphView">
+  <div id="invokeGraph"></div>
+  <div id="graphControl">
+    <ul>
+      <li>
+        <div id="draw">Draw</div>
+      </li>
+      <li>
+        <div id="hideLibs">Hide Libs</div>
+      </li>
+      <li>
+        <div id="hideRepeats">Hide Repeats</div>
+      </li>
+      <li>
+        <div id="hideUnknownAspectNodes">Hide Unlabeled Nodes</div>
+      </li>
+      <li>
+        <div id="showLibCode">Show Libs</div>
+      </li>
+      <li>
+        <div id="showRepeats">Show Repeats</div>
+      </li>
+      <li>
+        <div id="showUnknown">Show Unlabeled Nodes</div>
+      </li>
+      <li>
+        <div id="drawTomAsync">Draw Async Context</div>
+      </li>
+      <li>
+        <div id="drawJoshAsync">Draw Deanon Serial</div>
+      </li>
+      <li>
+        <div id="markTopLevelNonLib">Mark Non-Lib Top Level</div>
+      </li>
+      <li>
+        <div id="markAllBlue">Mark All Blue</div>
+      </li>
+      <li>
+        <div id="markClick">Mark Click Handler</div>
+      </li>
+      <li>
+        <div id="markAjaxRequest">Mark AJAX Request</div>
+      </li>
+      <li>
+        <div id="markAjaxResponse">Mark AJAX Response</div>
+      </li>
+      <li>
+        <div id="resetGraph">Reset Graph</div>
+      </li>
+      <li>
+        <div id="drawHeatMap">Heat Map</div>
+      </li>
+      <li>
+        <div id="downloadInvokes">Download Invokes</div>
+      </li>
+      <li>
+        <div id="downloadNodes">Download Nodes</div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="newAspectModal" style="display:none;">
+  <div class="content">
+    <!-- Fill modal here-->
+  </div>
+</div>
+<div id="modalTemplate" style="display:none;">
+  <div id="modalContent">
+    <div id="newAspectTitle" class="row">
+      <div class="label">Facet Name</div>
+      <input type="text" value="CustomFilter"/>
+    </div>
+    <div id="newAspectType" class="row">
+      <div class="label">Filter Type</div>
+      <div class="filterTypes">
+        <div data="returnVal" class="newFilterType active">Return Value</div>
+        <div data="arg" class="newFilterType">Argument</div>
+      </div>
+    </div>
+    <div id="aspectColor" class="row">
+      <div class="label">Node Color<span style="background-color:#ffb533;" class="color-preview"></span></div>
+      <input type="text" value="#ffb533"/>
+    </div>
+    <div id="newAspectFilter" class="row">
+      <div class="label">Aspect Test Function</div>
+      <div class="mirrorHandle"></div>
+    </div>
+    <div class="saveAspect row">
+      <div id="saveNewAspect">Save</div>
+      <div id="close">Cancel</div>
+    </div>
+  </div>
+</div>

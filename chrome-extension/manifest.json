@@ -1,0 +1,51 @@
+{
+  "name": "Isopleth",
+  "version": "0.0.1",
+  "description": "Extract behaviors from UI",
+  "minimum_chrome_version": "22.0",
+  "manifest_version": 2,
+  "devtools_page": "devtools.html",
+  "browser_action": {
+//    "default_icon": "img/ibex-small.png",
+//    "default_title": "__MSG_extension_name__",
+//    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "match_about_blank": true,
+      "js": [
+        "js/lib/jquery-2.1.3.min.js",
+        "js/lib/underscore-min.js",
+        "contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    "js/lib/*",
+    "js/backboneAgent/*"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "permissions": [
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "notifications"
+  ],
+  "icons": {
+    "16": "img/ibex-small.png",
+    "48": "img/ibex-small.png",
+    "128": "img/ibex-small.png"
+  }
+}

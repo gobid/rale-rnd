@@ -1,0 +1,443 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+*, body, button, html, input, select, textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#isoplethView {
+  width: 100%;
+  height: 100%;
+  //display: block;
+  position: absolute;
+  z-index: 2;
+  background-color: #F3F5F6;
+  flex-direction: column;
+  display: flex;
+
+  #deckView {
+    min-height: 407px;
+    width: 100%;
+    float: left;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    #deck {
+      float: left;
+    }
+
+    #deckHeader {
+      float: left;
+      height: 35px;
+      background-color: #fff;
+      border-bottom: 1px solid #d3d3d3;
+      border-bottom-right-radius: 5px;
+
+      .logo {
+        float: left;
+        height: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          height: 70%;
+
+        }
+      }
+
+      ul {
+        float: left;
+        height: 100%;
+        margin: 0;
+        list-style: none;
+        display: block;
+        padding: 0;
+        li {
+          height: 100%;
+          float: left;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-left: 1em;
+          padding-right: 1em;
+          border-right: 1px solid #d3d3d3;
+          cursor: pointer;
+          user-select: none;
+
+          &:last-child {
+            border-right: none;
+          }
+
+          &:hover {
+            background-color: #eeeeee;
+          }
+
+          &:active {
+            background-color: #e5e5e5;
+          }
+
+          &.active {
+            background-color: #85ff97;
+          }
+
+          &.negate {
+            background-color: #dd7382;
+          }
+        }
+      }
+    }
+
+  }
+
+  #graphView {
+    width: 100%;
+    float: left;
+    background-color: #2f2f2f;
+    flex-grow: 1;
+
+    #graphControl {
+      width: 100%;
+      float: left;
+      height: 12%;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+          float: left;
+
+          div {
+            color: white;
+            background-color: #545454;
+            border-radius: 2px;
+            margin: 3px;
+            padding: 3px;
+            font-size: 12px;
+            cursor: pointer;
+          }
+        }
+      }
+
+    }
+    #invokeGraph {
+      width: 100%;
+    }
+  }
+
+  .cardView {
+    display: inline-block;
+
+    height: 300px;
+    margin: 2em;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+    .sec {
+      display: inline-block;
+      height: 100%;
+      vertical-align: top;
+      margin-right: -5px;
+    }
+
+    .empty-javascript {
+      width: 100%;
+      float:left;
+      p {
+        margin-left: 1em;
+      }
+    }
+
+    .left-column, .right-column {
+      width: 0px;
+      background-color: #e2e6f3;
+      overflow-y: scroll;
+
+      .navCard {
+        width: 100%;
+        display: block;
+        float: left;
+        cursor: pointer;
+        font-size: 15px;
+        padding: 3px;
+        color: #5b59e6;
+        background-color: #f6f6f6;
+
+        &:hover {
+          color: #4d4bc3;
+          background-color: #eeeeee;
+        }
+      }
+
+      .codeMirrorView {
+        width: 100%;
+        float: left;
+        margin-bottom: 1em;
+      }
+    }
+
+    .center-column {
+      .main-javascript{
+        float:left;
+        width: 99%;
+      }
+
+      width: 500px;
+      input {
+        background-color: #f7f9fa;
+        float: left;
+        display: block;
+        margin-top: 0;
+        box-shadow: none;
+        border: none;
+        height: 24px;
+        line-height: 24px;
+        width: 96%;
+        font-size: 16px;
+        text-decoration: none;
+        padding-left: 9px;
+        border-radius: 5px;
+
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 3px;
+        margin-left: 5px;
+
+        &:focus {
+          outline: none;
+          background-color: white;
+        }
+      }
+    }
+
+    .left-button-column {
+      width: 32px;
+      background-color: #e2e6f3;
+
+      .buttonPane {
+        margin-left: 27px;
+
+        span {
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+      }
+    }
+
+    .buttonPane {
+      float: left;
+      transform: rotate(90deg);
+      transform-origin: 0 0 0;
+      height: 25%;
+
+      span {
+        cursor: pointer;
+        text-align: center;
+        background-color: #387fbd;
+        color: #fff;
+        padding: 4px;
+
+        &.active {
+          background-color: #ffb533;
+
+          &:hover {
+            background-color: #ffc97e;
+          }
+        }
+
+        &:hover {
+          background-color: #3c90d2;
+        }
+      }
+    }
+
+    .right-button-column {
+      width: 32px;
+      background-color: #e2e6f3;
+
+      .buttonPane {
+        margin-left: 24px;
+
+        span {
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+      }
+    }
+
+  }
+
+  button {
+    padding: 4px 4px;
+    color: #28aadc;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 1px solid #28aadc;
+    margin: 4px;
+    transition: color .3s, border .3s;
+  }
+
+  button:hover {
+    color: #166888;
+    border: 1px solid #166888;
+  }
+
+  #invokeGraph {
+    height: 100%;
+    width: 100%;
+  }
+
+  #callGraphView {
+    height: 100%;
+    width: 100%;
+  }
+
+}
+
+#newAspectModal {
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  #modalContent {
+    border-radius: 3px;
+    height: 434px;
+    width: 380px;
+    background-color: white;
+    box-shadow: 10px 10px 35px 2px rgba(0, 0, 0, 0.32);
+
+    .row {
+      width: 100%;
+      float: left;
+      padding: 5px;
+    }
+  }
+
+  #aspectColor {
+    input {
+      width: 80px;
+    }
+
+    .label {
+      span {
+        background-color: #ffb533;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-left: 29px;
+        margin-right: 7px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .label {
+    float: left;
+    display: block;
+    line-height: 24px;
+  }
+
+  input {
+    background-color: #f5f5f5;
+    float: left;
+    display: block;
+    box-shadow: none;
+    border: none;
+    height: 24px;
+    width: 250px;
+    margin-left: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 9px;
+    border-radius: 3px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .newFilterType, #saveNewAspect, #close {
+    background-color: #f5f5f5;
+    line-height: 27px;
+    height: 100%;
+    display: block;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: #d3d3d3;
+    }
+    &:active {
+      background-color: #bfbfbf;
+    }
+    &.active {
+      background-color: #abc9e5;
+    }
+
+    &:first-child {
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+      border-right: 1px solid white;
+    }
+
+    &:last-child {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  .filterTypes {
+    float: left;
+    height: 27px;
+    padding-left: 31px;
+
+  }
+
+  #newAspectFilter {
+    .mirrorHandle {
+      width: 94%;
+      float: left;
+      height: 220px;
+      overflow: scroll;
+
+      .CodeMirror {
+        height: 220px;
+      }
+    }
+  }
+
+  .saveAspect {
+    #saveNewAspect, #close {
+      float: right;
+      width: 50px;
+      text-align: center;
+      border-radius: 3px;
+    }
+    #saveNewAspect {
+      margin-right: 12px;
+    }
+    #close {
+      margin-right: 4px;
+    }
+  }
+
+}
+
+
+

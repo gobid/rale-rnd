@@ -1,0 +1,82 @@
+#deckView
+  #deckHeader
+    .logo
+      img(src="/images/isopleth.png")
+    ul
+      li#filterMouse.nav Mouse
+      li#filterKeyboard.nav Keyboard
+      li#filterSetup.nav Setup
+      li#filterAJAX.nav AJAX
+      li#filterDom.nav DOM
+      li#filterAdd.nav +
+  #deck
+#graphView
+  #invokeGraph
+  #graphControl
+    ul
+      li
+        #draw Draw
+      li
+        #hideLibs Hide Libs
+      li
+        #hideRepeats Hide Repeats
+      li
+        #hideUnknownAspectNodes Hide Unlabeled Nodes
+      li
+        #showLibCode Show Libs
+      li
+        #showRepeats Show Repeats
+      li
+        #showUnknown Show Unlabeled Nodes
+      li
+        #drawTomAsync Draw Async Context
+      li
+        #drawJoshAsync Draw Deanon Serial
+      li
+        #markTopLevelNonLib Mark Non-Lib Top Level
+      li
+        #markAllBlue Mark All Blue
+      li
+        #markClick Mark Click Handler
+      li
+        #markAjaxRequest Mark AJAX Request
+      li
+        #markAjaxResponse Mark AJAX Response
+      li
+        #resetGraph Reset Graph
+      li
+        #drawHeatMap Heat Map
+      li
+        #downloadInvokes Download Invokes
+      li
+        #downloadNodes Download Nodes
+
+#newAspectModal(style="display:none;")
+  .content
+    // Fill modal here
+
+#modalTemplate(style="display:none;")
+  #modalContent
+    #newAspectTitle.row
+      .label Aspect Name
+      input(type="text", value="CustomFilter")
+
+    #newAspectType.row
+      .label Filter Type
+      .filterTypes
+        .newFilterType.active(data='returnVal') Return Value
+        .newFilterType(data='arg') Argument
+
+    #aspectColor.row
+      .label Node Color
+        span.color-preview(style="background-color:#ffb533;")
+      input(type="text", value="#ffb533")
+
+    #newAspectFilter.row
+      .label Aspect Test Function
+
+      .mirrorHandle
+
+    .saveAspect.row
+      #saveNewAspect Save
+      #close Cancel

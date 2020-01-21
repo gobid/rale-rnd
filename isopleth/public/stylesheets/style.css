@@ -1,0 +1,386 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+*,
+body,
+button,
+html,
+input,
+select,
+textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#isoplethView {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: #F3F5F6;
+  flex-direction: column;
+  display: flex;
+}
+#isoplethView #deckView {
+  min-height: 407px;
+  width: 100%;
+  float: left;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+#isoplethView #deckView #deck {
+  float: left;
+}
+#isoplethView #deckView #deckHeader {
+  float: left;
+  height: 35px;
+  background-color: #fff;
+  border-bottom: 1px solid #d3d3d3;
+  border-bottom-right-radius: 5px;
+}
+#isoplethView #deckView #deckHeader .logo {
+  float: left;
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#isoplethView #deckView #deckHeader .logo img {
+  height: 70%;
+}
+#isoplethView #deckView #deckHeader ul {
+  float: left;
+  height: 100%;
+  margin: 0;
+  list-style: none;
+  display: block;
+  padding: 0;
+}
+#isoplethView #deckView #deckHeader ul li {
+  height: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-right: 1px solid #d3d3d3;
+  cursor: pointer;
+  user-select: none;
+}
+#isoplethView #deckView #deckHeader ul li:last-child {
+  border-right: none;
+}
+#isoplethView #deckView #deckHeader ul li:hover {
+  background-color: #eeeeee;
+}
+#isoplethView #deckView #deckHeader ul li:active {
+  background-color: #e5e5e5;
+}
+#isoplethView #deckView #deckHeader ul li.active {
+  background-color: #85ff97;
+}
+#isoplethView #deckView #deckHeader ul li.negate {
+  background-color: #dd7382;
+}
+#isoplethView #graphView {
+  width: 100%;
+  float: left;
+  background-color: #2f2f2f;
+  flex-grow: 1;
+}
+#isoplethView #graphView #graphControl {
+  width: 100%;
+  float: left;
+  height: 12%;
+}
+#isoplethView #graphView #graphControl ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#isoplethView #graphView #graphControl ul li {
+  float: left;
+}
+#isoplethView #graphView #graphControl ul li div {
+  color: white;
+  background-color: #545454;
+  border-radius: 2px;
+  margin: 3px;
+  padding: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+#isoplethView #graphView #invokeGraph {
+  width: 100%;
+}
+#isoplethView .cardView {
+  display: inline-block;
+  height: 300px;
+  margin: 2em;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+#isoplethView .cardView .sec {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  margin-right: -5px;
+}
+#isoplethView .cardView .empty-javascript {
+  width: 100%;
+  float: left;
+}
+#isoplethView .cardView .empty-javascript p {
+  margin-left: 1em;
+}
+#isoplethView .cardView .left-column,
+#isoplethView .cardView .right-column {
+  width: 0px;
+  background-color: #e2e6f3;
+  overflow-y: scroll;
+}
+#isoplethView .cardView .left-column .navCard,
+#isoplethView .cardView .right-column .navCard {
+  width: 100%;
+  display: block;
+  float: left;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 3px;
+  color: #5b59e6;
+  background-color: #f6f6f6;
+}
+#isoplethView .cardView .left-column .navCard:hover,
+#isoplethView .cardView .right-column .navCard:hover {
+  color: #4d4bc3;
+  background-color: #eeeeee;
+}
+#isoplethView .cardView .left-column .codeMirrorView,
+#isoplethView .cardView .right-column .codeMirrorView {
+  width: 100%;
+  float: left;
+  margin-bottom: 1em;
+}
+#isoplethView .cardView .center-column {
+  width: 500px;
+}
+#isoplethView .cardView .center-column .main-javascript {
+  float: left;
+  width: 99%;
+}
+#isoplethView .cardView .center-column input {
+  background-color: #f7f9fa;
+  float: left;
+  display: block;
+  margin-top: 0;
+  box-shadow: none;
+  border: none;
+  height: 24px;
+  line-height: 24px;
+  width: 96%;
+  font-size: 16px;
+  text-decoration: none;
+  padding-left: 9px;
+  border-radius: 5px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+  margin-left: 5px;
+}
+#isoplethView .cardView .center-column input:focus {
+  outline: none;
+  background-color: white;
+}
+#isoplethView .cardView .left-button-column {
+  width: 32px;
+  background-color: #e2e6f3;
+}
+#isoplethView .cardView .left-button-column .buttonPane {
+  margin-left: 27px;
+}
+#isoplethView .cardView .left-button-column .buttonPane span {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#isoplethView .cardView .buttonPane {
+  float: left;
+  transform: rotate(90deg);
+  transform-origin: 0 0 0;
+  height: 25%;
+}
+#isoplethView .cardView .buttonPane span {
+  cursor: pointer;
+  text-align: center;
+  background-color: #387fbd;
+  color: #fff;
+  padding: 4px;
+}
+#isoplethView .cardView .buttonPane span.active {
+  background-color: #ffb533;
+}
+#isoplethView .cardView .buttonPane span.active:hover {
+  background-color: #ffc97e;
+}
+#isoplethView .cardView .buttonPane span:hover {
+  background-color: #3c90d2;
+}
+#isoplethView .cardView .right-button-column {
+  width: 32px;
+  background-color: #e2e6f3;
+}
+#isoplethView .cardView .right-button-column .buttonPane {
+  margin-left: 24px;
+}
+#isoplethView .cardView .right-button-column .buttonPane span {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+#isoplethView button {
+  padding: 4px 4px;
+  color: #28aadc;
+  background-color: #fff;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid #28aadc;
+  margin: 4px;
+  transition: color .3s, border .3s;
+}
+#isoplethView button:hover {
+  color: #166888;
+  border: 1px solid #166888;
+}
+#isoplethView #invokeGraph {
+  height: 100%;
+  width: 100%;
+}
+#isoplethView #callGraphView {
+  height: 100%;
+  width: 100%;
+}
+#newAspectModal {
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#newAspectModal #modalContent {
+  border-radius: 3px;
+  height: 434px;
+  width: 380px;
+  background-color: white;
+  box-shadow: 10px 10px 35px 2px rgba(0, 0, 0, 0.32);
+}
+#newAspectModal #modalContent .row {
+  width: 100%;
+  float: left;
+  padding: 5px;
+}
+#newAspectModal #aspectColor input {
+  width: 80px;
+}
+#newAspectModal #aspectColor .label span {
+  background-color: #ffb533;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 29px;
+  margin-right: 7px;
+  line-height: 20px;
+}
+#newAspectModal .label {
+  float: left;
+  display: block;
+  line-height: 24px;
+}
+#newAspectModal input {
+  background-color: #f5f5f5;
+  float: left;
+  display: block;
+  box-shadow: none;
+  border: none;
+  height: 24px;
+  width: 250px;
+  margin-left: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  padding-left: 9px;
+  border-radius: 3px;
+}
+#newAspectModal input:focus {
+  outline: none;
+}
+#newAspectModal .newFilterType,
+#newAspectModal #saveNewAspect,
+#newAspectModal #close {
+  background-color: #f5f5f5;
+  line-height: 27px;
+  height: 100%;
+  display: block;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+#newAspectModal .newFilterType:hover,
+#newAspectModal #saveNewAspect:hover,
+#newAspectModal #close:hover {
+  background-color: #d3d3d3;
+}
+#newAspectModal .newFilterType:active,
+#newAspectModal #saveNewAspect:active,
+#newAspectModal #close:active {
+  background-color: #bfbfbf;
+}
+#newAspectModal .newFilterType.active,
+#newAspectModal #saveNewAspect.active,
+#newAspectModal #close.active {
+  background-color: #abc9e5;
+}
+#newAspectModal .newFilterType:first-child,
+#newAspectModal #saveNewAspect:first-child,
+#newAspectModal #close:first-child {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-right: 1px solid white;
+}
+#newAspectModal .newFilterType:last-child,
+#newAspectModal #saveNewAspect:last-child,
+#newAspectModal #close:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#newAspectModal .filterTypes {
+  float: left;
+  height: 27px;
+  padding-left: 31px;
+}
+#newAspectModal #newAspectFilter .mirrorHandle {
+  width: 94%;
+  float: left;
+  height: 220px;
+  overflow: scroll;
+}
+#newAspectModal #newAspectFilter .mirrorHandle .CodeMirror {
+  height: 220px;
+}
+#newAspectModal .saveAspect #saveNewAspect,
+#newAspectModal .saveAspect #close {
+  float: right;
+  width: 50px;
+  text-align: center;
+  border-radius: 3px;
+}
+#newAspectModal .saveAspect #saveNewAspect {
+  margin-right: 12px;
+}
+#newAspectModal .saveAspect #close {
+  margin-right: 4px;
+}

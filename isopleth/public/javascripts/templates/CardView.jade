@@ -1,0 +1,36 @@
+.left-column.sec
+  .invoke-inputs-view.colview(style="display:none;")
+  .invoke-binding-view.colview(style="display:none;")
+  .invoke-parent-view.colview(style="display:none;")
+  .invoke-declaration-view.colview(style="display:none;")
+
+.left-button-column.sec
+  .buttonPane.invoke-inputs(style="display:none;")
+    span Input
+  .buttonPane.invoke-parent(style="display:none;")
+    span Parent
+  .buttonPane.invoke-binding(style="display:none;")
+    span Bind
+  .buttonPane.invoke-declaration(style="display:none;")
+    span Context
+
+.center-column.sec
+  input.invoke-label(value="{{description}}")
+
+  .main-javascript
+  .empty-javascript(style="display:none;")
+    p Browser Load/Call
+
+.right-button-column.sec
+  .buttonPane.invoke-outputs(style="display:none;")
+    span Output
+  .buttonPane.invoke-delegates(style="display:none;")
+    span Calls
+  .buttonPane.invoke-effects(style="display:none;")
+    span Effect
+
+.right-column.sec
+  .invoke-outputs-view.colview(style="display:none;")
+  .invoke-delegates-view.colview(style="display:none;")
+  .invoke-effects-view.colview(style="display:none;")
+
