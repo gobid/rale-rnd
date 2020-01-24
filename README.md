@@ -1,4 +1,4 @@
-# Isopleth
+# Isopleth 2.0
 
 A platform for following interesting paths through JavaScript.
 
