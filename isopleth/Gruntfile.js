@@ -1,3 +1,8 @@
+/*
+- Grunt is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting.
+- grunt file for live loading dependencies like jade files and js libaries 
+*/
+
 var expressReloadWatchFiles = [
   'app.js',
   'routes/**/*.js'

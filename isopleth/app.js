@@ -1,3 +1,7 @@
+/*
+- sets up isopleth app
+*/
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var http = require('http');
