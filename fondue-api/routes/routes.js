@@ -1,3 +1,7 @@
+/*
+- add routes for instrument, beautify 
+*/
+
 var ROUTES = {
   HTTP_PORT: 3000,
   HTTPS_PORT: 3001,

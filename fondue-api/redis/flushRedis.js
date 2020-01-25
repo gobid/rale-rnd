@@ -1,3 +1,8 @@
+/*
+- flushes redis cache (key value store)
+- https://redis.io/topics/rediscli
+*/
+
 var redis = require('redis');
 var redisClient = redis.createClient();
 

@@ -1,3 +1,7 @@
+/*
+- wrapper functions around beautifyHTML and beautifyJS utils
+*/
+
 var util = require("../util/util");
 var request = require("request");
 

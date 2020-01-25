@@ -1,3 +1,12 @@
+/*
+- cherio can help parse the html
+- extracts scripts from html body 
+- get post body, head, pre head, etc. scripts
+- puts all the scripts in a json response
+- instruments inline scripts
+- beatuifies html, js
+*/
+
 var instrumentService = require("../services/instrumentService");
 var beautifyService = require("../services/beautifyService");
 var routes = require("../routes/routes");

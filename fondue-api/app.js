@@ -1,3 +1,8 @@
+/*
+- creatng a new node server
+- redirects http traffic to https
+*/
+
 var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');

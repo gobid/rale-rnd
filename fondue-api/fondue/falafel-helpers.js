@@ -1,3 +1,8 @@
+/*
+- https://github.com/alltom/falafel-helpers Wraps your falafel callback function, adding handy helpers:
+- https://github.com/substack/node-falafel transform the ast on a recursive walk 
+*/
+
 var eselector = require('./esprima-selector');
 
 // decorates the given esprima node with tag-specific helpers.

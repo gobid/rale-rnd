@@ -1,3 +1,10 @@
+/*
+- has some js min / code optimizations
+- has some options for js code minification / optimizations
+- beautifies HTML, CSS, JS 
+- jsnice de-minification is commented out, doesn't work great, need to just find sites with unminified code
+*/
+
 var htmlMinify = require('html-minifier').minify;
 var UglifyJS = require('uglify-js');
 var beautify = require('js-beautify').js_beautify;

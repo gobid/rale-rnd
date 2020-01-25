@@ -1,3 +1,7 @@
+/*
+- new fondue instance on each process
+*/
+
 var cluster = require('cluster');
 
 if (cluster.isMaster) {

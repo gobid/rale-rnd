@@ -1,3 +1,8 @@
+/*
+- esprima - used for parsing nodes, types of nodes
+*/
+
+
 // returns true if selector matches the given esprima node
 // example selectors:
 //   *
