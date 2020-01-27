@@ -1,4 +1,6 @@
 /*
+- also comes from fondue
+
 The following code has been modified by fondue to collect information about its
 execution.
 

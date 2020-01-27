@@ -1,4 +1,6 @@
 /*
+- also comes from fondue
+
 The following code was inserted automatically by fondue to collect information
 about the execution of all the JavaScript on this page or in this program.
 

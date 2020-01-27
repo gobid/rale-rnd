@@ -1,3 +1,10 @@
+/*
+- Collect real-time JavaScript traces (number of times a function has been called, locations where exceptions have been thrown, etc).
+- copied from fondue but modified
+- we can black box the internal implementation of fondue for now
+- tracer handle hits
+*/
+
 var basename = require('path').basename;
 var fs = require('fs');
 var falafel = require('falafel');
