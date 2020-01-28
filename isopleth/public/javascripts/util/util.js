@@ -1,3 +1,7 @@
+/*
+- just some useful operations
+*/
+
 define([
   "jquery",
   "backbone",

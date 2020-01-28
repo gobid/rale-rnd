@@ -1,3 +1,8 @@
+/*
+-  compiles all the graphs collections and draws the graph
+- all bottom buttons laid out here, sets up custom colors, functions for all the buttons, draws async relations (Josh, Tom fondue); coloring of invoke nodes (blue, toplevel, ajax, click, etc); handlesNodeClick, handlesEdgeClick, heatmap, updates label, draws the actual graph; defines other buttons as well like downloading invokes etc
+*/
+
 define([
   "jquery",
   "backbone",
@@ -6,7 +11,7 @@ define([
 ], function ($, Backbone, _, Handlebars) {
   return Backbone.View.extend({
     events: {
-      "click #draw": "draw",
+      "click #draw": "draw", // comes from this.invokeGraph
       "click #markNonLib": "markNonLib",
       "click #markTopLevelNonLib": "markTopLevelNonLib",
       "click #drawTomAsync": "drawTomAsync",

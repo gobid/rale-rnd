@@ -1,3 +1,7 @@
+/*
+- support for curved lines
+*/
+
 define([
   "jquery",
   "backbone",

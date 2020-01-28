@@ -1,3 +1,7 @@
+/*
+- time slide change, js detail change, detail slider, updateslider
+*/
+
 define([
   "jquery",
   "backbone",

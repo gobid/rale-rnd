@@ -1,3 +1,7 @@
+/*
+- getHitsWithinDisplayRange, getDOMqueryfn - for the nodes
+*/
+
 define([
   "jquery",
   "backbone",

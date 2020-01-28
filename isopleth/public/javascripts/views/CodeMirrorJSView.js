@@ -1,3 +1,8 @@
+/*
+- line numbers, insert lines of code
+- fill up the code pane
+*/
+
 define([
   "jquery",
   "backbone",

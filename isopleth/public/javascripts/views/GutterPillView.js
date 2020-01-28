@@ -1,3 +1,7 @@
+/*
+- get DOM related queries, add DOM related queries
+*/
+
 define([
   "jquery",
   "backbone",

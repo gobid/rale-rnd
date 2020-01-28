@@ -1,3 +1,7 @@
+/*
+- compiles DeckView, shows the graph, inits all the different frontend components required
+*/
+
 define([
   "jquery",
   "backbone",

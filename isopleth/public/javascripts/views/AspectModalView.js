@@ -1,3 +1,7 @@
+/*
+-  showing and saving new aspect - what is an aspect (?)
+*/
+
 var exampleFunction = function (val) {
   // For Argument type,
   //   argument is passed in

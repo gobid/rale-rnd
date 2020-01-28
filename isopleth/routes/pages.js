@@ -1,3 +1,7 @@
+/*
+- main index page with title
+*/
+
 module.exports = function(app){
   var home = function(req, res){
     res.render('index', {

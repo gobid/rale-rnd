@@ -1,3 +1,8 @@
+/*
+- socket io - key value line onSocketData("fondueDTO:arrInvocations") of jsbinrouter - value is the fn
+- then adds the invokes to the graph
+*/
+
 define([
   "jquery",
   "backbone",

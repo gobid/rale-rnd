@@ -1,3 +1,8 @@
+/*
+- draw deck, clear deck, add all the cards, adding cards, filterNav, filterMouse, filterKeyboard, filterSetup, filterAjax, filterDOM - looks at invokenodes.__events/queries, adds filters
+- shows all the cards laid out (the 1-3 codepanes in the top of the fold view)
+*/
+
 define([
   "jquery",
   "backbone",

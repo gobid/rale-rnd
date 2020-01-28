@@ -1,3 +1,8 @@
+/*
+- toggleView - toggles side panels / views; resizepane?
+- toggle inputs, outputs, etc, showing actions - inputs, outputs, declarations, parent, delegates, binding
+*/
+
 define([
   "jquery",
   "backbone",

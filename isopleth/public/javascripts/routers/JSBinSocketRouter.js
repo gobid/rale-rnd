@@ -1,3 +1,7 @@
+/*
+- initialize socketrouter, get event data
+*/
+
 define([
   "underscore",
   "backbone"

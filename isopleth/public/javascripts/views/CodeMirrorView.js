@@ -1,3 +1,8 @@
+/*
+- line numbers, insert lines
+- initializes size, and widgets around it, scroll bar style, deleteLine, scrolling functionality
+*/
+
 define([
   "jquery",
   "backbone",

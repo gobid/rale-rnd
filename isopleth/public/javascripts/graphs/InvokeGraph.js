@@ -1,3 +1,11 @@
+/*
+- has a to json method, addInvokes method, calculate, climbTree, descendTree, dedupInvoke, classifyInvoke, classifyCustom
+- match every call with parent and children in invoke graph.js (calculates pending edges)
+- merge nodes integrate new set of nodes in and dedupes
+- backbone collection are fancy arrays with more helper - dedupe unique more methods (ok)
+- added helper method for active nodes
+*/
+
 define([
   "backbone",
   "underscore",

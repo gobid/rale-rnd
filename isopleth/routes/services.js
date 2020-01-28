@@ -1,3 +1,8 @@
+/*
+- CRUD for taskModel
+- /api/save/ also sends the uuid
+*/
+
 var TaskCollection = require("../collections/TaskCollection");
 var taskCollection = new TaskCollection();
 var uuid = require("uuid");

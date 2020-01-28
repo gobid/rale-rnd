@@ -1,3 +1,7 @@
+/*
+- detail level change based on buttons; no libs, dom modifiers
+*/
+
 define([
   "jquery",
   "backbone",

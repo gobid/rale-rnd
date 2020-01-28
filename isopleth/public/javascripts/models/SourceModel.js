@@ -1,3 +1,7 @@
+/*
+- backbone model for codeview, getActiveLines, getDisplayName
+*/
+
 define([
   "jquery",
   "backbone",

@@ -1,3 +1,8 @@
+/*
+ - set background color, maps jquery selectors for by-tag, by-class-name, etc.
+ - adding lines of html to page
+*/
+
 define([
   "jquery",
   "backbone",

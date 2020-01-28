@@ -1,3 +1,9 @@
+/*
+- activeNodeCollection - distinct from the InvokeGraph nodes - truly all the active nodes
+- mergenode utils
+- populatequerymap 
+*/
+
 define([
   "jquery",
   "backbone",
