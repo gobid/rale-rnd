@@ -42,7 +42,7 @@ Setup Chrome
 #To run:
     
     cd isopleth/fondue-api/redis
-    ./redisStart.sh  #start redis
+    redis-server
     
     cd isopleth/fondue-api
     node app-cluster.js  #start fondue api on all cores

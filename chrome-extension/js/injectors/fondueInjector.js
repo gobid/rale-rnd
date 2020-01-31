@@ -9,7 +9,7 @@
 define([], function () {
     return function () {
       var FondueBridge = function () {
-        consolelog("unravelAgent: ", unravelAgent);
+        console.log("unravelAgent: ", unravelAgent);
         this.updateTrackedNodes = unravelAgent._.bind(this.updateTrackedNodes, this);
         this.startTracking = unravelAgent._.bind(this.startTracking, this);
         this.getNodes = unravelAgent._.bind(this.getNodes, this);

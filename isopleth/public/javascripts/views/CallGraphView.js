@@ -416,7 +416,7 @@ define([
           data: {
             id: invoke.invocationId,
             label: label,
-            color: this.getNodeColor(invoke)
+            color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
 
