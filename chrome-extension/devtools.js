@@ -14,6 +14,8 @@ var name = "Isopleth";
 //  }
 //);
 
+console.log("in devtools.js")
+
 chrome.devtools.panels.create(name, "img/ibex-small.png", "panel.html");
 
 chrome.devtools.panels.elements.onSelectionChanged.addListener(function () {

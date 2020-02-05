@@ -52,6 +52,8 @@ require([
 ], function ($, Backbone, PanelRouter) {
   $(document).ready(function () {
     var router = new PanelRouter();
+    console.log("in document ready function, before Backbone.history.start"); 
+    // t5, comes here again because of the reload of the original webpage
     Backbone.history.start();
 
     var tabId = chrome.devtools.inspectedWindow.tabId;

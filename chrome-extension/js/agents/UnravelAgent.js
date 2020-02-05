@@ -33,7 +33,8 @@ define([
     }
   }
 
-  UnravelAgent.reloadInjecting = function () {
+  UnravelAgent.reloadInjecting = function () { 
+    // t4, after this - need to find instrumented code, must double chrome inspect
     var agentFn = function () {
       window.unravelAgent = {};
     };
@@ -55,10 +56,14 @@ define([
     var f13 = "(" + goFondue.toString() + ").apply(this, []); ";
     var end = " } ";
 
+    console.log("before chrome devtools reload injectedScript");
+
     chrome.devtools.inspectedWindow.reload({
       ignoreCache: true,
       injectedScript: start + f1 + f2 + f3 + f5 + f7 + f8 + f13 + end
     });
+
+    console.log("after chrome devtools reload injectedScript");
 
     var checkTimeout = function (isActive) {
       if (isActive) {
@@ -66,11 +71,12 @@ define([
       } else {
         window.setTimeout(function () {
           UnravelAgent.checkActive(checkTimeout)
-        }, 1000);
+        }, 10000);
       }
     };
 
     checkTimeout(false);
+    console.log("at the end of reloadInjecting")
   };
 
   //public static

@@ -32,7 +32,7 @@ define([
     template: Handlebars.compile(viewTemplate),
 
     events: {
-      "click #reload": "reloadInjecting",
+      "click #reload": "reloadInjecting", // t2. reload triggers this
       "click #throttleInvokes": "throttleInvokes",
       "click #removeThrottle": "removeThrottle"
     },
@@ -51,7 +51,8 @@ define([
       this.binSetupInProgress = true;
     },
 
-    render: function (unravelAgentActive) {
+    render: function (unravelAgentActive) { // t8
+      console.log("in render, right before createBin called")
       this.$el.html(this.template());
 
       if (unravelAgentActive) {
@@ -177,8 +178,10 @@ define([
       tryToGetNodes();
     },
 
-    createBin: function () { // save the bin to the localhost
+    createBin: function () { // t9 // save the bin to the localhost
+      console.log("in createBin");
       var jsBinCallback = _.bind(function (response) {
+        console.log("in jsBinCallback, opening new tab");
         var binUrl = response.url;
         var tabUrl = "http://localhost:3007/" + binUrl + "/edit?html,js";
         console.log(tabUrl);
@@ -420,7 +423,7 @@ define([
     },
 
     reloadInjecting: function () {
-      UnravelAgent.reloadInjecting();
+      UnravelAgent.reloadInjecting(); // t3. click reload comes here
     }
   });
 });

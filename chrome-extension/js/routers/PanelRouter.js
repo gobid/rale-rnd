@@ -27,11 +27,13 @@ define([
       "": "start"
     },
 
-    start: function () {
+    start: function () { // t6
+      console.log("in PanelRouter start");
       this.homeView = new HomeView();
       var router = this;
 
-      UnravelAgent.checkActive(function (isActive) {
+      UnravelAgent.checkActive(function (isActive) { // t7
+        console.log("in UnravelAgent.checkActive, right before router.homeView.render");
         router.unravelAgent = new UnravelAgent();
         router.homeView.render(isActive);
         document.body.appendChild(router.homeView.el);
