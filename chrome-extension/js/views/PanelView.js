@@ -216,8 +216,16 @@ define([
 
     getScriptMetaData: function (callback) { // get script metadata
       var metaCallback = function (o) {
-        this.location = o.location;
-        this.metaScripts = o.metaScripts;
+        console.log("o: ", o);
+        if (o) {
+          this.location = o.location;
+          this.metaScripts = o.metaScripts;
+        }
+        else {
+          this.location = null
+          this.metaScripts = null;
+        }
+        
 
         if (callback) {
           callback();
