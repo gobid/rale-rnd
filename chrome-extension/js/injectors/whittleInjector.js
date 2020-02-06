@@ -44,6 +44,8 @@ define([],
           } else {
             if (scriptEl.innerHTML.indexOf("__tracer.add") > -1) {
               //Inline scripts
+              console.log("handling inline script");
+              console.log("script:", scriptEL);
               url = scriptEl.innerHTML.split("__tracer.add(\"")[1].split("\"")[0];
             } else {
               if (scriptEl.innerHTML.indexOf("tracer") > -1) {
@@ -56,6 +58,8 @@ define([],
               }
             }
           }
+
+          console.log("in whittleInjector, before mention of instrument");
 
           if (url.indexOf("https://localhost:3001/instrument?js=true&url=") > -1) {
             url = decodeURIComponent(url).split("https://localhost:3001/instrument?js=true&url=")[1];

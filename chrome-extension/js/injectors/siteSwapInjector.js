@@ -10,6 +10,7 @@ define([],
   function () {
     return function () {
       window.unravelAgent.reWritePage = function () {
+        console.log("in unravelAgent.reWritePage");
         //https://developer.mozilla.org/en-US/docs/Web/API/Window
         var keepKeys = [
           "applicationCache",

@@ -405,6 +405,7 @@ define([
     getScriptsFromExternal: function (externalScripts, callback) { // gets scripts from external JS files
       var tries = 0;
       _(externalScripts).each(function (fileObj) {
+        console.log("beautifying inline scripts:");
         var formattedUrl = "https://localhost:3001/beautifyJS?url=" + encodeURIComponent(fileObj.path);
 
         this.corsGet(formattedUrl, _.bind(function (http) {

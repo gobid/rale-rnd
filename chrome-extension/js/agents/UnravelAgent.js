@@ -63,6 +63,9 @@ define([
       injectedScript: start + f1 + f2 + f3 + f5 + f7 + f8 + f13 + end
     });
 
+    // oh this just injects the library scripts?
+    // what about instrumentation? - seems to happen in whittle injector?
+
     console.log("after chrome devtools reload injectedScript");
 
     var checkTimeout = function (isActive) {
