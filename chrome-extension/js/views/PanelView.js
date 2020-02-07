@@ -393,6 +393,7 @@ define([
 
     getScriptsFromInlineHTML: function (htmlUrl, callback) { // gets scripts from internal HTML <script> tag
       htmlUrl = htmlUrl.split("#")[0] + "";  //ignoring after hashes because server doesn't get them
+      console.log("in PanelView before fetchUrl");
       var fetchUrl = "https://localhost:3001/inlineScriptSrcs?url=" + encodeURIComponent(htmlUrl);
 
       this.corsGet(fetchUrl, _.bind(function (http) {

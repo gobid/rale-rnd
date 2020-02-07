@@ -60,7 +60,6 @@ define([],
           }
 
           console.log("in whittleInjector, before mention of instrument");
-
           if (url.indexOf("https://localhost:3001/instrument?js=true&url=") > -1) {
             url = decodeURIComponent(url).split("https://localhost:3001/instrument?js=true&url=")[1];
           }

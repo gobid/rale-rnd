@@ -146,6 +146,7 @@ define([],
           "&callback=window.unravelAgent.reWriteCallback";
 
         var http = new XMLHttpRequest();
+        console.log("right before instrument url get");
         http.open("GET", instrumentedURL, true);
         var complete = false;
 
