@@ -180,7 +180,8 @@ define([
 
     createBin: function () { // t9 // save the bin to the localhost
       console.log("in createBin");
-      var jsBinCallback = _.bind(function (response) {
+      var jsBinCallback = _.bind(function (response) { 
+        // this deals with new tab, but not getting data from fondue
         console.log("in jsBinCallback, opening new tab");
         var binUrl = response.url;
         var tabUrl = "http://localhost:3007/" + binUrl + "/edit?html,js";

@@ -24,9 +24,10 @@ define([
         throw new Error("Cannot instantiate more than one SocketRouter, use SocketRouter.getInstance()");
       }
 
+      console.log("before establishing socket connection"); // ok this is for establishing connection to socket fondue
       this.socket = io.connect('https://localhost:3003');
       this.on('connect', function () {
-        console.log("Socket connection established.");
+        console.log("Socket connection established."); // strangely this deosn't print
       });
       this.on("user:id", function (obj) {
         this.userId = obj.id;
