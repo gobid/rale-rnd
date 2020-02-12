@@ -3,6 +3,7 @@
 - siteSwapInjector is whittling down the keys
 - deals with html, css (js is in siteswap)
 - pulls out source of script tags and replaces with instrumented versions
+- OH OK SO THIS ACTUALLY RUNS IN THE PAGE, NOT THE CHROME EXTENSION
 */
 
 
