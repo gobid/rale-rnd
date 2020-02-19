@@ -24,7 +24,7 @@
     "js-beautify": "1.5.10",
     "moment": "2.10.6",
     "redis": "1.0.0",
-    "request": "2.60.0",
+    "request": "2.88.2",
     "uglify-js": "2.4.24",
     "underscore": "1.8.3",
     "url": "0.10.3",
