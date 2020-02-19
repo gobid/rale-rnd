@@ -14,6 +14,7 @@ var cheerio = require('cheerio');
 
 module.exports = function (app) {
   app.get(routes.INSTRUMENT, function (req, res) {
+    console.log("in regular instrumentation");
     var url = req.param("url");
     var html = req.param("html");
     var js = req.param("js");
@@ -126,6 +127,7 @@ module.exports = function (app) {
   });
 
   app.get("/inlineScriptSrcs", function (req, res) {
+    conosole.log("in inlineScriptSrcs instrumentation");
     var url = req.param("url");
 
     instrumentService.getInlineScriptSources(url, function (arrSrcs) {

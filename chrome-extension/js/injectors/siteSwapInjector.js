@@ -4,6 +4,7 @@
 - calls the /instrument url to get the instrumented version of this page's source
 - delete keys that aren't the ones we are trying to keep
 - rewrite the page
+- OH OK SO THIS ACTUALLY RUNS IN THE PAGE, NOT THE CHROME EXTENSION
 */
 
 define([],
@@ -196,6 +197,7 @@ define([],
 
               //Rewrite with fondue
               document.open('text/html');
+              console.log("instrumented coontent", http.responseText);
               document.write(http.responseText); // rewriting going on here
               document.close();
             } catch (err) {

@@ -50,6 +50,11 @@ module.exports = {
       redisClient.get(digest, function (err, foundSrc) {
         if (foundSrc != null) {
           console.log("Retrieved instrumentation for", fondueOptions.path);
+          //console.log("--- passed source ---\n")
+          //console.log(passedSource)
+          //console.log("--- found source ---\n")
+          //console.log(foundSrc)
+          //console.log("--- ------------- ---\n")
           callback(foundSrc, passedSource, i, iterLoc, errOpt);
         } else {
           console.log("Instrumenting ", fondueOptions.path);
