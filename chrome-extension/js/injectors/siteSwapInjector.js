@@ -197,8 +197,34 @@ define([],
 
               //Rewrite with fondue
               document.open('text/html');
-              console.log("instrumented coontent", http.responseText);
-              document.write(http.responseText); // rewriting going on here
+              console.log("before line breaking and print");
+
+              var str_response = http.responseText
+              var str_arr = str_response.split("\n");
+              var new_code = ""
+              for (var i in str_arr) {
+                if (str_arr[i].length > 5000) {
+                  var sub_arr = str_arr[i].split(";");
+                  for (var j in sub_arr) {
+                    if (sub_arr[j].length > 5000) {
+                      var sub_sub_arr = sub_arr[j].split("},");
+                      for (var k in sub_sub_arr) {
+                        new_code += sub_arr[k] + "}," + "\r\n";
+                      }
+                    } 
+                    else {
+                      new_code += sub_arr[j] + ";" + "\r\n";
+                    }
+                    //console.log("sub_arr[j]:", sub_arr[j]+";");
+                  }
+                }
+                else {
+                  new_code += str_arr[i] + "\r\n";
+                }
+              }
+              console.log("instrumented, split content", new_code);
+
+              document.write(new_code); // rewriting going on here
               document.close();
             } catch (err) {
               debugger;

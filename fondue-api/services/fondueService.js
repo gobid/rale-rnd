@@ -136,6 +136,8 @@ module.exports = {
       for (var i = scriptLocs.length - 1; i >= 0; i--) {
         var loc = scriptLocs[i];
         var script = src.slice(loc.start, loc.end);
+        console.log("script src", i, ":", script);
+
         var options = util.mergeInto(fondueOptions, {});
         options.path = options.path + "-script-" + i;
         var prefix = src.slice(0, loc.start).replace(/[^\n]/g, " "); // padding it out so line numbers make sense

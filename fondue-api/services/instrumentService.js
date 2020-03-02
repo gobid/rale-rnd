@@ -119,6 +119,8 @@ module.exports = {
         return;
       }
 
+      // body looks good and makes sense here
+
       body = util.beautifyHTML(body);  //Remove crap that breaks fondue
 
       var $ = cheerio.load(body);
@@ -129,10 +131,12 @@ module.exports = {
         // if ($domItem.is("iframe")) {
         //   $domItem.remove();
         // }
+
+        // for all scripts replace "src" with insrumented version?
         if ($domItem.is("script")) {
           $domItem.removeAttr("nonce");
-
-          var elSrcLink = $domItem.attr("src");
+          console.log("$domItem", $domItem); // some of them end up being just text/js with no src
+          var elSrcLink = $domItem.attr("src"); // ah ok it only does it if elSrcLink is not null
           if (elSrcLink && elSrcLink.indexOf("chrome-extension") < 0) {
             if ($domItem.is("script")) {
               if (elSrcLink && elSrcLink.indexOf("http") < 0) {
@@ -152,6 +156,8 @@ module.exports = {
       };
 
       var cleanedSrc = $.html();
+      console.log("cleanedSrc:", cleanedSrc);
+      // cleaned src looks good
       fondueService.instrumentHTML(cleanedSrc, fondueOptions, function (src) {
         var $ = cheerio.load(src);
         $("html > head").prepend($("script")[0]);
@@ -161,6 +167,7 @@ module.exports = {
           throw new Error();
         }
 
+        // console log messed up html
         callback(html);
       });
     });
