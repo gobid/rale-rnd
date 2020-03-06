@@ -76,4 +76,10 @@ Setup Chrome
     Click on the isopleth tab that auto-opened
     
     Hit Draw button at bottom
+
+Limitations:
+
+- does not address minified code so we need to use it on sites that don't have unminified code
+- does not instrument google / facebook / top 10 alexa ranking sites?
+
     

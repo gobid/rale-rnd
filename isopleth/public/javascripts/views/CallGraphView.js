@@ -419,6 +419,7 @@ define([
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
+        console.log("node:", label);
 
         this.visibleInvokes.push(invoke);
         if (invoke.node.invokes.length > this.maxVisibleHitCount) {

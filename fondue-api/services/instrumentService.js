@@ -55,6 +55,22 @@ var blockedDomains = [
   "https://expasy.org/js/jquery.easing.1.3.js",
   "https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js",
   "https://expasy.org/js/query_engine.js",
+  "https://ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js",
+  "https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.OfYsKuVZ3qI.O/m=auth/exm=plusone/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCMVod3aO7ybjljp3cyn2IsEoP0pUg/cb=gapi.loaded_1",
+  "https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.OfYsKuVZ3qI.O/m=plusone/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCMVod3aO7ybjljp3cyn2IsEoP0pUg/cb=gapi.loaded_0",
+  "https://apis.google.com/js/plusone.js",
+  "https://connect.facebook.net/en_GB/all.js",
+  "https://connect.facebook.net/en_GB/all.js?hash=5543556ded56c6316318b0451eb9a8d2&ua=modern_es6",
+  "https://fonts.googleapis.com/css?family=Droid%20Sans|Boogaloo",
+  "https://maps.googleapis.com/maps-api-v3/api/js/40/3/common.js",
+  "https://maps.googleapis.com/maps-api-v3/api/js/40/3/map.js",
+  "https://maps.googleapis.com/maps-api-v3/api/js/40/3/util.js",
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyC782k-SFBeK0nx99t6l3eMOiK-cQD8DRI&sensor=false&libraries=geometry&v=3.8",
+  "https://platform.twitter.com/js/button.93a0c25c2d2f3081c705c98c2d9dec0e.js",
+  "https://platform.twitter.com/widgets.js",
+  "https://ssl.google-analytics.com/ga.js",
+  "https://ssl.google-analytics.com/__utm.gif?utmwv=5.7.2&utms=4&utmn=682748143&utmhn=www.mapstd.com&utmcs=windows-1252&utmsr=1440x900&utmvp=1440x766&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=MapsTD&utmhid=2020346644&utmr=-&utmp=%2F&utmht=1583517621999&utmac=UA-29746608-1&utmcc=__utma%3D97885443.1537363129.1579129450.1583514582.1583517299.22%3B%2B__utmz%3D97885443.1579129450.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
+  "https://syndication.twitter.com/i/jot?l=%7B%22widget_origin%22%3A%22https%3A%2F%2Fwww.mapstd.com%2F%22%2C%22widget_frame%22%3Afalse%2C%22language%22%3A%22en%22%2C%22message%22%3A%22m%3Anocount%3A%22%2C%22_category_%22%3A%22tfw_client_event%22%2C%22triggered_on%22%3A1583517625360%2C%22dnt%22%3Afalse%2C%22client_version%22%3A%22fc3e851%3A1583358213678%22%2C%22format_version%22%3A1%2C%22event_namespace%22%3A%7B%22client%22%3A%22tfw%22%2C%22page%22%3A%22button%22%2C%22section%22%3A%22share%22%2C%22action%22%3A%22impression%22%7D%7D",
 ];
 
 

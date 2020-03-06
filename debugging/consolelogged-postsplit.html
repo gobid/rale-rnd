@@ -3451,38 +3451,3 @@ __tracer.add("https://expasy.org/-script-16", "", { nodes: [{"path":"https://exp
  </div>
 </body>
 </html>
-function c(x,w){try{this._each(x,w)}catch(y){if(y!=$break){throw y}}return this}
-function r(z,y,x){var w=-z,A=[],B=this.toArray();if(z<1){return B}while((w+=z)<B.length){A.push(B.slice(w,w+z))}return A.collect(y,x)}
-function(){if(arguments.length===0){return z.call(this,Prototype.K)}else{if(arguments[0]===undefined){var A=o.call(arguments,1);A.unshift(Prototype.K);return z.apply(this,A)}else{return z.apply(this,arguments)}}}
-function(){if(arguments.length===0){return z.call(this,Prototype.K)}else{if(arguments[0]===undefined){var A=o.call(arguments,1);A.unshift(Prototype.K);return z.apply(this,A)}else{return z.apply(this,arguments)}}}
-function(){if(arguments.length===0){return z.call(this,Prototype.K)}else{if(arguments[0]===undefined){var A=o.call(arguments,1);A.unshift(Prototype.K);return z.apply(this,A)}else{return z.apply(this,arguments)}}}
-function t(y,x){var w;this.each(function(A,z){if(y.call(x,A,z,this)){w=A;throw $break}},this);return w}
-function filter() { [native code] }
-function filter() { [native code] }
-function g(z,y,x){y=y||Prototype.K;var w=[];if(Object.isString(z)){z=new RegExp(RegExp.escape(z))}this.each(function(B,A){if(z.match(B)){w.push(y.call(x,B,A,this))}},this);return w}
-function a(w){if(Object.isFunction(this.indexOf)&&this.indexOf(w)!=-1){return true}var x=false;this.each(function(y){if(y==w){x=true;throw $break}});return x}
-function a(w){if(Object.isFunction(this.indexOf)&&this.indexOf(w)!=-1){return true}var x=false;this.each(function(y){if(y==w){x=true;throw $break}});return x}
-function q(x,w){w=Object.isUndefined(w)?null:w;return this.eachSlice(x,function(y){while(y.length<x){y.push(w)}return y})}
-function l(w,y,x){this.each(function(A,z){w=y.call(x,w,A,z,this)},this);return w}
-function v(x){var w=$A(arguments).slice(1);return this.map(function(y){return y[x].apply(y,w)})}
-function p(y,x){y=y||Prototype.K;var w;this.each(function(A,z){A=y.call(x,A,z,this);if(w==null||A>=w){w=A}},this);return w}
-function n(y,x){y=y||Prototype.K;var w;this.each(function(A,z){A=y.call(x,A,z,this);if(w==null||A<w){w=A}},this);return w}
-function e(z,x){z=z||Prototype.K;var y=[],w=[];this.each(function(B,A){(z.call(x,B,A,this)?y:w).push(B)},this);return[y,w]}
-function f(x){var w=[];this.each(function(y){w.push(y[x])});return w}
-function d(y,x){var w=[];this.each(function(A,z){if(!y.call(x,A,z,this)){w.push(A)}},this);return w}
-function m(x,w){return this.map(function(z,y){return{value:z,criteria:x.call(w,z,y,this)}},this).sort(function(B,A){var z=B.criteria,y=A.criteria;return z<y?-1:z>y?1:0}).pluck("value")}
-function t(){return o.call(this,0)}
-function s(){var x=Prototype.K,w=$A(arguments);if(Object.isFunction(w.last())){x=w.pop()}var y=[this].concat(w).map($A);return this.map(function(A,z){return x(y.pluck(z))})}
-function l(){return this.length}
-function w(){return"["+this.map(Object.inspect).join(", ")+"]"}
-function reverse() { [native code] }
-function forEach() { [native code] }
-function n(){this.length=0;return this}
-function d(){return this[0]}
-function g(){return this[this.length-1]}
-function k(){return this.select(function(z){return z!=null})}
-function y(){return this.inject([],function(A,z){if(Object.isArray(z)){return A.concat(z.flatten())}A.push(z);return A})}
-function j(){var z=o.call(arguments,0);return this.select(function(A){return !z.include(A)})}
-function m(z){return this.inject([],function(C,B,A){if(0==A||(z?C.last()!=B:!C.include(B))){C.push(B)}return C})}
-function r(z){return this.uniq().findAll(function(A){return z.indexOf(A)!==-1})}
-function t(){return o.call(this,0)}
