@@ -25,7 +25,9 @@ module.exports = function (app) {
     if (html === "true") {
       try {
         instrumentService.instrumentHTML(url, basePath, function (html) {
+          console.log("in callback of instrumentHTML which returns non messed up html")
           if (fmt === "json") {
+            console.log("in if, so going to send json");
             var $ = cheerio.load(html);
 
             var $body = $('body');
@@ -106,6 +108,7 @@ module.exports = function (app) {
             });
             res.send(jsonRes);
           } else {
+            console.log("in else, so going to send html");
             res.send(html);
           }
 

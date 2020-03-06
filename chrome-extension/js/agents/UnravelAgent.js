@@ -74,7 +74,7 @@ define([
       } else {
         window.setTimeout(function () {
           UnravelAgent.checkActive(checkTimeout)
-        }, 10000);
+        }, 1000);
       }
     };
 

@@ -50,6 +50,11 @@ var blockedDomains = [
   "https://assets.tumblr.com/client/prod/app/global.build.js",
   "gd-core-bottom",
   "gd-home",
+  "https://expasy.org/js/jquery182.js",
+  "https://expasy.org/js/jqueryNoConflict.js",
+  "https://expasy.org/js/jquery.easing.1.3.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js",
+  "https://expasy.org/js/query_engine.js",
 ];
 
 
@@ -168,6 +173,7 @@ module.exports = {
         }
 
         // console log messed up html
+        console.log("purportedly messed up html:", html);
         callback(html);
       });
     });
