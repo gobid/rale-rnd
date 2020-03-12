@@ -142,7 +142,17 @@ define([
       _(this.rawInvokes).each(function (rawInvoke) {
         // Make a copy to leave the original
         var invoke = JSON.parse(JSON.stringify(rawInvoke));
-        this.invokes.push(invoke);
+        try {
+          console.log("invoke inside rawInvokes iter 1:", invoke);
+          console.log("invoke inside rawInvokes iter 2:", invoke["timestamp"]);
+          // huh timestamp loads but "node" doesn't ... must be lazily printing / putting on screen?
+          console.log("invoke inside rawInvokes iter 3:", invoke["node"].name);
+        }
+        catch {
+          console.log("failed to print what we want");
+        }
+        this.invokes.push(invoke); 
+        // adds to this.invokes here (which is what is drawn) 
 
         invoke.aspectMap = {};
         invoke.getLabel = _.bind(function () {
