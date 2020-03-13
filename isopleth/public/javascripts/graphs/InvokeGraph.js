@@ -18,6 +18,11 @@ define([
     initialize: function (codeMirrors, sourceCollection, activeNodeCollection, jsBinRouter) {
       this.activeNodeCollection = activeNodeCollection;
 
+      console.log("activeNodeCollection: ", activeNodeCollection);
+      /*_(this.activeNodeCollection.invokes).each(function (ani) {
+        console.log("ANI: ", ani);
+      });*/
+
       _(this.returnValueParsers).each(function (fn, i) {
         this.returnValueParsers[i] = _.bind(fn, this);
       }, this);
@@ -133,24 +138,25 @@ define([
         jqDom: [],
         setup: []
       };
+      
 
       _(this.activeNodeCollection.models).each(function (nodeModel) {
         nodeModel.set("invokes", []);
+        try {
+          console.log("nodeModel:", nodeModel)
+          console.log("nodeModel name path:", nodeModel.name, nodeModel.path)
+          console.log("nodeModel name:" nodeModel.attibutes.name);
+          console.log("nodeModel src:" nodeModel.attibutes.source);
+        } catch {
+          console.log("couldn't print all")
+        }
       });
 
       // Parse through invokes and populate simple lists of native/lib/top-levels
       _(this.rawInvokes).each(function (rawInvoke) {
         // Make a copy to leave the original
         var invoke = JSON.parse(JSON.stringify(rawInvoke));
-        try {
-          console.log("invoke inside rawInvokes iter 1:", invoke);
-          console.log("invoke inside rawInvokes iter 2:", invoke["timestamp"]);
-          // huh timestamp loads but "node" doesn't ... must be lazily printing / putting on screen?
-          console.log("invoke inside rawInvokes iter 3:", invoke["node"].name);
-        }
-        catch {
-          console.log("failed to print what we want");
-        }
+        // invoke doesn't have the node yet
         this.invokes.push(invoke); 
         // adds to this.invokes here (which is what is drawn) 
 
@@ -159,12 +165,16 @@ define([
           return this.getInvokeLabel(invoke);
         }, this);
         this.invokes.push(invoke);
+        // pushes invoke again after adding properties
+
         this.invokeIdMap[invoke.invocationId] = invoke;
+        // creating a dictionarry from invocationID to invoke
 
         if (invoke.topLevelInvocationId === invoke.invocationId) {
           this.rootInvokes.push(invoke);
           invoke.rootInvoke = true;
         }
+        // mark if invoke is a rootInvoke
 
         var nodeModel = this.activeNodeCollection.get(invoke.nodeId);
         if (!nodeModel) {
@@ -174,12 +184,17 @@ define([
             source: "",
             invokes: []
           }]);
+          // calls mergeNodes on the invoke.nodeId
           nodeModel = this.activeNodeCollection.get(invoke.nodeId);
           console.warn("Creating shell nodemodel for", invoke.nodeId);
         }
 
         invoke.nodeModel = nodeModel;
         invoke.node = nodeModel.toJSON();
+        // adds the node
+        console.log("node:", invoke.node);
+        console.log("node name:", invoke.node.name);
+        console.log("node source:", invoke.node.source);
 
         invoke.isLib = util.isKnownLibrary(invoke.nodeId);
 
@@ -204,6 +219,7 @@ define([
           });
         }, this);
 
+        // getting node arguments
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
             var source;
