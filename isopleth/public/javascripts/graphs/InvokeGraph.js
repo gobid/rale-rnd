@@ -143,10 +143,11 @@ define([
       _(this.activeNodeCollection.models).each(function (nodeModel) {
         nodeModel.set("invokes", []);
         try {
-          console.log("nodeModel:", nodeModel)
-          console.log("nodeModel name path:", nodeModel.name, nodeModel.path)
-          console.log("nodeModel name:" nodeModel.attibutes.name);
-          console.log("nodeModel src:" nodeModel.attibutes.source);
+          console.log("nodeModel:", nodeModel);
+          console.log("nodeModel attributes: ", nodeModel.attributes);
+          console.log("nodeModel name:", nodeModel.attibutes.name);
+          console.log("nodeModel src:", nodeModel.attibutes.source);
+          console.log("nodeModel path:", nodeModel.attibutes.path);
         } catch {
           console.log("couldn't print all")
         }
