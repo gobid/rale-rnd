@@ -6,6 +6,23 @@
 - added helper method for active nodes
 */
 
+
+/*
+
+rawInvokes
+- node 1 - detail a, b, c, d
+- node 2 - detail a, b, c, d
+- node 3 - detail a, b, c, d
+
+activeNodeCollections
+- node 0 - detail x, y, z => i want this to be drawn
+- node 1 - detail x, y, z
+- node 2 - detail x, y, z
+- node 3 - detail x, y, z
+- node 4 - detail x, y, z => i want this to be drawn
+
+*/
+
 define([
   "backbone",
   "underscore",
@@ -145,9 +162,9 @@ define([
         try {
           console.log("nodeModel:", nodeModel);
           console.log("nodeModel attributes: ", nodeModel.attributes);
-          console.log("nodeModel name:", nodeModel.attibutes.name);
-          console.log("nodeModel src:", nodeModel.attibutes.source);
-          console.log("nodeModel path:", nodeModel.attibutes.path);
+          console.log("nodeModel name:", nodeModel.attributes.name);
+          console.log("nodeModel src:", nodeModel.attributes.source);
+          console.log("nodeModel path:", nodeModel.attributes.path);
         } catch {
           console.log("couldn't print all")
         }
