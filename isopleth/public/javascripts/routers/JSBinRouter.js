@@ -53,6 +53,7 @@ define([
       });
 
       // this.codeMirrorJSView = new CodeMirrorJSView(this.codeMirrors, this.sourceCollection, this.activeNodeCollection, this);
+      console.log("this before passing in JSBinRouter.js call of InvokeGraph:", this);
       this.invokeGraph = new InvokeGraph(this.codeMirrors, this.sourceCollection, this.activeNodeCollection, this);
       this.isoplethView = new IsoplethView(this.codeMirrors, this.sourceCollection, this.activeNodeCollection, this.invokeGraph, this);
       this.isoplethView.render();
@@ -90,8 +91,24 @@ define([
       this.jsBinSocketRouter.onSocketData("fondueDTO:arrInvocations", function (obj) {
         this.totalInvocations += obj.invocations.length;
         console.log("Total Invocations Stored:", this.totalInvocations);
-
+        console.log("obj.invocations:", obj.invocations.length, obj.invocations);
         this.invokeGraph.addInvokes(obj.invocations);
+
+        for (var i = 0; i < obj.invocations.length; i++) {
+          obj_invoke = obj.invocations[i];
+          try {
+            if (obj_invoke.returnValue.type == "function") {
+              console.log("obj_invoke: ", obj_invoke); 
+              console.log("obj_invoke ts: ", obj_invoke.timestamp); 
+              console.log("obj_invoke rv.type: ", obj_invoke.returnValue.type);
+              console.log("obj_invoke: ", obj_invoke.this.json); // print function content
+            } 
+          }
+          catch {
+            console.log("may not have printed all fields for this node");
+          }
+        }
+
         // this.isoplethView.showCallGraph();
 
         // this.activeNodeCollection.mergeInvocations(obj.invocations);

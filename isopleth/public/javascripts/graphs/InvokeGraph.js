@@ -29,6 +29,7 @@ define([
   "../util/util",
   "text!../util/samples/ibex/invokeSample.txt",
 ], function (Backbone, _, util, invokeSample) {
+  console.log("invokeSample at beginning of InvokeGraph.js:", invokeSample);
   return Backbone.View.extend({
     rawInvokes: [],
 
@@ -49,6 +50,7 @@ define([
       }, this);
 
       var instanceId = window.location.pathname.split("/")[1];
+      console.log("going into addInvokes if: ", !instanceId || instanceId.length < 1)
       if (!instanceId || instanceId.length < 1) {
         this.addInvokes(JSON.parse(invokeSample));
       }
