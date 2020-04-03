@@ -156,7 +156,7 @@ module.exports = {
         // for all scripts replace "src" with insrumented version?
         if ($domItem.is("script")) {
           $domItem.removeAttr("nonce");
-          console.log("$domItem", $domItem); // some of them end up being just text/js with no src
+          // console.log("$domItem", $domItem); // some of them end up being just text/js with no src
           var elSrcLink = $domItem.attr("src"); // ah ok it only does it if elSrcLink is not null
           if (elSrcLink && elSrcLink.indexOf("chrome-extension") < 0) {
             if ($domItem.is("script")) {
@@ -177,7 +177,7 @@ module.exports = {
       };
 
       var cleanedSrc = $.html();
-      console.log("cleanedSrc:", cleanedSrc);
+      // console.log("cleanedSrc:", cleanedSrc);
       // cleaned src looks good
       fondueService.instrumentHTML(cleanedSrc, fondueOptions, function (src) {
         var $ = cheerio.load(src);
@@ -189,7 +189,7 @@ module.exports = {
         }
 
         // console log messed up html
-        console.log("purportedly messed up html:", html);
+        // console.log("purportedly messed up html:", html);
         callback(html);
       });
     });

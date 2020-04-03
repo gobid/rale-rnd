@@ -21,6 +21,7 @@ module.exports = function (app) {
     var fmt = req.param("fmt");
     var basePath = req.param("basePath");
     var beautifyOnly = req.param("beautifyOnly");  //deprecated
+    console.log("html:", html, "js:", js);
 
     if (html === "true") {
       try {

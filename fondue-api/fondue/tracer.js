@@ -1314,6 +1314,9 @@ if (typeof {name} === 'undefined') {
 	 *   }
 	 */
 	this.traceEnter = function (info) {
+		if(info.nodeId.includes("https://www.mapstd.com/js/mapstd-1.1.8.js-function-1587-9")){
+			debugger;
+		}
 		pushNewInvocation(info, 'function');
 	};
 
