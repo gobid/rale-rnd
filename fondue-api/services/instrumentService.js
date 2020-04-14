@@ -65,7 +65,7 @@ var blockedDomains = [
   "https://maps.googleapis.com/maps-api-v3/api/js/40/3/common.js",
   "https://maps.googleapis.com/maps-api-v3/api/js/40/3/map.js",
   "https://maps.googleapis.com/maps-api-v3/api/js/40/3/util.js",
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyC782k-SFBeK0nx99t6l3eMOiK-cQD8DRI&sensor=false&libraries=geometry&v=3.8",
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyC782k-SFBeK0nx99t6l3eMOiK-cQD8DRI&sensor=false&libraries=geometry&v=3.40",
   "https://platform.twitter.com/js/button.93a0c25c2d2f3081c705c98c2d9dec0e.js",
   "https://platform.twitter.com/widgets.js",
   "https://ssl.google-analytics.com/ga.js",
