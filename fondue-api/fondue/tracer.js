@@ -166,6 +166,7 @@ if (typeof {name} === 'undefined') {
 	}
 	Tracker.prototype = {
 		track: function (query) {
+			//debugger;
 			var handleID = ++this.lastHandleID;
 			var handle = this.handlePrefix + '-' + handleID;
 			this.queries[handle] = query;
@@ -180,10 +181,12 @@ if (typeof {name} === 'undefined') {
 		},
 		/** return the data to be returned from the first call to delta() */
 		backfill: function (query) {
+			//debugger;
 			// override this
 			return {};
 		},
 		update: function () {
+			//debugger;
 			for (var handle in this.data) {
 				var data = this.data[handle];
 				var args = [data].concat(Array.prototype.slice.apply(arguments));
@@ -195,11 +198,13 @@ if (typeof {name} === 'undefined') {
 		arguments passed to update() will be passed after the data argument.
 		*/
 		updateSingle: function (data, extraData1, extraData2) {
+			//debugger;
 			// override this
 			data['foo'] = 'bar';
 			return data;
 		},
 		delta: function (handle) {
+			//debugger;
 			this._checkHandle(handle);
 
 			var result = this.data[handle];
@@ -215,6 +220,7 @@ if (typeof {name} === 'undefined') {
 			this.data = {}; // handle -> data
 		},
 		_checkHandle: function (handle) {
+			//debugger;
 			if (!(handle in this.queries)) {
 				throw new Error("unrecognized query");
 			}
@@ -975,6 +981,7 @@ if (typeof {name} === 'undefined') {
 	}
 
 	function pushNewInvocation(info, type) {
+		//debugger;
 		if (_bailedTick) {
 			_invocationStackSize++;
 			return;
@@ -986,6 +993,7 @@ if (typeof {name} === 'undefined') {
 	}
 
 	function pushInvocation(invocation) {
+		//debugger;
 		_invocationStackSize++;
 
 		if (_bailedTick) return;
