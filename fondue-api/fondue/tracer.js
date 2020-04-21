@@ -1274,6 +1274,7 @@ if (typeof {name} === 'undefined') {
 	 *   b('foo') -> (traceFunCall({ func: b, nodeId: '...', vars: {}))('foo')
 	 */
 	this.traceFunCall = function (info) {
+		// debugger;
 		var customThis = false, fthis, func;
 
 		if ('func' in info) {
@@ -1322,8 +1323,8 @@ if (typeof {name} === 'undefined') {
 	 *   }
 	 */
 	this.traceEnter = function (info) {
-		if(info.nodeId.includes("https://www.mapstd.com/js/mapstd-1.1.8.js-function-1587-9")){
-			debugger;
+		if(info.nodeId.includes("https://www.mapstd.com/js/mapstd-1.2.0.js-function-1655-9")){
+			//debugger;
 		}
 		pushNewInvocation(info, 'function');
 	};
@@ -1608,6 +1609,7 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.trackNodes = function () {
+		// debugger;
 		return nodeTracker.track();
 	};
 
@@ -1620,6 +1622,7 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.trackHits = function () {
+		//debugger;
 		var handle = _hitQueries.push(true) - 1;
 		nodeHitCounts[handle] = calculateHitCounts();
 		return handle;
@@ -1632,6 +1635,7 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.trackLogs = function (query) {
+		//debugger;
 		var handle = _logQueries.push(query) - 1;
 		logEntries[0] = {entries:[]};
 		return handle;
@@ -1705,8 +1709,10 @@ if (typeof {name} === 'undefined') {
 			entry.exception = marshalForTransmission(invocation.exception);
 		}
 		if (invocation.f.params || invocation.arguments) {
+			console.log("f or arg defined");
 			entry.arguments = [];
 			var params = invocation.f.params || [];
+			console.log("params: ", params);
 			for (var i = 0; i < params.length; i++) {
 				var param = params[i];
 				entry.arguments.push({
@@ -1729,6 +1735,7 @@ if (typeof {name} === 'undefined') {
 		return entry;
 	}
 
+	// /*
 	this.logCount = function (handle) {
 		if (!(handle in _logQueries)) {
 			throw new Error("unrecognized query");
@@ -1736,7 +1743,16 @@ if (typeof {name} === 'undefined') {
 
 		return logEntries[0].entries.length;
 	};
+	// */
 
+	/*this.logCount = function (handle) {
+		if (!(handle in _logQueries)) {
+			throw new Error("unrecognized query");
+		}
+		return logEntries[handle].entries.length;
+	};*/
+
+	// /*
 	this.throttleInvokeMillis = 500;
 	console.log("Tracer throttleInvokeMillis set at", this.throttleInvokeMillis);
 
@@ -1746,26 +1762,48 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.logDelta = function (handle, maxResults) {
+		console.log("in LOG DELTA");
+		// debugger;
 		maxResults = maxResults || 10;
 
 		var ids = logEntries[0].entries.splice(0, maxResults);
 		var results = ids.reduce(function (arr, invocationId) {
 			var invocation = invocationById[invocationId];
-      var entry;
+			if (invocation.f)
+				console.log("invocation: ", invocation.f, invocation.f.name);
+      		var entry;
 
-      try {
-        entry = makeLogEntry(invocation, findParentsInQuery(invocation, _logQueries[0]));
-      } catch (ig) {
-      }
+      		try {
+        		entry = makeLogEntry(invocation, findParentsInQuery(invocation, _logQueries[0]));
+      		} catch (ig) {
+      			console.log("in catch .. couldn't make log entry: ", invocation)
+      			if (invocation.f)
+      				console.log("detail: ", invocation.f.name);
+      		}
 
-      if(entry){
-      	arr.push(entry);
+      		if(entry){
+      			console.log("entry:", entry);
+      			arr.push(entry);
 			}
-      return arr;
+      		return arr;
 		}, []);
 
 		return results;
 	};
+	// */
+
+	/*this.logDelta = function (handle, maxResults) {
+		if (!(handle in _logQueries)) {
+			throw new Error("unrecognized query");
+		}
+		maxResults = maxResults || 10;
+		var ids = logEntries[handle].entries.splice(0, maxResults);
+		var results = ids.map(function (invocationId, i) {
+			var invocation = invocationById[invocationId];
+			return makeLogEntry(invocation, findParentsInQuery(invocation, _logQueries[handle]));
+		});
+		return results;
+	};*/
 
 	this.backtrace = function (options) {
 		options = mergeInto(options, {
