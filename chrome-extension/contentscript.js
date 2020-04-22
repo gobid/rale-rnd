@@ -25,6 +25,7 @@ var addListeners = function (notifyRouter) {
     }, false);
 
     window.addEventListener("fondueDTO", function (event) {
+      console.log("contentscript event:", event);
       chrome.extension.sendMessage({
         target: "page",
         name: "fondueDTO",

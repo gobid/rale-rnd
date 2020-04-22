@@ -42,6 +42,7 @@ define([
         }
 
         router.on("fondueDTO", function (data) {
+          console.log("PanelRouter.js, data:", data);
           router.homeView.handleFondueDto(data);
          }, router);
 
