@@ -248,6 +248,14 @@ define([
     },
 
     handleFondueDto: function (fondueDTO) { // THIS IS THE MAIN FN THAT EMITS THE EVENT STR AND FONDUE OBJ
+      console.log("PanelView.js, fondueDTO:", fondueDTO);
+      if (fondueDTO && fondueDTO.obj && fondueDTO.obj.invocations && fondueDTO.obj.invocations.length) {
+        for (var i in fondueDTO.obj.invocations) {
+          var invoke = fondueDTO.obj.invocations[i];
+          console.log("invoke: ", invoke);
+          console.log(invoke.nodeId, invoke.timestamp);
+        }
+      }
       this.ibexSocketRouter.emit(fondueDTO.eventStr, fondueDTO.obj);
     },
 

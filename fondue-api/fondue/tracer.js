@@ -1709,10 +1709,10 @@ if (typeof {name} === 'undefined') {
 			entry.exception = marshalForTransmission(invocation.exception);
 		}
 		if (invocation.f.params || invocation.arguments) {
-			console.log("f or arg defined");
+			//console.log("f or arg defined");
 			entry.arguments = [];
 			var params = invocation.f.params || [];
-			console.log("params: ", params);
+			//console.log("params: ", params);
 			for (var i = 0; i < params.length; i++) {
 				var param = params[i];
 				entry.arguments.push({
@@ -1762,27 +1762,29 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.logDelta = function (handle, maxResults) {
-		console.log("in LOG DELTA");
+		//console.log("in LOG DELTA");
 		// debugger;
 		maxResults = maxResults || 10;
 
 		var ids = logEntries[0].entries.splice(0, maxResults);
 		var results = ids.reduce(function (arr, invocationId) {
 			var invocation = invocationById[invocationId];
-			if (invocation.f)
+			if (invocation.f && (
+				invocation.f.name == "_initPause" || invocation.f.name == "attack" 
+				|| invocation.f.name == "move"))
 				console.log("invocation: ", invocation.f, invocation.f.name);
       		var entry;
 
       		try {
         		entry = makeLogEntry(invocation, findParentsInQuery(invocation, _logQueries[0]));
       		} catch (ig) {
-      			console.log("in catch .. couldn't make log entry: ", invocation)
-      			if (invocation.f)
-      				console.log("detail: ", invocation.f.name);
+      			//console.log("in catch .. couldn't make log entry: ", invocation)
+      			//if (invocation.f)
+      			//	console.log("detail: ", invocation.f.name);
       		}
 
       		if(entry){
-      			console.log("entry:", entry);
+      			//console.log("entry:", entry);
       			arr.push(entry);
 			}
       		return arr;

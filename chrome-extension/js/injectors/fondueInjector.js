@@ -165,11 +165,10 @@ define([], function () {
             console.log("Buffer length", this.emitBuffer.length, "of", logEntryArr[0].entries.length);
             var invokes = __tracer.logDelta(0, FondueBridge.MAX_LOG_COUNT);
             unravelAgent._(invokes).each(function(invoke){
-              //console.log(invoke)
-              //if (invoke.this) console.log(invoke.this.preview);
-              //if (invoke.returnValue && invoke.returnValue.type == "function") 
-              //  console.log("FUNCTION: ", invoke.returnValue.json);
               //console.log(invoke);
+              //if (invoke.this) console.log(invoke.this.preview);
+              //if (invokes.returnValue && invoke.returnValue.type == "function") 
+              //  console.log("FUNCTION: ", invoke.returnValue.json);
               this.emitBuffer.push(invoke);
             }, this);
           } catch (err) {
@@ -183,7 +182,7 @@ define([], function () {
         emitNodeActivity: function () {
           // debugger; Ok here is where it gets emitted
           var invocations = this.emitBuffer.splice(0, FondueBridge.EMIT_INVOKE_COUNT);
-          console.log("emitNodeActivity:", invocations.length, "invocations");
+          console.log("emitNodeActivity:", invocations.length, "invocations", invocations);
 
           window.dispatchEvent(new CustomEvent("fondueDTO", {
               detail: {
