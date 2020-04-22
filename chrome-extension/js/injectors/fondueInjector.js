@@ -176,7 +176,7 @@ define([], function () {
 
         emitNodeActivity: function () {
           var invocations = this.emitBuffer.splice(0, FondueBridge.EMIT_INVOKE_COUNT);
-          console.log("emitNodeActivity:", invocations.length, "invocations");
+          console.log("emitNodeActivity:", invocations.length, "invocations", invocations);
 
           window.dispatchEvent(new CustomEvent("fondueDTO", {
               detail: {
