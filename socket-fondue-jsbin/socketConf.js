@@ -100,6 +100,7 @@ module.exports = function (httpServer) {
     });
 
     socket.on("fondueDTO:arrInvocations", function (data) {
+      console.log("data: ", data)
       console.log("heard invocations destined for bin ", data.binId);
 
       emitToBin(data.binId, "fondueDTO:arrInvocations", data);

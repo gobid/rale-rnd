@@ -96,17 +96,16 @@ define([
 
         for (var i = 0; i < obj.invocations.length; i++) {
           obj_invoke = obj.invocations[i];
-          try {
-            if (obj_invoke.returnValue.type == "function") {
-              console.log("obj_invoke: ", obj_invoke); 
-              console.log("obj_invoke ts: ", obj_invoke.timestamp); 
-              console.log("obj_invoke rv.type: ", obj_invoke.returnValue.type);
-              console.log("obj_invoke: ", obj_invoke.this.json); // print function content
-            } 
-          }
-          catch {
-            console.log("may not have printed all fields for this node");
-          }
+          console.log("obj_invoke: ", obj_invoke);
+          //if (obj_invoke && obj_invoke.timestamp)
+          //  console.log("obj_invoke ts: ", obj_invoke.timestamp);
+          //if (obj_invoke && obj_invoke.returnValue && obj_invoke.returnValue.type){
+          //  console.log("obj_invoke rv.type: ", obj_invoke.returnValue.type);
+          //  if (obj_invoke.returnValue.type == "function") 
+          //    console.log("obj_invoke: ", obj_invoke.this.json); // print function content 
+          //}
+          if (obj_invoke && obj_invoke.nodeId)
+            console.log("nodeId: ", obj_invoke.nodeId);
         }
 
         // this.isoplethView.showCallGraph();
