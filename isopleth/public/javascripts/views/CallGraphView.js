@@ -370,6 +370,10 @@ define([
 
       this.maxVisibleHitCount = 0;
       var nodes = _(this.invokeGraph.invokes).reduce(function (displayNodes, invoke) {
+        console.log("CGV node:", invoke.node);
+        console.log("CGV node name:", invoke.node.name);
+        console.log("CGV node source:", invoke.node.source);
+        
         if (!this.showLibs && invoke.isLib) {
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
