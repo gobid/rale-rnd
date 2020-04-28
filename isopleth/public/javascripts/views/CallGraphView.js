@@ -373,23 +373,31 @@ define([
         console.log("CGV node:", invoke.node);
         console.log("CGV node name:", invoke.node.name);
         console.log("CGV node source:", invoke.node.source);
-        
+
         if (!this.showLibs && invoke.isLib) {
+          console.log("it is considered a lib");
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
         }
 
         if (!this.showUnknownAspects && _(invoke.aspectMap).keys().length < 1) {
+          console.log("it is considered an unknown aspect");
+          console.log("invoke:", invoke);
+          //console.log("invoke.aspectMap: ", invoke.aspectMap);
+          //console.log("_(invoke.aspectMap): ", _(invoke.aspectMap));
+          //console.log("_(invoke.aspectMap).keys()", _(invoke.aspectMap).keys());
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
         }
 
         if (!this.showSequentialRepeats && invoke.isSequentialRepeat) {
+          console.log("it is considered a sequential repeat");
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
         }
 
         if (this.aspectFilters.length) {
+          console.log("need to check some aspectFilters");
           var found = _(this.aspectFilters).find(function (aspect) {
             return invoke.aspectMap[aspect]
           });
@@ -401,6 +409,7 @@ define([
         }
 
         if (this.negatedAspectFilters.length) {
+          console.log("need to check negatedAspectFilters");
           var negateFound = _(this.negatedAspectFilters).find(function (aspect) {
             return invoke.aspectMap[aspect]
           });
@@ -412,6 +421,7 @@ define([
         }
 
         if (this.hideInvokeIdMap[invoke.invocationId]) {
+          console.log("it is explicitly in the hideInvokeIdMap");
           return displayNodes;
         }
 
