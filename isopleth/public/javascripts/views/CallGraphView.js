@@ -139,9 +139,13 @@ define([
     },
 
     drawJoshAsync: function () {
-      console.log("Drawing async serial connections.");
+      console.log("Drawing async serial connections."); 
+      // ok this indeed does trigger the creation of purple arrows
 
       _(this.invokeGraph.asyncSerialEdges).each(function (edge, i, arr) {
+        console.log("asyncSerialEdge: ", edge, "i: ", i, "arr: ", arr);
+        console.log("parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
+
         if (this.hideInvokeIdMap[edge.parentInvoke.invocationId] ||
           this.hideInvokeIdMap[edge.childInvoke.invocationId]) {
           return;
@@ -420,6 +424,24 @@ define([
           }
         }
 
+        console.log("invoke.parents:", invoke.parents);
+        if (invoke.parents) { // don't show those that have parents, only top level calls
+          console.log("invoke.parents.length: ", invoke.parents.length);
+          var was_sync_called = true;
+          for (var i in invoke.parents) {
+            if (invoke.parents[i].type == "async") {
+              was_sync_called = false;
+              console.log("in invoke.parents[i].type == async if statement");
+              break;
+            }
+          }
+          if (was_sync_called) {
+            this.hideInvokeIdMap[invoke.invocationId] = true;
+            console.log("in was_sync_called if statement");
+            return displayNodes;
+          }
+        }
+
         if (this.hideInvokeIdMap[invoke.invocationId]) {
           console.log("it is explicitly in the hideInvokeIdMap");
           return displayNodes;
@@ -452,6 +474,8 @@ define([
           this.hideInvokeIdMap[edge.childInvoke.invocationId]) {
           return displayEdges;
         }
+        console.log("edge: ", edge)
+        console.log("parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
 
         displayEdges.push({
           data: {
