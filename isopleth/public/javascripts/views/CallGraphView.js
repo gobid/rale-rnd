@@ -139,12 +139,11 @@ define([
     },
 
     drawJoshAsync: function () {
-      console.log("Drawing async serial connections."); 
-      // ok this indeed does trigger the creation of purple arrows
+      console.log("Drawing async serial connections."); // ok this triggers the creation of purple arrows
 
       _(this.invokeGraph.asyncSerialEdges).each(function (edge, i, arr) {
-        console.log("asyncSerialEdge: ", edge, "i: ", i, "arr: ", arr);
-        console.log("parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
+        console.log("drawJoshAsync - asyncSerialEdge: ", edge, "i: ", i, "arr: ", arr);
+        console.log("drawJoshAsync - parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
 
         if (this.hideInvokeIdMap[edge.parentInvoke.invocationId] ||
           this.hideInvokeIdMap[edge.childInvoke.invocationId]) {
@@ -164,7 +163,7 @@ define([
       }, this);
     },
 
-    drawTomAsync: function () {
+    drawTomAsync: function () { // ok this triggers the creation of oranges arrows
       _(this.invokeGraph.asyncEdges).each(function (edge) {
         this.cy.remove('edge[source = "' + edge.parentInvoke.invocationId + '"][target="' + edge.childInvoke.invocationId + '"]');
         this.cy.add({
@@ -474,8 +473,8 @@ define([
           this.hideInvokeIdMap[edge.childInvoke.invocationId]) {
           return displayEdges;
         }
-        console.log("edge: ", edge)
-        console.log("parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
+        console.log("drawGraph - edge: ", edge)
+        console.log("drawGraph - parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
 
         displayEdges.push({
           data: {
