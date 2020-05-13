@@ -139,7 +139,7 @@ define([
     },
 
     drawJoshAsync: function () {
-      console.log("Drawing async serial connections."); // ok this triggers the creation of purple arrows
+      //console.log("Drawing async serial connections."); // ok this triggers the creation of purple arrows
 
       _(this.invokeGraph.asyncSerialEdges).each(function (edge, i, arr) {
         console.log("drawJoshAsync - asyncSerialEdge: ", edge, "i: ", i, "arr: ", arr);
@@ -265,7 +265,7 @@ define([
     handleNodeClick: function (nodeId, silent) {
       this.resetLastNodes();
 
-      console.log("Clicked invoke id:", nodeId);
+      //console.log("Clicked invoke id:", nodeId);
 
       this.lastSelectedNodes = [{
         id: nodeId,
@@ -366,26 +366,26 @@ define([
     },
 
     drawGraph: function () {
-      console.log("Emptying old graph.")
+      //console.log("Emptying old graph.")
       this.$("#invokeGraph").empty();
 
       this.hideInvokeIdMap = {};
 
       this.maxVisibleHitCount = 0;
       var nodes = _(this.invokeGraph.invokes).reduce(function (displayNodes, invoke) {
-        console.log("CGV node:", invoke.node);
-        console.log("CGV node name:", invoke.node.name);
-        console.log("CGV node source:", invoke.node.source);
+        //console.log("CGV node:", invoke.node);
+        //console.log("CGV node name:", invoke.node.name);
+        //console.log("CGV node source:", invoke.node.source);
 
         if (!this.showLibs && invoke.isLib) {
-          console.log("it is considered a lib");
+          //console.log("it is considered a lib");
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
         }
 
         if (!this.showUnknownAspects && _(invoke.aspectMap).keys().length < 1) {
-          console.log("it is considered an unknown aspect");
-          console.log("invoke:", invoke);
+          //console.log("it is considered an unknown aspect");
+          //console.log("invoke:", invoke);
           //console.log("invoke.aspectMap: ", invoke.aspectMap);
           //console.log("_(invoke.aspectMap): ", _(invoke.aspectMap));
           //console.log("_(invoke.aspectMap).keys()", _(invoke.aspectMap).keys());
@@ -394,13 +394,13 @@ define([
         }
 
         if (!this.showSequentialRepeats && invoke.isSequentialRepeat) {
-          console.log("it is considered a sequential repeat");
+          //console.log("it is considered a sequential repeat");
           this.hideInvokeIdMap[invoke.invocationId] = true;
           return displayNodes;
         }
 
         if (this.aspectFilters.length) {
-          console.log("need to check some aspectFilters");
+          //console.log("need to check some aspectFilters");
           var found = _(this.aspectFilters).find(function (aspect) {
             return invoke.aspectMap[aspect]
           });
@@ -412,7 +412,7 @@ define([
         }
 
         if (this.negatedAspectFilters.length) {
-          console.log("need to check negatedAspectFilters");
+          //console.log("need to check negatedAspectFilters");
           var negateFound = _(this.negatedAspectFilters).find(function (aspect) {
             return invoke.aspectMap[aspect]
           });
@@ -423,26 +423,30 @@ define([
           }
         }
 
-        console.log("invoke.parents:", invoke.parents);
+        //console.log("invoke.parents:", invoke.parents);
         if (invoke.parents) { // don't show those that have parents, only top level calls
-          console.log("invoke.parents.length: ", invoke.parents.length);
+          //console.log("invoke.parents.length: ", invoke.parents.length);
           var was_sync_called = true;
           for (var i in invoke.parents) {
             if (invoke.parents[i].type == "async") {
               was_sync_called = false;
-              console.log("in invoke.parents[i].type == async if statement");
+              //console.log("in invoke.parents[i].type == async if statement");
               break;
             }
           }
           if (was_sync_called) {
             this.hideInvokeIdMap[invoke.invocationId] = true;
-            console.log("in was_sync_called if statement");
+            //console.log("in was_sync_called if statement");
             return displayNodes;
           }
         }
 
+        /*if (invoke.topLevelInvocationId != invoke.invocationId) {
+          return displayNodes;
+        }*/ // true way of getting top level nodes only, but excludes those with async parents
+
         if (this.hideInvokeIdMap[invoke.invocationId]) {
-          console.log("it is explicitly in the hideInvokeIdMap");
+          //console.log("it is explicitly in the hideInvokeIdMap");
           return displayNodes;
         }
 
@@ -454,7 +458,7 @@ define([
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
-        console.log("node:", label);
+        //console.log("node:", label);
 
         this.visibleInvokes.push(invoke);
         if (invoke.node.invokes.length > this.maxVisibleHitCount) {
@@ -466,15 +470,15 @@ define([
         return displayNodes;
       }, [], this);
 
-      console.log("Filtered to node count", nodes.length, "of", this.invokeGraph.invokes.length);
+      //console.log("Filtered to node count", nodes.length, "of", this.invokeGraph.invokes.length);
 
       var edges = _(this.invokeGraph.edges).reduce(function (displayEdges, edge) {
         if (this.hideInvokeIdMap[edge.parentInvoke.invocationId] ||
           this.hideInvokeIdMap[edge.childInvoke.invocationId]) {
           return displayEdges;
         }
-        console.log("drawGraph - edge: ", edge)
-        console.log("drawGraph - parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
+        //console.log("drawGraph - edge: ", edge)
+        //console.log("drawGraph - parent: ", edge.parentInvoke.node.name, "child:", edge.childInvoke.node.name);
 
         displayEdges.push({
           data: {
@@ -487,8 +491,8 @@ define([
         return displayEdges;
       }, [], this);
 
-      console.log("Filtered to edge count", edges.length, "of", this.invokeGraph.edges.length);
-      console.log("Drawing graph...");
+      //console.log("Filtered to edge count", edges.length, "of", this.invokeGraph.edges.length);
+      //console.log("Drawing graph...");
 
       this.cy = cytoscape({
         container: this.$("#invokeGraph")[0],
@@ -553,11 +557,11 @@ define([
         callGraphView.handleEdgeClick(this.data("source"), this.data("target"));
       });
 
-      console.log("Graph initial draw done.");
+      //console.log("Graph initial draw done.");
 
       // this.drawJoshAsync();
 
-      console.log("DrawGraph completed.");
+      //console.log("DrawGraph completed.");
     },
 
     downloadInvokes: function () {

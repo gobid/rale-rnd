@@ -29,14 +29,14 @@ define([
   "../util/util",
   "text!../util/samples/ibex/invokeSample.txt",
 ], function (Backbone, _, util, invokeSample) {
-  console.log("invokeSample at beginning of InvokeGraph.js:", invokeSample);
+  //console.log("invokeSample at beginning of InvokeGraph.js:", invokeSample);
   return Backbone.View.extend({
     rawInvokes: [],
 
     initialize: function (codeMirrors, sourceCollection, activeNodeCollection, jsBinRouter) {
       this.activeNodeCollection = activeNodeCollection;
 
-      console.log("activeNodeCollection: ", activeNodeCollection);
+      //console.log("activeNodeCollection: ", activeNodeCollection);
       /*_(this.activeNodeCollection.invokes).each(function (ani) {
         console.log("ANI: ", ani);
       });*/
@@ -50,7 +50,7 @@ define([
       }, this);
 
       var instanceId = window.location.pathname.split("/")[1];
-      console.log("going into addInvokes if: ", !instanceId || instanceId.length < 1)
+      //console.log("going into addInvokes if: ", !instanceId || instanceId.length < 1)
       if (!instanceId || instanceId.length < 1) {
         this.addInvokes(JSON.parse(invokeSample));
       }
@@ -162,11 +162,11 @@ define([
       _(this.activeNodeCollection.models).each(function (nodeModel) {
         nodeModel.set("invokes", []);
         try {
-          console.log("nodeModel:", nodeModel);
-          console.log("nodeModel attributes: ", nodeModel.attributes);
-          console.log("nodeModel name:", nodeModel.attributes.name);
-          console.log("nodeModel src:", nodeModel.attributes.source);
-          console.log("nodeModel path:", nodeModel.attributes.path);
+          //console.log("nodeModel:", nodeModel);
+          //console.log("nodeModel attributes: ", nodeModel.attributes);
+          //console.log("nodeModel name:", nodeModel.attributes.name);
+          //console.log("nodeModel src:", nodeModel.attributes.source);
+          //console.log("nodeModel path:", nodeModel.attributes.path);
         } catch {
           console.log("couldn't print all")
         }
@@ -188,7 +188,7 @@ define([
         // pushes invoke again after adding properties
 
         this.invokeIdMap[invoke.invocationId] = invoke;
-        // creating a dictionarry from invocationID to invoke
+        // creating a dictionary from invocationID to invoke
 
         if (invoke.topLevelInvocationId === invoke.invocationId) {
           this.rootInvokes.push(invoke);
@@ -212,9 +212,9 @@ define([
         invoke.nodeModel = nodeModel;
         invoke.node = nodeModel.toJSON();
         // adds the node
-        console.log("node:", invoke.node);
-        console.log("node name:", invoke.node.name);
-        console.log("node source:", invoke.node.source);
+        //console.log("node:", invoke.node);
+        //console.log("node name:", invoke.node.name);
+        //console.log("node source:", invoke.node.source);
 
         invoke.isLib = util.isKnownLibrary(invoke.nodeId);
 
@@ -223,13 +223,15 @@ define([
 
           var hasParentCaller = !!_(invoke.parents).find(function (parent) {
             return parent.type === "call";
-          });
+          }); // the !! just checks for truthy
 
           if (!hasParentCaller) {
+            console.log("invoke is not a library and will be pushed into nativeRootInvokes");
             this.nativeRootInvokes.push(invoke);
             invoke.nativeRootInvoke = true;
           }
         }
+        // keeps track of non-lib "native" function calls (invokes) and "native root" function calls
 
         // Store parent links to process when the full invokeMap is done
         _(invoke.parents).each(function (parent) {
@@ -239,6 +241,7 @@ define([
           });
         }, this);
 
+        //console.log("invoke in rawInvokes under consideration:", invoke);
         // getting node arguments
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
@@ -258,6 +261,7 @@ define([
             } else {
               source = arg.value.json;
             }
+            //console.log("invoke 'source' is:", source);
 
             if (!this.argSourceToInvokes[source]) {
               this.argSourceToInvokes[source] = [];
@@ -278,7 +282,7 @@ define([
       }, this);
 
       // Parse through edges found and create two-way links between parent and child invokes
-      // in two different types: direct call and tom's asyn context
+      // in two different types: direct call and tom's async context
       _(pendingEdges).each(function (edge) {
         if (!edge.parentAttributes || !edge.childInvoke) {
           console.warn("Got some disconnected parent/child invocations.");
@@ -345,11 +349,13 @@ define([
 
       // Parse through invoke arguments to determine final missing async serial links
       _(this.nativeRootInvokes).each(function (childInvoke) {
+        console.log("nativeRootInvoke - is this a childInvoke:", childInvoke)
         if (!childInvoke.node.source) {
           return;
         }
 
         var parentInvokes = this.argSourceToInvokes[childInvoke.node.source];
+        console.log("parentInvokes: ", parentInvokes);
 
         if (parentInvokes) {
           _(parentInvokes).each(function (parentInvoke) {
