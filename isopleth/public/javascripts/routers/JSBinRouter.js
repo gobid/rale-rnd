@@ -90,13 +90,13 @@ define([
     bindSocketHandlers: function () {
       this.jsBinSocketRouter.onSocketData("fondueDTO:arrInvocations", function (obj) {
         this.totalInvocations += obj.invocations.length;
-        console.log("Total Invocations Stored:", this.totalInvocations);
-        console.log("obj.invocations:", obj.invocations.length, obj.invocations);
+        //console.log("Total Invocations Stored:", this.totalInvocations);
+        //console.log("obj.invocations:", obj.invocations.length, obj.invocations);
         this.invokeGraph.addInvokes(obj.invocations);
 
         for (var i = 0; i < obj.invocations.length; i++) {
           obj_invoke = obj.invocations[i];
-          console.log("obj_invoke: ", obj_invoke);
+          //console.log("obj_invoke: ", obj_invoke);
           //if (obj_invoke && obj_invoke.timestamp)
           //  console.log("obj_invoke ts: ", obj_invoke.timestamp);
           //if (obj_invoke && obj_invoke.returnValue && obj_invoke.returnValue.type){
@@ -104,8 +104,8 @@ define([
           //  if (obj_invoke.returnValue.type == "function") 
           //    console.log("obj_invoke: ", obj_invoke.this.json); // print function content 
           //}
-          if (obj_invoke && obj_invoke.nodeId)
-            console.log("nodeId: ", obj_invoke.nodeId);
+          //if (obj_invoke && obj_invoke.nodeId)
+            //console.log("nodeId: ", obj_invoke.nodeId);
         }
 
         // this.isoplethView.showCallGraph();

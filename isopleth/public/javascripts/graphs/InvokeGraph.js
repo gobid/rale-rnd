@@ -113,7 +113,7 @@ define([
     },
 
     addInvokes: function (invokes) {
-      console.log("Adding invokes:", invokes.length);
+      //console.log("Adding invokes:", invokes.length);
 
       _(invokes).each(function (invoke) {
         this.rawInvokes.push(invoke);
@@ -193,6 +193,9 @@ define([
         if (invoke.topLevelInvocationId === invoke.invocationId) {
           this.rootInvokes.push(invoke);
           invoke.rootInvoke = true;
+          if (invoke.node && invoke.node.name){ // node may not be set yet ... 
+            console.log("in calculate, invoke is toplevel call: ", invoke, invoke.node.name);
+          }
         }
         // mark if invoke is a rootInvoke
 
@@ -350,6 +353,9 @@ define([
       // Parse through invoke arguments to determine final missing async serial links
       _(this.nativeRootInvokes).each(function (childInvoke) {
         console.log("nativeRootInvoke - is this a childInvoke:", childInvoke)
+        if (childInvoke.node && childInvoke.node.name) {
+          console.log("name: ", childInvoke.node.name);
+        }
         if (!childInvoke.node.source) {
           return;
         }
