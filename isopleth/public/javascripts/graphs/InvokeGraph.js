@@ -172,6 +172,7 @@ define([
         }
       });
 
+      var n_nodes_printed = 0;
       // Parse through invokes and populate simple lists of native/lib/top-levels
       _(this.rawInvokes).each(function (rawInvoke) {
         // Make a copy to leave the original
@@ -193,9 +194,7 @@ define([
         if (invoke.topLevelInvocationId === invoke.invocationId) {
           this.rootInvokes.push(invoke);
           invoke.rootInvoke = true;
-          if (invoke.node && invoke.node.name){ // node may not be set yet ... 
-            console.log("in calculate, invoke is toplevel call: ", invoke, invoke.node.name);
-          }
+          //console.log("in calculate, invoke is toplevel call: ", invoke);
         }
         // mark if invoke is a rootInvoke
 
@@ -219,17 +218,30 @@ define([
         //console.log("node name:", invoke.node.name);
         //console.log("node source:", invoke.node.source);
 
+        if (invoke.rootInvoke){ // node may not be set yet ... 
+          console.log("it is a toplevel call, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), invoke.invocationId); // invoke
+        }
+        else {
+          console.log("not toplevel, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), invoke.invocationId); // invoke
+        }
+        n_nodes_printed++;
+
         invoke.isLib = util.isKnownLibrary(invoke.nodeId);
 
         if (!invoke.isLib) {
+          console.log("it is not a lib");
           this.nativeInvokes.push(invoke);
 
           var hasParentCaller = !!_(invoke.parents).find(function (parent) {
+            console.log(parent.invocationId)
+            if (invoke.nodeModel.attributes.name == "move" || invoke.nodeModel.attributes.name == "attack")
+              return false;
             return parent.type === "call";
           }); // the !! just checks for truthy
+          console.log("printing invoke.parents to determine why hasParentCaller is truthy:", invoke.parents);
 
           if (!hasParentCaller) {
-            console.log("invoke is not a library and will be pushed into nativeRootInvokes");
+            console.log("invoke is not a library, !hasParentCaller, will be pushed into nativeRootInvokes");
             this.nativeRootInvokes.push(invoke);
             invoke.nativeRootInvoke = true;
           }
@@ -238,13 +250,15 @@ define([
 
         // Store parent links to process when the full invokeMap is done
         _(invoke.parents).each(function (parent) {
+          // console.log("invoke has parent:", parent, this.invokeIdMap[parent.invocationId]);
+          // this seems to only cover ORANGE arrow parents
           pendingEdges.push({
             parentAttributes: parent,
             childInvoke: invoke
           });
         }, this);
 
-        //console.log("invoke in rawInvokes under consideration:", invoke);
+        console.log("invoke.arguments:", invoke.arguments);
         // getting node arguments
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
@@ -283,6 +297,8 @@ define([
           }
         }, this);
       }, this);
+
+      console.log("invokeIdMap: ", this.invokeIdMap);
 
       // Parse through edges found and create two-way links between parent and child invokes
       // in two different types: direct call and tom's async context
@@ -352,7 +368,7 @@ define([
 
       // Parse through invoke arguments to determine final missing async serial links
       _(this.nativeRootInvokes).each(function (childInvoke) {
-        console.log("nativeRootInvoke - is this a childInvoke:", childInvoke)
+        console.log("nativeRootInvoke - is this a childInvoke?:", childInvoke)
         if (childInvoke.node && childInvoke.node.name) {
           console.log("name: ", childInvoke.node.name);
         }
@@ -360,7 +376,7 @@ define([
           return;
         }
 
-        var parentInvokes = this.argSourceToInvokes[childInvoke.node.source];
+        var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; // THIS IS KEY TO PURPLE LINES
         console.log("parentInvokes: ", parentInvokes);
 
         if (parentInvokes) {
