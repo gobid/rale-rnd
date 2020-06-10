@@ -189,6 +189,8 @@ define([
         // pushes invoke again after adding properties
 
         this.invokeIdMap[invoke.invocationId] = invoke;
+
+        console.log("added invoke.invocationId to invokeIdMap: ", invoke.invocationId);
         // creating a dictionary from invocationID to invoke
 
         if (invoke.topLevelInvocationId === invoke.invocationId) {
@@ -292,7 +294,7 @@ define([
       }, this);
 
       // Parse through edges found and create two-way links between parent and child invokes
-      // in two different types: direct call and tom's async context
+      // in two different types: direct call (yellow) and tom's async context (orange)
       _(pendingEdges).each(function (edge) {
         if (edge.childInvoke.getLabel().includes("drag"))
           console.log("pendingEdges childInvoke got till here 1: ", edge.childInvoke.getLabel(), edge.childInvoke);
@@ -301,17 +303,28 @@ define([
           return;
         }
 
+        //V
         if (edge.childInvoke.getLabel().includes("drag"))
           console.log("pendingEdges childInvoke got till here 2: ", edge.childInvoke.getLabel(), edge.childInvoke);
+        //^
         var parentInvoke = this.invokeIdMap[edge.parentAttributes.invocationId];
         var parentType = edge.parentAttributes.type;
         var childInvoke = edge.childInvoke;
 
         if (!parentInvoke || !childInvoke || !parentType) {
-          console.log("edge:", edge);
-          console.log("parentInvoke:", parentInvoke);
-          console.log("parentType:", edge.parentAttributes.type, edge.parentAttributes);
-          console.warn("Couldn't find parent/child invocation nodes.");
+          //V
+          if (edge.childInvoke.getLabel().includes("drag")) {
+            console.log("edge:", edge);
+            if (edge)
+              console.log("edge.parentAttributes:", edge.parentAttributes);
+            console.log("parentInvoke:", parentInvoke);
+            if (edge && edge.parentAttributes)
+              console.log("parentType:", edge.parentAttributes.type);
+            console.warn("Couldn't find parent/child invocation nodes.");
+          }
+          childInvoke.nativeRootInvoke = true;
+          this.nativeRootInvokes.push(childInvoke);
+          //^
           return;
         }
 
@@ -380,7 +393,6 @@ define([
 
       // Parse through invoke arguments to determine final missing async serial links
       _(this.nativeRootInvokes).each(function (childInvoke) {
-        //console.log("nativeRootInvoke - is this a childInvoke?:", childInvoke)
         if (childInvoke.node && childInvoke.node.name) {
           //console.log("name: ", childInvoke.node.name);
         }
@@ -389,15 +401,20 @@ define([
         }
 
         var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; 
-        //parentInvokes = parentInvokes.sort((a,b) => (a.timestamp > b.timestamp) ? 1 : ((b.timestamp > a.timestamp) ? -1 : 0));
-        //parentInvokes = parentInvokes.reverse(); 
-        // THIS IS KEY TO PURPLE LINES, go from timewise latest parents to timewise earliest
-        //console.log("childInvoke:", childInvoke.getLabel(), childInvoke.timestamp);
-        //console.log("parentInvokes: ", parentInvokes);
-
-
+        
+        console.log("childInvoke is:", childInvoke.getLabel(), childInvoke.timestamp);
+        console.log("parentInvokes are: ", parentInvokes);
         if (parentInvokes) {
-          _(parentInvokes).each(function (parentInvoke) {
+          // HEURISTIC: only show purple line for closest async parent
+          // THIS IS KEY TO PURPLE LINES
+          // go from timewise latest parents to timewise earliest
+          parentInvokes = parentInvokes.sort((a,b) => (a.tick > b.tick) ? 1 : ((b.tick > a.tick) ? -1 : 0));
+          parentInvokes = parentInvokes.reverse(); 
+
+          for (var pi = 0; pi < parentInvokes.length; pi++){
+            parentInvoke = parentInvokes[pi];
+            console.log("nativeRootInvoke childInvoke ts is: ", childInvoke.timestamp, childInvoke);
+            console.log("parentInvoke ts is: ", parentInvoke.timestamp, parentInvoke);
             if (!parentInvoke.childAsyncSerialLinks) {
               parentInvoke.childAsyncSerialLinks = [];
             }
@@ -417,12 +434,14 @@ define([
             var edgeId = asyncSerialEdge.parentInvoke.invocationId + asyncSerialEdge.childInvoke.invocationId;
             if (!this.asyncSerialEdgeMap[edgeId]) {
               this.asyncSerialEdgeMap[edgeId] = asyncSerialEdge;
-              if (parentInvoke.timestamp < childInvoke.timestamp){
+              if (parentInvoke.tick < childInvoke.tick){ // should we use fondue's tick instead?
                 this.asyncSerialEdges.push(asyncSerialEdge); 
+                console.log("pushed an async serial edge to: ", asyncSerialEdge.childInvoke.getLabel(), asyncSerialEdge);
                 return false; // break out of loop
               }
             }
-          }, this);
+
+          }   
         }
       }, this);
 

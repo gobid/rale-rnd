@@ -424,27 +424,20 @@ define([
           }
         }
 
-        //console.log("invoke.parents:", invoke.parents);
-        ///if (invoke.parents) { // don't show those that have parents, only toplevel calls
-          //console.log("invoke.parents.length: ", invoke.parents.length);
-          ///var was_sync_called = true;
-          ///for (var i in invoke.parents) {
-          ///  if (invoke.parents[i].type == "async") {
-          ///    was_sync_called = false;
-              //console.log("in invoke.parents[i].type == async if statement");
-          ///    break;
-          ///  }
-          ///}
-          ///if (was_sync_called) {
-            //this.hideInvokeIdMap[invoke.invocationId] = true;
-            //console.log("in was_sync_called if statement");
-            //return displayNodes;
-          ///}
-        ///}
+        console.log("considering invoke: ", invoke.getLabel());
+        console.log("invoke.nativeRootInvoke: ", invoke.nativeRootInvoke);
+        console.log("invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
+        if (!invoke.nativeRootInvoke){
+          if (!invoke.childAsyncSerialLinks || invoke.childAsyncSerialLinks.length < 1) { 
+            // only show nodes that are top level calls or they have async children
+            this.hideInvokeIdMap[invoke.invocationId] = true;
+            return displayNodes;
+          }
+        }
 
         /*if (invoke.topLevelInvocationId != invoke.invocationId) {
           return displayNodes;
-        }*/ // true way of getting top level nodes only, but excludes those with async parents
+        }*/ // true way of getting top level nodes only, but excludes those with async children
 
         if (this.hideInvokeIdMap[invoke.invocationId]) {
           //console.log("it is explicitly in the hideInvokeIdMap");
