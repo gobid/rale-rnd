@@ -1,0 +1,25 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>Timer number: <span id="timercnt">1</span></p>
+  </body>
+  <script>
+    (function() {
+      var nativeSetTimeout = window.setTimeout;
+      function myTimeout(callback, millis){
+        return nativeSetTimeout(callback, millis);
+      };
+      window.setTimeout = myTimeout;
+      function ticker(){
+        setTimeout(function(){
+          var curr = document.getElementById("timercnt").innerHTML;
+          curr = parseInt(curr) + 1;
+          document.getElementById("timercnt").innerHTML = curr;
+          ticker();
+        }, 1000)
+      }
+      ticker()
+    })();
+  </script>
+</html>

@@ -194,7 +194,6 @@ define([
         if (invoke.topLevelInvocationId === invoke.invocationId) {
           this.rootInvokes.push(invoke);
           invoke.rootInvoke = true;
-          //console.log("in calculate, invoke is toplevel call: ", invoke);
         }
         // mark if invoke is a rootInvoke
 
@@ -214,43 +213,37 @@ define([
         invoke.nodeModel = nodeModel;
         invoke.node = nodeModel.toJSON();
         // adds the node
-        //console.log("node:", invoke.node);
-        //console.log("node name:", invoke.node.name);
-        //console.log("node source:", invoke.node.source);
 
         if (invoke.rootInvoke){ // node may not be set yet ... 
-          console.log("it is a toplevel call, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), invoke.invocationId); // invoke
+          console.log("rootInvoke property true, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
         }
         else {
-          console.log("not toplevel, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), invoke.invocationId); // invoke
+          console.log("rootInvoke property false, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(),  "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
         }
         n_nodes_printed++;
 
         invoke.isLib = util.isKnownLibrary(invoke.nodeId);
 
         if (!invoke.isLib) {
-          console.log("it is not a lib");
+          console.log("invoke is not lib");
           this.nativeInvokes.push(invoke);
 
           var hasParentCaller = !!_(invoke.parents).find(function (parent) {
-            console.log(parent.invocationId)
-            if (invoke.nodeModel.attributes.name == "move" || invoke.nodeModel.attributes.name == "attack")
-              return false;
             return parent.type === "call";
           }); // the !! just checks for truthy
-          console.log("printing invoke.parents to determine why hasParentCaller is truthy:", invoke.parents);
+          //console.log("printing invoke.parents to determine why hasParentCaller is truthy:", invoke.parents);
 
           if (!hasParentCaller) {
-            console.log("invoke is not a library, !hasParentCaller, will be pushed into nativeRootInvokes");
             this.nativeRootInvokes.push(invoke);
             invoke.nativeRootInvoke = true;
+            console.log("gets added - 1 invoke.nativeRootInvoke at this stage is: ", invoke.getLabel(), invoke.nativeRootInvoke);
           }
         }
         // keeps track of non-lib "native" function calls (invokes) and "native root" function calls
 
         // Store parent links to process when the full invokeMap is done
+        console.log("adding edges for each of its parents: ", invoke.parents);
         _(invoke.parents).each(function (parent) {
-          // console.log("invoke has parent:", parent, this.invokeIdMap[parent.invocationId]);
           // this seems to only cover ORANGE arrow parents
           pendingEdges.push({
             parentAttributes: parent,
@@ -258,16 +251,17 @@ define([
           });
         }, this);
 
-        console.log("invoke.arguments:", invoke.arguments);
         // getting node arguments
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
+            // if we have a function passed as an argument
             var source;
             if (arg.value.json.indexOf("function") === -1) {
               var isoStr = arg.value.json;
               var isoStartIndex = isoStr.indexOf("iso_");
               var isoEndIndex = isoStr.indexOf("_iso");
 
+              // collect the iso serial number
               if (isoStartIndex > -1 && isoEndIndex > -1) {
                 var serial = isoStr.substring(isoStartIndex, isoEndIndex + 4);
                 var nodeModel = this.activeNodeCollection.serialToNode[serial];
@@ -278,8 +272,7 @@ define([
             } else {
               source = arg.value.json;
             }
-            //console.log("invoke 'source' is:", source);
-
+         
             if (!this.argSourceToInvokes[source]) {
               this.argSourceToInvokes[source] = [];
             }
@@ -298,26 +291,35 @@ define([
         }, this);
       }, this);
 
-      console.log("invokeIdMap: ", this.invokeIdMap);
-
       // Parse through edges found and create two-way links between parent and child invokes
       // in two different types: direct call and tom's async context
       _(pendingEdges).each(function (edge) {
+        if (edge.childInvoke.getLabel().includes("drag"))
+          console.log("pendingEdges childInvoke got till here 1: ", edge.childInvoke.getLabel(), edge.childInvoke);
         if (!edge.parentAttributes || !edge.childInvoke) {
           console.warn("Got some disconnected parent/child invocations.");
           return;
         }
 
+        if (edge.childInvoke.getLabel().includes("drag"))
+          console.log("pendingEdges childInvoke got till here 2: ", edge.childInvoke.getLabel(), edge.childInvoke);
         var parentInvoke = this.invokeIdMap[edge.parentAttributes.invocationId];
         var parentType = edge.parentAttributes.type;
         var childInvoke = edge.childInvoke;
 
         if (!parentInvoke || !childInvoke || !parentType) {
+          console.log("edge:", edge);
+          console.log("parentInvoke:", parentInvoke);
+          console.log("parentType:", edge.parentAttributes.type, edge.parentAttributes);
           console.warn("Couldn't find parent/child invocation nodes.");
           return;
         }
 
+        if (childInvoke.getLabel().includes("drag"))
+          console.log("pendingEdges childInvoke got till here 3: ", childInvoke.getLabel(), childInvoke);
         if (parentType === "async") {
+          if (childInvoke.getLabel().includes("drag"))
+            console.log("pendingEdges childInvoke got till here 4: ", childInvoke.getLabel(), childInvoke);
           if (!parentInvoke.childAsyncLinks) {
             parentInvoke.childAsyncLinks = [];
           }
@@ -340,6 +342,8 @@ define([
             this.asyncEdges.push(asyncEdge);
           }
         } else if (parentType === "call") {
+            if (childInvoke.getLabel().includes("drag"))
+              console.log("pendingEdges childInvoke got till here 5: ", childInvoke.getLabel(), childInvoke);
           if (!parentInvoke.childCalls) {
             parentInvoke.childCalls = [];
           }
@@ -354,13 +358,21 @@ define([
             parentInvoke: parentInvoke,
             childInvoke: childInvoke
           });
+          // stores the edges and populates child's parent array and parent's child array 
         } else {
           console.log("Found a new parent type", parentType);
         }
 
+        console.log("childInvoke.getLabel().includes(drag)", childInvoke.getLabel().includes("drag"));
+        if (childInvoke.getLabel().includes("drag")){
+          console.log("childInvoke: ", childInvoke.getLabel(), childInvoke);
+          console.log("childInvoke.isLib: ", childInvoke.isLib);
+          console.log("parentInvoke.isLib: ", parentInvoke.isLib);
+        }
         if (!childInvoke.isLib && parentInvoke.isLib) {
           if (!childInvoke.nativeRootInvoke) {
             childInvoke.nativeRootInvoke = true;
+            console.log("gets added - 2 childInvoke.nativeRootInvoke at this stage is: ", childInvoke.getLabel(), childInvoke.invocationId, childInvoke.timestamp, childInvoke.nativeRootInvoke);
             this.nativeRootInvokes.push(childInvoke);
           }
         }
@@ -368,16 +380,21 @@ define([
 
       // Parse through invoke arguments to determine final missing async serial links
       _(this.nativeRootInvokes).each(function (childInvoke) {
-        console.log("nativeRootInvoke - is this a childInvoke?:", childInvoke)
+        //console.log("nativeRootInvoke - is this a childInvoke?:", childInvoke)
         if (childInvoke.node && childInvoke.node.name) {
-          console.log("name: ", childInvoke.node.name);
+          //console.log("name: ", childInvoke.node.name);
         }
         if (!childInvoke.node.source) {
           return;
         }
 
-        var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; // THIS IS KEY TO PURPLE LINES
-        console.log("parentInvokes: ", parentInvokes);
+        var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; 
+        //parentInvokes = parentInvokes.sort((a,b) => (a.timestamp > b.timestamp) ? 1 : ((b.timestamp > a.timestamp) ? -1 : 0));
+        //parentInvokes = parentInvokes.reverse(); 
+        // THIS IS KEY TO PURPLE LINES, go from timewise latest parents to timewise earliest
+        //console.log("childInvoke:", childInvoke.getLabel(), childInvoke.timestamp);
+        //console.log("parentInvokes: ", parentInvokes);
+
 
         if (parentInvokes) {
           _(parentInvokes).each(function (parentInvoke) {
@@ -400,7 +417,10 @@ define([
             var edgeId = asyncSerialEdge.parentInvoke.invocationId + asyncSerialEdge.childInvoke.invocationId;
             if (!this.asyncSerialEdgeMap[edgeId]) {
               this.asyncSerialEdgeMap[edgeId] = asyncSerialEdge;
-              this.asyncSerialEdges.push(asyncSerialEdge);
+              if (parentInvoke.timestamp < childInvoke.timestamp){
+                this.asyncSerialEdges.push(asyncSerialEdge); 
+                return false; // break out of loop
+              }
             }
           }, this);
         }

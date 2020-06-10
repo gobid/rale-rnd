@@ -452,10 +452,11 @@ define([
         }
 
         var label = invoke.getLabel();
+        console.log("node to be drawn:", invoke);
         var node = {
           data: {
             id: invoke.invocationId,
-            label: label,
+            label: label + " " + (invoke.timestamp).toString(),
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
