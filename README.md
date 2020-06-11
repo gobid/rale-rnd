@@ -97,7 +97,7 @@ Isopleth Installation Troubleshooting:
 - rerun as needed in each of the 4 servers you need to run: `nvm install v0.10.32 ; nvm alias default v0.10.32`
 - redis-server is the command to run
 - to fix isopleth tab loading with an error just quit all servers, redo nvm install/alias, and retry
-- http://localhost:3004/demo/index.html to get the demo to work you may have to uncomment out code in home.js (confirmed this is right)
+- run some samples this way: http://localhost:3004/demo/index.html to get the demo to work you may have to uncomment out code in home.js (confirmed this is right)
 
 To solve instrumentation issues:
 - add problematic urls reported in console to the blocked domains and restart the servers
@@ -106,5 +106,8 @@ To solve instrumentation issues:
 
 - does not address minified code so we need to use it on sites that don't have unminified code
 - does not instrument google / facebook / top 10 alexa ranking sites
+- samples in isopleth/public/javascripts/util/samples are supposed to be loadable by going to http://localhost:3007/[sample folder name]]/ but when you actually try to load the the cached invokes, they don't work in this repo - they may work in this branch of the original isopleth repo https://github.com/NUDelta/Isopleth/tree/feature/file-loading but you'd have to check
 
-    
+- our fork of fondue provides us all the nodes and yellow arrows (sync relationships)
+- however it is an open issue that it does not provide all the orange arrows (arrow from the async declaration context to the callback, the declaration context is the function inside which the callback is bound to its trigger)
+    - specifically the issue is that not all the rawInvokes in InvokeGraph ha
