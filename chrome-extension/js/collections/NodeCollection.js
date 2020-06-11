@@ -4,14 +4,14 @@
   - this is the list (object oriented style)
   - iteree is the function(memo, nodeModel)
   - [memo]=[] (the initial state of the reduction)
-  - [context] ?
+  - [context] 
   - each successive step (state) of it (memo) should be returned by iteree
-  - iteree is passed (1) the memo and (2) the value and index (or key) of the iteration (3) a ref to the entire list (?)
+  - iteree is passed (1) the memo and (2) the value and index (or key) of the iteration (3) a ref to the entire list 
 - get the active nodes of a NodeModel (hits > 0)
 - or get it as an array
   - list = this.getActiveNodes()
   - iteratee = the function(nodeModel)
-  - [context] ? 
+  - [context] 
   - Produces a new array of values by mapping each value in list through a transformation function (iteratee). 
   - so in this case each member is the JSON version of the old list's member
   - here the iteree is passed the value nodeModel

@@ -1,6 +1,5 @@
 /*
 - source code model collection presumably 
-- more details (?)
 */
 
 define([

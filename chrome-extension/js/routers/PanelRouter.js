@@ -7,8 +7,8 @@
 - checks if the UnravelAgent is active 
 - apparently the homeView will render based on the status of isActive
 - when the fondueDTO trigger occurs then we handle the fondue data
-- when ContentScriptReloaded then runInPage => homeView => when fondue is ready (?)
-- when TabUpdate then check if UnravelAgent is active and if so clear href in url bar (?)
+- when ContentScriptReloaded then runInPage => homeView => when fondue is ready
+- when TabUpdate then check if UnravelAgent is active and if so clear href in url bar
 */
 
 define([

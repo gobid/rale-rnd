@@ -188,9 +188,6 @@ module.exports = {
         if (html.indexOf("nonce") > -1) {
           throw new Error();
         }
-
-        // console log messed up html
-        // console.log("purportedly messed up html:", html);
         callback(html);
       });
     });

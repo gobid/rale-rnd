@@ -1,7 +1,7 @@
 /*
 - initializes codeMirrorViews, drawLines, pillFns, collapseAll - runs pillCollapseFn
 - pill is referring to the nodes 
-- html to js lines (?)
+- html to js lines
 */
 
 define([

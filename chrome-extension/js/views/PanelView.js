@@ -4,9 +4,9 @@
 - note the syntax _.bind means to: Bind a function to an object, meaning that whenever the function is called, the value of this will be the object. 
 - handles reset, resendAll, html
 - socket: a connection to a server on which you can send data
-- bin - oh as in jsbin - treating isopleth as a sort of js bin - hm (?)
+- bin - oh as in jsbin - treating isopleth as a sort of js bin 
 - render: render the page - when bin ready - else restart
-- introPageHTML - add and remove highlight - is this even used (?)
+- introPageHTML - add and remove highlight 
 
 - Fondue DTO sent in panel view - as node invocations - transmitted over web socket in "handleFondueDto" panel view - then isopleth gets it on 38 of jsbin socket router
 
