@@ -6,23 +6,6 @@
 - added helper method for active nodes
 */
 
-
-/*
-
-rawInvokes
-- node 1 - detail a, b, c, d
-- node 2 - detail a, b, c, d
-- node 3 - detail a, b, c, d
-
-activeNodeCollections
-- node 0 - detail x, y, z => i want this to be drawn
-- node 1 - detail x, y, z
-- node 2 - detail x, y, z
-- node 3 - detail x, y, z
-- node 4 - detail x, y, z => i want this to be drawn
-
-*/
-
 define([
   "backbone",
   "underscore",
@@ -189,8 +172,9 @@ define([
         // pushes invoke again after adding properties
 
         this.invokeIdMap[invoke.invocationId] = invoke;
+        // README LIMITATIONS RELATED NOTE: please see the Limitations section of the readme, there is an issue invokeIdMap not having all the nodes needed to support all orange arrows
 
-        console.log("added invoke.invocationId to invokeIdMap: ", invoke.invocationId);
+        // console.log("added invoke.invocationId to invokeIdMap: ", invoke.invocationId);
         // creating a dictionary from invocationID to invoke
 
         if (invoke.topLevelInvocationId === invoke.invocationId) {
@@ -238,13 +222,13 @@ define([
           if (!hasParentCaller) {
             this.nativeRootInvokes.push(invoke);
             invoke.nativeRootInvoke = true;
-            console.log("gets added - 1 invoke.nativeRootInvoke at this stage is: ", invoke.getLabel(), invoke.nativeRootInvoke);
+            //console.log("gets added - 1 invoke.nativeRootInvoke at this stage is: ", invoke.getLabel(), invoke.nativeRootInvoke);
           }
         }
         // keeps track of non-lib "native" function calls (invokes) and "native root" function calls
 
         // Store parent links to process when the full invokeMap is done
-        console.log("adding edges for each of its parents: ", invoke.parents);
+        //console.log("adding edges for each of its parents: ", invoke.parents);
         _(invoke.parents).each(function (parent) {
           // this seems to only cover ORANGE arrow parents
           pendingEdges.push({
@@ -297,23 +281,21 @@ define([
       // in two different types: direct call (yellow) and tom's async context (orange)
       _(pendingEdges).each(function (edge) {
         if (edge.childInvoke.getLabel().includes("drag"))
-          console.log("pendingEdges childInvoke got till here 1: ", edge.childInvoke.getLabel(), edge.childInvoke);
+          //console.log("pendingEdges childInvoke got till here 1: ", edge.childInvoke.getLabel(), edge.childInvoke);
         if (!edge.parentAttributes || !edge.childInvoke) {
           console.warn("Got some disconnected parent/child invocations.");
           return;
         }
 
-        //V
-        if (edge.childInvoke.getLabel().includes("drag"))
+        /*if (edge.childInvoke.getLabel().includes("drag"))
           console.log("pendingEdges childInvoke got till here 2: ", edge.childInvoke.getLabel(), edge.childInvoke);
-        //^
+        */
         var parentInvoke = this.invokeIdMap[edge.parentAttributes.invocationId];
         var parentType = edge.parentAttributes.type;
         var childInvoke = edge.childInvoke;
 
         if (!parentInvoke || !childInvoke || !parentType) {
-          //V
-          if (edge.childInvoke.getLabel().includes("drag")) {
+          /*if (edge.childInvoke.getLabel().includes("drag")) {
             console.log("edge:", edge);
             if (edge)
               console.log("edge.parentAttributes:", edge.parentAttributes);
@@ -321,18 +303,19 @@ define([
             if (edge && edge.parentAttributes)
               console.log("parentType:", edge.parentAttributes.type);
             console.warn("Couldn't find parent/child invocation nodes.");
-          }
+          }*/
+
+          // README LIMITATIONS RELATED NOTE - added this code to allow purple arrows to be drawn even if some orange are skipped 
           childInvoke.nativeRootInvoke = true;
           this.nativeRootInvokes.push(childInvoke);
-          //^
           return;
         }
 
-        if (childInvoke.getLabel().includes("drag"))
-          console.log("pendingEdges childInvoke got till here 3: ", childInvoke.getLabel(), childInvoke);
+        //if (childInvoke.getLabel().includes("drag"))
+        //  console.log("pendingEdges childInvoke got till here 3: ", childInvoke.getLabel(), childInvoke);
         if (parentType === "async") {
-          if (childInvoke.getLabel().includes("drag"))
-            console.log("pendingEdges childInvoke got till here 4: ", childInvoke.getLabel(), childInvoke);
+          //if (childInvoke.getLabel().includes("drag"))
+          //  console.log("pendingEdges childInvoke got till here 4: ", childInvoke.getLabel(), childInvoke);
           if (!parentInvoke.childAsyncLinks) {
             parentInvoke.childAsyncLinks = [];
           }
@@ -355,8 +338,8 @@ define([
             this.asyncEdges.push(asyncEdge);
           }
         } else if (parentType === "call") {
-            if (childInvoke.getLabel().includes("drag"))
-              console.log("pendingEdges childInvoke got till here 5: ", childInvoke.getLabel(), childInvoke);
+          //if (childInvoke.getLabel().includes("drag"))
+          //  console.log("pendingEdges childInvoke got till here 5: ", childInvoke.getLabel(), childInvoke);
           if (!parentInvoke.childCalls) {
             parentInvoke.childCalls = [];
           }
@@ -376,12 +359,12 @@ define([
           console.log("Found a new parent type", parentType);
         }
 
-        console.log("childInvoke.getLabel().includes(drag)", childInvoke.getLabel().includes("drag"));
+        /*console.log("childInvoke.getLabel().includes(drag)", childInvoke.getLabel().includes("drag"));
         if (childInvoke.getLabel().includes("drag")){
           console.log("childInvoke: ", childInvoke.getLabel(), childInvoke);
           console.log("childInvoke.isLib: ", childInvoke.isLib);
           console.log("parentInvoke.isLib: ", parentInvoke.isLib);
-        }
+        }*/
         if (!childInvoke.isLib && parentInvoke.isLib) {
           if (!childInvoke.nativeRootInvoke) {
             childInvoke.nativeRootInvoke = true;
@@ -402,8 +385,8 @@ define([
 
         var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; 
         
-        console.log("childInvoke is:", childInvoke.getLabel(), childInvoke.timestamp);
-        console.log("parentInvokes are: ", parentInvokes);
+        //console.log("childInvoke is:", childInvoke.getLabel(), childInvoke.timestamp);
+        //console.log("parentInvokes are: ", parentInvokes);
         if (parentInvokes) {
           // HEURISTIC: only show purple line for closest async parent
           // THIS IS KEY TO PURPLE LINES

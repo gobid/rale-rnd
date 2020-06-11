@@ -424,9 +424,9 @@ define([
           }
         }
 
-        console.log("considering invoke: ", invoke.getLabel());
-        console.log("invoke.nativeRootInvoke: ", invoke.nativeRootInvoke);
-        console.log("invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
+        //console.log("considering invoke: ", invoke.getLabel());
+        //console.log("invoke.nativeRootInvoke: ", invoke.nativeRootInvoke);
+        //console.log("invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
         if (!invoke.nativeRootInvoke){
           if (!invoke.childAsyncSerialLinks || invoke.childAsyncSerialLinks.length < 1) { 
             // only show nodes that are top level calls or they have async children
@@ -445,7 +445,7 @@ define([
         }
 
         var label = invoke.getLabel();
-        console.log("node to be drawn:", invoke);
+        //console.log("node to be drawn:", invoke);
         var node = {
           data: {
             id: invoke.invocationId,
@@ -453,7 +453,7 @@ define([
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
-        console.log(n_nodes_shown, "node getting shown: ", invoke.getLabel()); 
+        //console.log(n_nodes_shown, "node getting shown: ", invoke.getLabel()); 
         n_nodes_shown++;
 
         //console.log("node:", label);

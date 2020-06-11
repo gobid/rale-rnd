@@ -110,4 +110,4 @@ To solve instrumentation issues:
 
 - our fork of fondue provides us all the nodes and yellow arrows (sync relationships)
 - however it is an open issue that it does not provide all the orange arrows (arrow from the async declaration context to the callback, the declaration context is the function inside which the callback is bound to its trigger)
-    - specifically the issue is that not all the rawInvokes in InvokeGraph ha
+    - specifically the issue is that there are some nodes in rawInvokes (which is directly from fondue) such their invoke.parents property contains invocationIds that are not present in rawInvokes.
