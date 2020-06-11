@@ -1,0 +1,1472 @@
+/*
+===============================================
+MAIN
+===============================================
+*/
+
+html body
+{
+	font-family: sans-serif,Arial,Verdana,Futura,Helvetica;
+	font-size: 100%; /* For IE */
+	background-color: white;
+}
+
+div.news fieldset {
+	border: 1px solid #FF0000;
+	padding: 0.1em 0.5em 0.2em 0.5em;
+	margin-bottom: 0.5em;
+	font-size: 13px;
+	line-height: 1.5em;
+}
+div.news fieldset legend {
+	color: #FF0000;
+	font-size: 15px;
+}
+
+h1,h2,h3 title { color: #525252; }
+
+p.title {
+	background: rgb(204,0,0);
+background: -moz-linear-gradient(left,  rgba(204,0,0,1) 0%, rgba(204,75,75,1) 76%);
+background: -webkit-linear-gradient(left,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+background: linear-gradient(to right,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc4b4b',GradientType=1 );
+
+	border-radius: 1px 6px 6px 6px;
+-moz-border-radius: 1px 6px 6px 6px;
+-webkit-border-radius: 1px 6px 6px 6px;
+border: 0px solid #f70d14;
+
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	color: #ffffff;
+	font-weight: bold;
+	border: none;
+	margin: 5px 5px 0 5px;
+	padding-left: 5px;
+}
+
+.center{
+	text-align: center;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+#sib_header, a:visited, a:hover {
+	text-decoration: none;
+	color: #282828;
+}
+
+.sib_drop_rmenu {right: 25px;}
+
+#sib_footer {
+	font-family:"Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+}
+
+a.help { cursor: help }
+
+h1 {font-size: xx-large;font-weight: bold;}
+h2 {font-size: x-large;font-weight: bold}
+h3 {font-size: large;font-weight: bold;font-style: italic}
+h4 {font-size: medium;font-weight: normal;font-style: italic}
+
+p,pre,table {font-size: medium;}
+/*table {border: 1px solid black}*/
+ul {list-style-type: disc; margin-top:2px; margin-bottom:2px;}
+li ul {list-style-type: circle;}
+
+hr {height: 1px;border-top:1px solid black;border-bottom:0;border-left: 0;border-right: 0;}
+
+.hidden {
+	display: none;
+}
+input.mandatory {
+	display: none;
+}
+
+/*
+===============================================
+links
+===============================================
+*/
+a img {
+	border-width: 0;
+}
+/* Swiss Institute of Bioinformatics */
+/* $Id: sib.css 441 2011-06-14 14:36:33Z vioannid $ */
+
+html, body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: 800px;
+}
+
+form{
+	margin: 0;
+}
+
+.italic{
+	font-style: italic;
+}
+/*SIB CONTAINER*/
+
+/* Links */
+a, a:visited {
+	color: #d6161d;
+	text-decoration: none;
+}
+a:hover {
+	color: #d6161d;
+	text-decoration: underline;
+}
+
+a:visited:hover{
+	color: #920209;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #920209;
+}
+ul.sib_menu li a.sib_link, ul.sib_menu li a.sib_link:visited {
+	color: #371C1C;
+}
+
+/*links for JS related stuff*/
+a.sib_link_short, a.sib_link_short:visited,
+a.sib_link_long, a.sib_link_long:visited{
+	color: #d6161d;
+	font-size:13px;
+	font-family: Helvetica;
+	text-decoration: none;
+}
+a.sib_link_short:hover, a.sib_link_long:hover{
+	text-decoration: underline;
+}
+
+a.sib_link_short:visited, a.sib_link_long:visited{
+	color: #920209;
+}
+
+
+#sib_container{
+	position: relative;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+	-height: 100%;
+	width: 100%;
+	background-color: #F7F8FA;
+	z-index: 1;
+	/* hack IE6 */
+	-background: #F7F8FA url('../../img/sib_images/sib_body_bkgd.png') repeat-x 131px left;
+}
+
+/*SIB CONTAINER*/
+
+#sib_header{
+	position: relative;
+	background: #F7F8FA url('../../img/sib_images/sib_header_medium_bkgd.png') repeat-x top left;
+	height: 100px;
+	width: 100%;
+	color: #282828;
+	z-index: 5;
+}
+
+
+/* vassilios addition for the clickable logo area */
+#sib_header #sib_expasy_logo{
+	position: absolute;
+	top: 12px;
+	left: 18px;
+	width: 458px;
+	/*width: 528px;*/
+	height: 65px;
+	background: transparent url('../../img/expasy_logo.png') no-repeat top left;
+	/*background: transparent url('../../img/expasy_logo_SIB15th.png') no-repeat top left;*/
+}
+#sib_header #sib_expasy_logo > a#sib_link{
+/* -> link to SIB administrative website */
+	display: block;
+	position: absolute;
+	width: 82px;
+	/*width: 142px;*/
+	height: 65px;
+	/* red border for debugging
+	border-color: red;
+	border-style: solid;
+	border-width: 1px; */
+}
+#sib_header #sib_expasy_logo > a#expasy_link{
+/* -> link to ExPASy portal */
+	display: block;
+	position: absolute;
+	left: 85px;
+	/*left: 145px; */
+	width: 376px;
+	height: 65px;
+	/* red border for debugging
+	border-color: green;
+	border-style: solid;
+	border-width: 1px; */
+}
+
+#sib_logo{
+	position: absolute;
+	left: 18px;
+	top: 12px;
+	width: 479px;
+	height: 68px;
+	background: transparent url('../../img/expasy_logo.png') no-repeat top left;
+	-background: transparent url('../../img/expasy_logo_ie6.png') no-repeat top left;
+	/*background: transparent url('../../img/expasy_logo_SIB15th.png') no-repeat top left;
+	-background: transparent url('../../img/expasy_logo_ie6_SIB15th.png') no-repeat top left;*/
+}
+#sib_logo span{
+	display: none;
+}
+#expasy_beta{
+	position: absolute;
+	top: 8px;
+	font: 32px Helvetica,Verdana, sans-serif;
+	color: #C00;
+	left: 330px;
+}
+#sib_header h1{
+	position: relative;
+	top: 50px;
+	margin: 0 50px;
+	color: #282828;
+	text-align: center;
+	font: 32px Helvetica,Verdana, sans-serif;
+	white-space: nowrap;
+
+}
+#sib_header h2{
+	position: relative;
+	top: 25px;
+	margin: 0 50px;
+	color: #282828;
+	text-align: center;
+	font: 19px Helvetica,Verdana, sans-serif;
+	white-space: nowrap;
+}
+
+/*SIB BODY*/
+
+hr{
+	border-color: #626262;
+}
+
+br.clear{
+	clear: both;
+}
+
+#sib_body {
+	position: relative;
+	padding: 18px 18px 78px 18px;
+	background: #F7F8FA url('../../img/sib_images/sib_body_bkgd.png') repeat-x top left;
+	min-height: 620px;
+	font-family: Helvetica;
+	color: #626262;
+	font-size: 13px;
+	z-index: 2;
+	-height: 100%; /* IE6 */
+/*	overflow: auto;*/
+}
+
+/*hack InternetExplorer*/
+* html #sib_body{
+	width: 1024px;
+}
+*:first-child+html #sib_body {
+	min-width: 1024px;
+}
+/*end hack*/
+
+/* Headers */
+#sib_body h1,h2,h3,h4,h5,h6 {
+	font-family: Helvetica;
+	color: #626262;
+}
+#sib_body h1 { font-size: 16px; }
+#sib_body h2 { font-size: 14px; }
+#sib_body h3 { font-size: 12px; }
+#sib_body h4 { font-size: 10px; }
+/*#sib_body h5 { font-size: 9px; }*/
+#sib_body h6 { font-size: 8px; }
+/* Ordered list */
+#sib_body ul.sib_list { list-style-type: circle; }
+/* Simple menu built with a list of hyperlinks */
+#sib_body ul.sib_menu{
+	list-style-type: none;
+	width: 209px;
+	padding-left: 0; /*Disable the default padding left of ordered lists*/
+	margin-left: 0; /*Hack for IE to avoid the left margin*/
+}
+#sib_body ul.sib_menu li.menu_title {
+	background: rgb(204,0,0);
+background: -moz-linear-gradient(left,  rgba(204,0,0,1) 0%, rgba(204,75,75,1) 76%);
+background: -webkit-linear-gradient(left,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+background: linear-gradient(to right,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc4b4b',GradientType=1 );
+
+	border-radius: 1px 6px 6px 6px;
+-moz-border-radius: 1px 6px 6px 6px;
+-webkit-border-radius: 1px 6px 6px 6px;
+border: 0px solid #f70d14;
+
+	/* background: transparent url('../../img/sib_images/menu_top.png'); */
+	/*height: 25px;*/
+	width: 100%;
+	line-height: 25px;
+	font-size: 13px;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	margin: 5px 5px 0 5px;
+	padding-left: 5px;
+
+}
+#sib_body ul.sib_menu li.menu_title a{
+	color: #FFF;
+	display: block;
+	width: 100%;
+}
+
+ul.sib_menu li.menu_title:hover {
+	background: rgb(204,0,0);
+background: -moz-linear-gradient(left,  rgba(204,0,0,1) 0%, rgba(204,75,75,1) 76%);
+background: -webkit-linear-gradient(left,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+background: linear-gradient(to right,  rgba(204,0,0,1) 0%,rgba(204,75,75,1) 76%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc4b4b',GradientType=1 );
+
+	border-radius: 1px 6px 6px 6px;
+-moz-border-radius: 1px 6px 6px 6px;
+-webkit-border-radius: 1px 6px 6px 6px;
+border: 0px solid #f70d14;
+
+	display: block;
+}
+ul.sib_menu li.menu_title a:hover{
+	border: none;
+	text-decoration: none;
+}
+ul.sib_submenu{
+/*	background: #FFFFFF;*/
+	list-style-type: none;
+	width: 200px;
+	padding-left: 0; /*Disable the default padding left of ordered lists*/
+	margin-left: 0; /*Hack for IE to avoid the left margin*/
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+ul.sib_submenu li.sib_submenu_selected {
+	font-weight: bold;
+	background-color: #DBDBDB;
+}
+
+ul.sib_submenu li.sib_submenu, ul.sib_submenu li.sib_submenu_selected{
+	border-bottom:1px solid #DBDBDB;
+	padding: 0 5px 0 5px;
+	margin: 0 5px 0 5px;
+	height: 25px;
+	font-size: 12px;
+	color: #282828;
+	font-weight:normal;
+}
+
+
+ul.sib_submenu li.sib_submenu:hover {
+	background: #DBDBDB;
+	padding: 0 5px 0 5px;
+}
+
+ul.sib_submenu li.sib_submenu a, ul.sib_submenu li.sib_submenu a:visited,ul.sib_submenu li.sib_submenu_selected a, ul.sib_submenu li.sib_submenu_selected a:visited {
+	color: #282828;
+	font-size: 12px;
+	font-weight:normal;
+	line-height: 25px;
+	margin:0;
+	display: block;
+	text-decoration: none;
+}
+ul.sib_submenu li.sib_submenu_selected a, ul.sib_submenu li.sib_submenu_selected a:visited{
+	font-weight: bold;
+}
+
+ul.sib_submenu li.sib_subcategories{
+	border-bottom: 1px solid #DBDBDB;
+	margin: 0 5px;
+}
+
+ul.sib_submenu li.sib_subcategories ul{
+	margin: 0;
+	margin-left: 0;
+	padding: 0;
+	text-indent: 0;
+	list-style: none;
+	margin-bottom: -1px;
+}
+
+ul.sib_submenu li.sib_subcategories ul li{
+	font-size: 10px;
+	line-height: 14px;
+	padding: 3px 0 3px 10px;
+	border-bottom: 1px dotted #DBDBDB;
+}
+
+ul.sib_submenu li.sib_subcategories ul li.sib_subcategory_selected{
+	font-weight: bold;
+	background: #DBDBDB;
+}
+
+ul.sib_submenu li.sib_subcategories ul li:hover{
+	background: #DBDBDB;
+}
+
+ul.sib_submenu li.sib_subcategories ul li a, ul.sib_submenu li.sib_subcategories ul li a:hover{
+	color: #282828;
+	text-decoration: none;
+}
+
+
+/* Drop down menu */
+/* ================================================================
+This copyright notice must be untouched at all times.
+
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/final_drop.html
+Copyright (c) 2005-2008 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any
+way to fit your requirements.
+=================================================================== */
+
+.menu {width:745px; height:22px; position:relative; z-index:100;border-right:1px solid #DBDBDB; font-family: helvetica, sans-serif;}
+/* hack to correct IE5.5 faulty box model */
+* html .menu {width:746px; w\idth:745px;}
+/* remove all the bullets, borders and padding from the default list styling */
+.menu ul {padding:0;margin:0;list-style-type:none;}
+.menu ul ul {width:149px; }
+/* float the list to make it horizontal and a relative positon so that you can control the dropdown menu positon */
+.menu li {float:left;width:149px;position:relative;}
+/* style the links for the top level */
+.menu a, .menu a:visited {display:block;font-size:12px;text-decoration:none; color:#371C1C; width:138px; height:20px; border:1px solid #DBDBDB; border-width:1px 0 1px 1px; background:transparent; padding-left:10px; line-height:19px; font-weight:normal;}
+/* a hack so that IE5.5 faulty box model is corrected */
+* html .menu a, * html .menu a:visited {width:149px; w\idth:138px;}
+
+/* style the second level background */
+.menu ul ul a.drop, .menu ul ul a.drop:visited {background:#fff url('../../img/sib_images/grey-arrow.gif') no-repeat 130px center;}
+/* style the second level hover */
+.menu ul ul a.drop:hover {background:#d8d8d8 url('../../img/sib_images/blue-arrow.gif') no-repeat 130px center; text-decoration: underline;}
+.menu ul ul :hover > a.drop {background:#d8d8d8 url('../../img/sib_images/blue-arrow.gif') no-repeat 130px center; text-decoration: underline;}
+/* style the third level background */
+.menu ul ul ul a, .menu ul ul ul a:visited {background:#fff;}
+/* style the third level hover */
+.menu ul ul ul a:hover {background:#d8d8d8; text-decoration: underline;}
+
+
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+.menu ul ul {visibility:hidden;position:absolute;height:0;top:21px;left:0; width:149px;border-top:1px solid #DBDBDB;font-size:12px;}
+/* another hack for IE5.5 */
+* html .menu ul ul {top:20px;t\op:21px;}
+
+/* position the third level flyout menu */
+.menu ul ul ul{left:149px; top:-1px; width:149px;}
+
+/* position the third level flyout menu for a left flyout */
+.menu ul ul ul.left {left:-149px;}
+
+/* style the table so that it takes no ppart in the layout - required for IE to work */
+.menu table {position:absolute; top:0; left:0; border-collapse:collapse;;}
+
+/* style the second level links */
+.menu ul ul a, .menu ul ul a:visited {background:#fff; color:#000; height:auto; line-height:1em; padding:5px 10px; width:128px;border-width:0 1px 1px 1px;}
+/* yet another hack for IE5.5 */
+* html .menu ul ul a, * html .menu ul ul a:visited {width:150px;w\idth:128px;}
+
+/* style the top level hover */
+.menu a:hover, .menu ul ul a:hover {color:#371C1C; background:#d8d8d8; text-decoration: underline;}
+.menu :hover > a, .menu ul ul :hover > a {color:#371C1C; background:#d8d8d8; text-decoration: underline;}
+
+/* make the second level visible when hover on first level list OR link */
+.menu ul li:hover ul,
+.menu ul a:hover ul{visibility:visible; }
+/* keep the third level hidden when you hover on first level list OR link */
+.menu ul :hover ul ul{visibility:hidden;}
+/* make the third level visible when you hover over second level list OR link */
+.menu ul :hover ul :hover ul{ visibility:visible;}
+
+
+/**************************************************************/
+/* ====> SAME for Drop Down menus in header but right aligned */
+.sib_drop_rmenu {width:auto; height:32px; position:absolute;right: 0;bottom: 0; z-index:100; font-family:Helvetica, sans-serif;}
+/* hack to correct IE5.5 faulty box model */
+* html .sib_drop_rmenu {width:auto; w\idth:auto;}
+/* remove all the bullets, borders and padding from the default list styling */
+.sib_drop_rmenu ul {padding:0;margin:0;list-style-type:none;}
+.sib_drop_rmenu ul ul {padding: 10px;background: #fff;}
+/* float the list to make it horizontal and a relative positon so that you can control the dropdown menu positon */
+.sib_drop_rmenu li {float:left;position:relative; padding-right:10px;}
+/* style the links for the top level */
+.sib_drop_rmenu li a, .sib_drop_rmenu li a:visited {display:block;font-size:12px;text-decoration:none !important; color:#555; /*width:68px;*/ height:30px; /*padding-left:10px; */line-height:29px; font-weight:normal;}
+.sib_drop_rmenu li a:hover {color:#000;}
+/* a hack so that IE5.5 faulty box model is corrected */
+* html .sib_drop_rmenu a, * html .sib_drop_rmenu a:visited {width:68px; w\idth:68px;}
+
+/* style the second level background */
+.sib_drop_rmenu ul ul a.drop, .sib_drop_rmenu ul ul a.drop:visited {background:#FFF url('../../img/sib_images/triangle_left_grey.gif') no-repeat 140px center; }
+/* style the second level hover */
+.sib_drop_rmenu ul ul a.drop:hover{background:#C00 url('../../img/sib_images/triangle_left_grey.gif') no-repeat 140px center; color: #fff !important;}
+.sib_drop_rmenu ul ul :hover > a.drop {background:#c00 url('../../img/sib_images/triangle_left.gif') no-repeat 140px center;color:#fff !important;}
+/* style the third level background */
+.sib_drop_rmenu ul ul ul a, .sib_drop_rmenu ul ul ul a:visited {background:#fff;}
+/* style the third level hover */
+.sib_drop_rmenu ul ul ul a:hover {background:#c00 !important; color: #fff !important;}
+
+
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+.sib_drop_rmenu ul ul {visibility:hidden;position:absolute;height:0;top:31px;left:-100px; width:149px;}
+/* another hack for IE5.5 */
+* html .sib_drop_rmenu ul ul {top:30px;t\op:31px;}
+
+/* position the third level flyout menu */
+.sib_drop_rmenu ul ul ul{right:200px; top:-1px; width:200px;}
+
+/* position the third level flyout menu for a left flyout */
+.sib_drop_rmenu ul ul ul.right {left:-169px;}
+
+/* style the table so that it takes no ppart in the layout - required for IE to work */
+.sib_drop_rmenu table {position:absolute; top:0; left:0; border-collapse:collapse;}
+
+/* style the second level links */
+.sib_drop_rmenu ul ul a, .sib_drop_rmenu ul ul a:visited {background:#FFF; color:#515151; height:auto; line-height:1em; padding:5px 10px; width:120px;border-bottom: 1px solid #ddd; font-weight: normal;}
+/* yet another hack for IE5.5 */
+* html .sib_drop_rmenu ul ul a, * html .sib_drop_rmenu ul ul a:visited {width:150px;w\idth:128px;}
+
+/* style the top level hover */
+.sib_drop_rmenu a:hover{height: 25px; margin-bottom: 3px;}
+.sib_drop_rmenu :hover > a{height: 25px; margin-bottom: 3px;}
+.sib_drop_rmenu ul ul a:hover{color:#FFF; background:#c00;margin-bottom: 0;height: auto;}
+.sib_drop_rmenu ul ul :hover > a {color:#fff; background:#c00; margin-bottom: 0;height: auto;}
+/* make the second level visible when hover on first level list OR link */
+.sib_drop_rmenu ul li:hover ul,
+.sib_drop_rmenu ul a:hover ul{visibility:visible;height: auto;margin-top: -4px;border/*-top*/: 1px solid #c00;background: #fff url('../../img/sib_images/ul_triangle.gif') 120px 0 no-repeat; }
+/* keep the third level hidden when you hover on first level list OR link */
+.sib_drop_rmenu ul :hover ul ul{visibility:hidden;}
+/* make the third level visible when you hover over second level list OR link */
+.sib_drop_rmenu ul :hover ul :hover ul{ visibility:visible;}
+/* End of right aligned drop-down menu */
+/**************************************************************/
+
+
+/*SIB FOOTER*/
+#sib_footer{
+	clear: both;
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	background-color: #1E2425;
+	width: 100%;
+	color: #F7F8FA;
+	letter-spacing: 1px;
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: normal;
+	z-index: 2;
+}
+#sib_footer_content{
+	position: relative;
+	padding: 9px 36px 0 36px;
+/*	padding-right: 300px;*/
+}
+#sib_footer a{
+	text-decoration: none;
+	color: #F7F8FA;
+}
+#sib_footer a:hover{
+	color: #F7F8FA;
+	text-decoration: underline;
+}
+#sib_footer a img, #sib_header a img{
+	border: none;
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+/*special class for lists with sib logo*/
+li.notsib_logo {
+	list-style-image: url("../../img/sib_images/favicon_notsib.ico");
+}
+
+li.sib_logo {
+	list-style-image: url("../../img/sib_images/favicon.ico");
+}
+
+#sib_content {
+	position: relative;
+	margin-left: 220px;
+	min-width: 770px;
+/*	hack for IE6*/
+	-float: none;
+	-display: inline-block;
+	-width: 770px;
+/*	end hack*/
+}
+#sib_left_menu {
+	position: relative;
+	float: left;
+	width: 210px;
+	margin-right: 10px;
+}
+
+
+/**** Addition rliechti *****/
+button, .message button.normal, button[enabled] {
+	padding: 2px 5px;
+	color: #444444;
+	font-size: 12px;
+	border: 1px solid #D8DDE1;
+	background: #F7F8FA url('../../img/bkgd_button.png') repeat-x top left;
+	cursor: pointer;
+	font-weight: bold;
+	margin: 0 5px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+button:active, .message button.normal:active, button[enabled]:active{
+	border-color: #A8BBB9;
+	color: #222222;
+	text-shadow: 1px 1px 2px #CCC;
+	background-image:url('../../img/bkgd_button_active.png');
+}
+
+button[disabled]{
+	color: #CCC;
+}
+
+button:hover,button[enabled]:hover{
+	border-color: #A8BBB9;
+	color: #222222;
+	text-shadow: 1px 1px 2px #CCC;
+}
+
+button[disabled]:hover{
+	color: #CCCCCC;
+	border-color: #D8DDE1;
+
+}
+#category_container{
+	position: relative;
+	width: 100%;
+	overflow: auto;
+}
+#category_databases, #category_tools{
+	position: relative;
+	width: 45%;
+	padding: 0 2%;
+	float: left;
+}
+ul.category_list{
+	list-style: none;
+	text-indent: 0;
+	margin: 0;
+	padding: 0;
+}
+
+ul.category_list li.sib_res{
+/*	list-style-image : url('../../img/sib_images/favicon.ico');*/
+	background: url('../../img/sib_images/icon_sib.png') no-repeat 3px 3px;
+	padding: 3px;
+	padding-left: 25px;
+	-height:1%;
+}
+
+ul.category_list li.ext_res{
+	 background: url("../../img/sib_images/external_resources.gif") no-repeat 3px 3px;
+	-height:1%;
+}
+
+ul.category_list li.notsib_res_NO_LOGO{
+	background: url('../../img/sib_images/icon_notsib.png') no-repeat 3px 3px;
+	padding: 3px;
+	padding-left: 25px;
+	-height:1%;
+}
+ul.category_list li.category_detail{
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-height:1%;
+}
+
+#sib_search{
+	background: #F7F8FA url('../../img/bkgd_search.png') repeat-x top left;
+/*	border-bottom: 2px solid #CCC;*/
+	padding: 4px 0;
+/*	text-align: center;*/
+	border:none;
+	position: relative;
+	z-index: 3;
+}
+
+#sib_search_form{
+	position: relative;
+	width: 800px;
+	margin: auto;
+	font-size: 15px;
+	color: #333;
+	text-align: center;
+}
+
+#sib_search_form input, #sib_search_form select{
+	background-color: #F7F8FA;
+}
+
+div.white_box{
+	position: relative;
+	width: 550px;
+	padding: 10px;
+	background: white;
+	border: 1px solid #999;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	min-height: 40px;
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+
+#FeedbackIndexForm div{
+	position: relative;
+}
+#FeedbackIndexForm label, #search_form label{
+	display: block;
+	float: left;
+	text-align: right;
+	padding-right: 5px;
+	width: 150px;
+	font-weight: bold;
+	padding-top: 2px;
+}
+
+#FeedbackIndexForm div.submit, #search_form div.submit{
+	padding-left: 150px;
+}
+#SupportIndexForm div{
+	position: relative;
+	padding-top: 10px;
+}
+#SupportIndexForm label {
+	display: block;
+/*	float: left;
+	text-align: right; */
+	padding-right: 5px;
+	width: 220px;
+	font-weight: bold;
+	padding-top: 2px;
+}
+
+#SupportIndexForm div.submit, #search_form div.submit{
+	padding-left: 150px;
+	padding-top: 20px;
+}
+div.message div.support{
+	background-color: #DDDDDD;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #626262;
+	padding: 2px 10px;
+}
+div.resources{
+	position: relative;
+}
+div.left_resource{
+	width: 47%;
+	float: left;
+}
+div.right_resource{
+	width: 47%;
+	float: left;
+}
+
+.expasy_presentation{
+	font-size: 14px;
+	line-height: 20px;
+	text-align: justify;
+	padding: 10px;
+}
+
+/*home highlight boxes*/
+
+#highlight_container{
+	position: relative;
+	width: 410px;
+	margin: 20px auto;
+}
+div.highlight_box{
+	position: relative;
+/*	float: left;*/
+	border: 1px solid #D9DEE2;
+	-moz-box-shadow: 0 0 3px #D9DEE2;
+	-webkit-box-shadow: 0 0 3px #D9DEE2;
+	box-shadow: 0 0 3px #D9DEE2;
+	margin-bottom: 20px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+#popular_resources{
+	width: 250px;
+}
+#featuring_today{
+/*	width: 410px; */
+	width: 370px;
+}
+div.highlight_box div.title{
+	height: 25px;
+	font-size: 14px;
+	padding: 8px 10px 0 10px;
+	font-weight: bold;
+	background: #F7F8FA url('../../img/bkgd_search.png') repeat-x top left;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-top-left-radius: 10px;
+	-moz-border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+div.highlight_box div.content{
+	position: relative;
+	min-height: 90px;
+	-height: 90px;
+	padding: 10px;
+	background: #F7F8FA url('../../img/sib_images/sib_highlight_bkgd.png') repeat-x top left;
+/*	overflow: auto;*/
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-bottom-left-radius: 10px;
+	-moz-border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+#featuring_today div.content{
+	background: #FFFFFF url('../../img/bkgd_featuring2.png') no-repeat top left;
+	-height: 150px;
+}
+
+#featuring_today div.featuring_text{
+	position: relative;
+	font-size: 11px;
+	line-height: 15px;
+/*	float: left;*/
+	margin-right: 5px;
+	width:250px;
+}
+#featuring_today div.featuring_text a{
+		color: #C00;
+	}
+
+#featuring_today div.featuring_image{
+/*	position: absolute;*/
+	width: 80px;
+	padding: 0;
+	margin: 0 5px;
+	float: right;
+	right: 10px;
+	top: -10px;
+}
+#featuring_today p{
+	margin: 0;
+	font-size: 12px;
+}
+
+#featuring_today p.resource_title, #featuring_today p.resource_title a{
+	font-size: 15px;
+	color: #C00;
+}
+#featuring_today p.resource_title{
+	margin-bottom: 10px;
+	letter-spacing: 0.15em;
+}
+
+div.highlight_box div.content ul{
+	list-style: none;
+	margin: 0;
+	text-indent: 0;
+	padding: 0;
+	line-height: 25px;
+}
+
+div.highlight_box div.content li a{
+	/**
+	Put back when we remove the COVID-19 panel from teh home page!
+	color: #555;**/
+}
+#carousel-wrapper {
+	width: 350px;
+	height: 100px;
+	overflow: hidden;
+}
+#carousel-content {
+	width: 5000px;
+	height: 100px;
+}
+#carousel-content .slide {
+	float: left;
+	width: 350px;
+	height: 100px;
+}
+
+#home_right{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 250px;
+}
+span.news_date{
+	font-size: 11px;
+	color: #999;
+}
+
+#news div.content{
+	padding-top: 0;
+	-height: auto;
+}
+
+#news div.news_title{
+	padding-top: 10px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#news div.news_title a{
+	color: #626262;
+}
+
+#news div.news_content{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #999;
+}
+
+#news p.bottom{
+	font-size: 11px;
+	text-align: center;
+}
+
+#home_help,#home_warning{
+	/*border: 1px solid #DDD;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;*/
+	padding: 10px 10px 10px 10px;
+	margin: 10px 0;
+	/*margin-top: 50px;*/
+	min-height: 85px;
+	-height: 85px;
+}
+
+#home_warning{
+	margin-top: 0;
+	background: #F3F3F3 url('../../img/3d_exclamation_mark.png') no-repeat 10px 15px;
+}
+
+#home_warning_small{
+	margin-top: 0;
+	background: #F3F3F3 url('../../img/3d_exclamation_mark_small.png') no-repeat 10px;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 15px 5px 10px 30px;
+	margin: 10px 0;
+	margin-top: 10px;
+	min-height:40px;
+	-height: 40px;
+	width: 680px;
+	font-size: 1.2em;
+}
+
+#home_help h1{
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#home_help li{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+#home_help li {
+	color: #333;
+}
+
+#home_help p{
+	line-height: 1.5em;
+}
+
+/*sibgroups*/
+
+#sibgroups_index{
+	width: 550px;
+}
+
+#sibgroups_index ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-left: 10px;
+}
+
+#sibgroups_index ul li{
+	font-size: 14px;
+	line-height: 18px;
+	padding: 3px;
+}
+
+#sibgroups_index ul li:hover{
+	background-color: #FCFCFC;
+	border: 1px solid #CCC;
+	padding: 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-border-radius: 3px;
+}
+
+#sibgroups_index ul li div.left{
+	float: left;
+	width: 350px;
+}
+
+/*visual guidance*/
+
+#vg_welcome_categories{
+	width: 100%;
+	overflow: auto;
+}
+#vg_welcome_categories div.vg_welcome_category{
+	float: left;
+	margin: auto;
+	text-align: center;
+}
+#vg_welcome_categories div.vg_welcome_category_img{
+	height: 130px;
+	margin: auto;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#vg_content{
+	position: relative;
+	width: 770px;
+/*	overflow: auto;*/
+}
+
+#vg_keywords{
+	position: relative;
+	margin-left: 0;
+	width: 730px;
+	padding: 5px;
+	background: #F3F3F3;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+#vg_keywords p{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	text-align: left;
+}
+
+#vg_keywords p img.vg_keyword_remove{
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#middle_content{
+	position: relative;
+	width: 220px;
+	float:left;
+	margin-right: 5px;
+}
+#tag_cloud{
+	width: 200px;
+	-height: 480px;
+	padding: 30px 0 10px 0;
+}
+#vg_help{
+	position: absolute;
+	color: #696969;
+	font-size: 12px;
+	left: 0;
+	top: 0;
+	width: 200px;
+	height: 20px;
+	text-align: center;
+	padding: 0 10px;
+	border-bottom: 1px solid #999;
+}
+
+div.vg_keywords{
+	font-size: 10px;
+	color: #669;
+	margin-top: 5px;
+	margin-bottom: 8px;
+}
+
+div.vg_description{
+	margin-top: 3px;
+}
+
+#search_menu{
+	width: 220px;
+	height: 40px;
+	position: absolute;
+	bottom: 40px;
+	text-align: center;
+}
+
+#result_pane{
+	width: 500px;
+/*	height: 500px;*/
+	margin-left: 15px;
+	float: left;
+}
+
+/* features */
+#features_body_content{
+	position: relative;
+	margin-right: 280px;
+}
+
+#features_body_content ul li, #features_body_content ol li, #features_body_content p{
+	font-size: 14px;
+	line-height: 20px;
+	text-align: justify;
+}
+
+/* no background, dark grey th background, th (center-aligned), thin gray border (collapsed)*/
+table.archive {border: 1px solid #F7F8FA;border-collapse: collapse;}
+table.archive tr {background-color: #F7F8FA}
+table.archive th {border: 1px solid #E0E0E0;font-weight: bold;font-style: normal;font-size:medium;background-color:#DBDBDB;color: #626262;padding: 1px}
+table.archive td {border: 1px solid #E0E0E0;}
+table.archive th.down a {color:#626262;font-size:small;}
+table.archive th.down a:hover {text-decoration:underline;}
+
+#results_summary_bar{
+	margin: 10px 0;
+}
+
+
+/* Query Engine */
+#query_engine_examples{
+/*	margin-top: -40px;*/
+}
+
+#title_examples{
+	font-style: italic;
+	color: #666;
+	margin-bottom: 5px;
+}
+
+#toggle_examples{
+	color: #C00;
+	cursor: pointer;
+}
+
+#content_examples{
+	padding-left: 20px;
+	font-size: 13px;
+	border: 1px solid #CCC;
+	background-color: #F3F3F3;
+}
+#content_examples p{
+	margin: 5px 0;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#content_examples p a{
+	font-weight: normal;
+}
+
+/*
+===============================================
+style for use in query engine result
+===============================================
+*/
+
+table.query_results{
+	border-collapse: collapse;
+}
+table.query_results tr.th{
+	border-bottom: 1px solid #555;
+	line-height: 22px;
+}
+table.query_results th{
+	text-align: left;
+	font-weight: normal;
+	letter-spacing: 0.3em;
+}
+table.query_results td, table.query_results th{
+	padding: 3px 5px;
+	font-size: 13px;
+}
+table.query_results tr:hover{
+	background-color: #FCFCFC;
+/*	border: 1px solid #CCC;
+	margin: -1px;
+*/
+}
+
+table.query_results tr.res_category:hover, table.query_results tr.th:hover{
+	background-color: transparent;
+/*	border: 1px solid #CCC;
+	margin: -1px;
+*/
+}
+
+table.query_results a.sib_link{
+	color: #555;
+}
+
+#query_results tr.res_category td{
+	padding-top: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+}
+
+.query_searching{
+	font-style: italic;
+	color: #999;
+}
+
+/*
+ * -----------
+ * PArtimo, hitcount "strength" image
+ * -----------
+ */
+
+.reslink ul {
+	position: absolute;
+	top: 0;
+	right: 5px;
+}
+
+ul.strength li {
+	background-image: url('../../img/signalsprite.png');
+	width: 13px;
+	height: 9px;
+	list-style-type:none;
+}
+.strength1 {
+	background-position: 39px 0;
+}
+.strength2 {
+	background-position: 26px 0;
+}
+.strength3 {
+	background-position: 13px 0;
+}
+/* vioannid: width 220px to avoid ugly return line in FF */
+#searchform input.withimg {padding-right:22px; width:220px;}
+#searchform button {margin-left: -19px;}
+#searchform img {cursor:pointer; left:-22px; position:relative; vertical-align:middle;}
+/* Swiss Institute of Bioinformatics */
+/* $Id: search.css 424 2011-06-09 15:01:37Z smoretti $ */
+
+/*for displaying search results*/
+
+.result_block{
+	margin-top:3px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	width: 700px;
+	padding-left:24px;
+	padding-right:5px;
+	padding-bottom:2px;
+	border: 1px solid #BCD2E6;
+}
+
+.result_block_alt{
+	margin-top:3px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	width: 700px;
+	padding-left:24px;
+	padding-right:5px;
+	padding-bottom:2px;
+	background-color: #E2EBF4; /*#F8F7F6;*/
+	border: 1px solid #BCD2E6;
+}
+
+.result_block a, .result_block_alt a{
+	color: #BF161D;
+}
+
+.result_block a:hover, .result_block_alt a:hover{
+	text-decoration:underline;
+}
+.result_block h2, .result_block_alt h2{
+	color: #003399;
+	font-family: Helvetica, Verdana, sans-serif;
+}
+
+.result_block .title, .result_block_alt .title{
+	color: #003399;
+	font-family: Helvetica, Verdana, sans-serif;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+.result_block .title .title_left, .result_block_alt .title .title_left{
+	position:relative;
+	color: #d6161d;
+}
+
+.title_left {
+	background-image:url("../../img/sib_images/favicon.ico");
+	background-position:left top;
+	background-repeat:no-repeat;
+	margin-left:-20px;
+	padding-left:20px;
+}
+.ext_res {
+	background-image:url("../../img/sib_images/external_resources.gif");
+}
+
+.result_block .title .title_right, .result_block_alt .title .title_right{
+	text-align:right;
+	position:absolute;
+	right:0;
+	top:0;
+}
+
+.result_block .infoline, .result_block_alt .infoline{
+	padding-bottom: 5px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	color: #669966;
+}
+
+.result_block .description, .result_block_alt .description{
+	padding: 3px 0 3px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	margin-right : 5px;
+	word-spacing:0.100em;
+}
+
+.result_block .keywords, .result_block_alt .keywords{
+	padding-top: 2px;
+	padding-bottom: 2px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	font-size:11px;
+	color:#CC6666;
+	margin-right : 5px;
+}
+
+#search_form{
+	padding-left:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	width: 700px;
+	background-color: #DBDBDB;
+}
+
+#search_form div.row{
+	position: relative;
+	width: 690px;
+}
+
+#search_form label{
+	margin-bottom: 10px;
+}
+
+#search_form input, #search_form select{
+/*	display: block;*/
+	width: auto;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+
+/* ** concerns the displaying of the ajax list ** */
+div.auto_complete {
+	position:absolute;
+	z-index:1;
+	width:250px;
+	background-color:white;
+	border:1px solid #999;
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+div.auto_complete ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+div.auto_complete ul li.selected { background-color: #ffb;}
+div.auto_complete ul li {
+	list-style-type:none;
+	display:block;
+	margin:0;
+	padding:2px;
+	height:16px;
+	cursor:pointer;
+	text-align: left;
+}
+div.paging{
+	margin: 0 10px;
+}
+
+/*
+should be read after the li.sib_logo definition
+*/
+li.ext_logo {
+	list-style-image: url("../../img/sib_images/external_resources.gif");
+}
+
+/*
+.external-res {
+	opacity: 0.6;
+	-moz-opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+.external-res:hover {
+	opacity: 1;
+	-moz-opacity: 1;
+	filter: alpha(opacity=100);
+}
+*/
+.error-message {
+	color: #D6161D;
+}
+

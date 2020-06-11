@@ -1,0 +1,24 @@
+html(lang='en')
+  head
+    title API Demo (Long HTML testasdf)
+    script().
+      window.bimBazz = {};
+    script(src='/javascripts/lib/jquery-2.1.4.js')
+    script(src='/javascripts/lib/underscore-min.js')
+    script(src='/javascripts/lib/moment.js')
+    script(src='/javascripts/lib/vis.min.js')
+
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href='/stylesheets/vis.min.css', rel='stylesheet')
+    link(rel='icon', href='/img/favicon.ico', type='image/x-icon')
+    link(rel='shortcut icon', href='/img/favicon.ico', type='image/x-icon')
+
+  body(style="padding:1em")
+    button.btn-danger#customRed Mark Custom Red
+    button.btn-success#topGreen Mark Top Level Green
+    button.btn-info#drawMissing Draw Missing Links
+    button.btn-warning#prune Prune All Else
+
+    div#graph
+
+    script(src='/javascripts/graphs.js')

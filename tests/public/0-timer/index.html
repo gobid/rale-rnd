@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>Timer number: <span id="timercnt">0</span></p>
+    <button id="timerbtn">Start Timer</button>
+  </body>
+  <script>
+    var curr = 0;
+    function ticker(){
+      setTimeout(function(){
+        curr = parseInt(curr) + 1;
+        document.getElementById("timercnt").innerHTML = curr;
+        ticker();
+      }, 1000)
+    }
+    document.getElementById("timerbtn").addEventListener("click", ticker ,false);
+  </script>
+</html>

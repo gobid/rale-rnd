@@ -26,6 +26,10 @@ Install npm dependencies for all the sub-projects
     cd isopleth/socket-fondue-jsbin
     rm -rf node_modules
     npm install
+
+    cd isopleth/tests
+    rm -rf node_modules
+    npm install
     
 Setup Chrome
     
@@ -51,6 +55,9 @@ Setup Chrome
     node app.js
     
     cd isopleth/isopleth
+    node app.js
+
+    cd isopleth/tests
     node app.js
     
     # All four must be up and running for the test app to work.
@@ -83,16 +90,16 @@ Isopleth is built on top of fondue:
 - https://github.com/adobe-research/fondue
 - https://adobe-research.github.io/fondue/
 
-#Isopleth Installation Troubleshooting:
+Isopleth Installation Troubleshooting:
 - use these node_modules if yours don't work:  
 - don't put code in a folder synced to Box or Dropbox or whatnot
 - comment out lines 2 and 4 in crossOriginMiddleware.js
-- rerun as needed in each of the 4 servers you need to run: nvm install v0.10.32 ; nvm alias default v0.10.32
+- rerun as needed in each of the 4 servers you need to run: `nvm install v0.10.32 ; nvm alias default v0.10.32`
 - redis-server is the command to run
 - to fix isopleth tab loading with an error just quit all servers, redo nvm install/alias, and retry
 - http://localhost:3004/demo/index.html to get the demo to work you may have to uncomment out code in home.js (confirmed this is right)
 
-#To solve instrumentation issues:
+To solve instrumentation issues:
 - add problematic urls reported in console to the blocked domains and restart the servers
 
 #Limitations:
