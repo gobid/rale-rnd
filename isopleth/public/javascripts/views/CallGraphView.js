@@ -430,8 +430,9 @@ define([
         if (!invoke.nativeRootInvoke){
           if (!invoke.childAsyncSerialLinks || invoke.childAsyncSerialLinks.length < 1) { 
             // only show nodes that are top level calls or they have async children
-            this.hideInvokeIdMap[invoke.invocationId] = true;
-            return displayNodes;
+            
+            //this.hideInvokeIdMap[invoke.invocationId] = true;
+            //return displayNodes;
           }
         }
 
