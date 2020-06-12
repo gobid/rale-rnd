@@ -108,6 +108,8 @@ To solve instrumentation issues:
 - does not instrument google / facebook / top 10 alexa ranking sites
 - samples in isopleth/public/javascripts/util/samples are supposed to be loadable by going to http://localhost:3007/[sample folder name]]/ but when you actually try to load the the cached invokes, they don't work in this repo - they may work in this branch of the original isopleth repo https://github.com/NUDelta/Isopleth/tree/feature/file-loading but you'd have to check
 
-- our fork of fondue provides us all the nodes and yellow arrows (sync relationships)
+- our fork of fondue provides us all the nodes that we need and yellow arrows (sync relationships)
 - however it is an open issue that it does not provide all the orange arrows (arrow from the async declaration context to the callback, the declaration context is the function inside which the callback is bound to its trigger)
     - specifically the issue is that there are some nodes in rawInvokes (which is directly from fondue) such their invoke.parents property contains invocationIds that are not present in rawInvokes.
+    - in reaction to this limitation we removed the "if the orange arrow isn't right / gonna show, then don't show purple arrows" type of logic in InvokeGraph.js (see the code near the second "README LIMITATIONS RELATED NOTE")
+- for this study we are focused on nodes, yellow arrows, and purple arrows (which are all fine given our new fixes) so we will continue without addressing this limitation
