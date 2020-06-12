@@ -2,7 +2,7 @@
 
 A platform for following interesting paths through JavaScript.
 
-#To install:
+## To install:
     
 Install nvm and node (https://github.com/creationix/nvm)
     
@@ -43,7 +43,7 @@ Setup Chrome
     - Navigate to isopleth/chrome-extension
     - Ok
 
-#To run:
+## To run:
     
     cd isopleth/fondue-api/redis
     redis-server
@@ -62,7 +62,7 @@ Setup Chrome
     
     # All four must be up and running for the test app to work.
     
-#To run a test app:
+## To run a test app:
 
     Open http://localhost:3004/demo/index3.html
              
@@ -84,7 +84,7 @@ Setup Chrome
     
     Hit Draw button at bottom
 
-#Other helpful notes:
+## Other helpful notes:
 
 Isopleth is built on top of fondue: 
 - https://github.com/adobe-research/fondue
@@ -102,7 +102,7 @@ Isopleth Installation Troubleshooting:
 To solve instrumentation issues:
 - add problematic urls reported in console to the blocked domains and restart the servers
 
-#Limitations:
+## Limitations:
 
 - does not address minified code so we need to use it on sites that don't have unminified code
 - does not instrument google / facebook / top 10 alexa ranking sites
