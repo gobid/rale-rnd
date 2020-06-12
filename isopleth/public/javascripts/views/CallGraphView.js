@@ -431,6 +431,7 @@ define([
           if (!invoke.childAsyncSerialLinks || invoke.childAsyncSerialLinks.length < 1) { 
             // only show nodes that are top level calls or they have async children
             
+            // TEMPORARILY REMOVING FOR FIGURING OUT MAP
             //this.hideInvokeIdMap[invoke.invocationId] = true;
             //return displayNodes;
           }
