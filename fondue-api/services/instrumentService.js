@@ -109,6 +109,7 @@ module.exports = {
         var $scriptEl = $(scriptNode);
         if (!$scriptEl.attr("src")) {
           var src = $scriptEl.html();
+          console.log("before beautifyJS call, src: ", src);
           util.beautifyJS(src, url, function (src) {
             arrJS.push({
               order: i,

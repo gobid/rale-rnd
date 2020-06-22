@@ -150,6 +150,7 @@ module.exports = function (app) {
   app.get(routes.BEAUTIFY_JS, function (req, res) {
     var url = req.param("url");
 
+    console.log("before beautifyJS call, url: ", url);
     beautifyService.beautifyJS(url, function (beautifiedJS) {
       res.send(beautifiedJS);
     });

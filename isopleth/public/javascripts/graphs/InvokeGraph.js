@@ -158,6 +158,7 @@ define([
       var n_nodes_printed = 0;
       // Parse through invokes and populate simple lists of native/lib/top-levels
       _(this.rawInvokes).each(function (rawInvoke) {
+        console.log("rawInvoke before label announcement: ", rawInvoke);
         // Make a copy to leave the original
         var invoke = JSON.parse(JSON.stringify(rawInvoke));
         // invoke doesn't have the node yet
@@ -211,7 +212,7 @@ define([
         invoke.isLib = util.isKnownLibrary(invoke.nodeId);
 
         if (!invoke.isLib) {
-          console.log("invoke is not lib");
+          //console.log("invoke is not lib");
           this.nativeInvokes.push(invoke);
 
           var hasParentCaller = !!_(invoke.parents).find(function (parent) {
@@ -238,12 +239,15 @@ define([
         }, this);
 
         // getting node arguments
+        console.log("invoke: ", invoke.getLabel() , invoke);
+        console.log("invoke.arguments: ", invoke.arguments);
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
             // if we have a function passed as an argument
             var source;
             if (arg.value.json.indexOf("function") === -1) {
               var isoStr = arg.value.json;
+              console.log("isoStr:", isoStr);
               var isoStartIndex = isoStr.indexOf("iso_");
               var isoEndIndex = isoStr.indexOf("_iso");
 
@@ -258,6 +262,7 @@ define([
             } else {
               source = arg.value.json;
             }
+            console.log("source:", source);
          
             if (!this.argSourceToInvokes[source]) {
               this.argSourceToInvokes[source] = [];
@@ -368,7 +373,7 @@ define([
         if (!childInvoke.isLib && parentInvoke.isLib) {
           if (!childInvoke.nativeRootInvoke) {
             childInvoke.nativeRootInvoke = true;
-            console.log("gets added - 2 childInvoke.nativeRootInvoke at this stage is: ", childInvoke.getLabel(), childInvoke.invocationId, childInvoke.timestamp, childInvoke.nativeRootInvoke);
+            //console.log("gets added - 2 childInvoke.nativeRootInvoke at this stage is: ", childInvoke.getLabel(), childInvoke.invocationId, childInvoke.timestamp, childInvoke.nativeRootInvoke);
             this.nativeRootInvokes.push(childInvoke);
           }
         }
@@ -383,6 +388,8 @@ define([
           return;
         }
 
+        console.log("childInvoke: ", childInvoke.getLabel());
+        console.log("childInvoke.node.source", childInvoke.node.source);
         var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; 
         
         //console.log("childInvoke is:", childInvoke.getLabel(), childInvoke.timestamp);
@@ -396,8 +403,8 @@ define([
 
           for (var pi = 0; pi < parentInvokes.length; pi++){
             parentInvoke = parentInvokes[pi];
-            console.log("nativeRootInvoke childInvoke ts is: ", childInvoke.timestamp, childInvoke);
-            console.log("parentInvoke ts is: ", parentInvoke.timestamp, parentInvoke);
+            //console.log("nativeRootInvoke childInvoke ts is: ", childInvoke.timestamp, childInvoke);
+            //console.log("parentInvoke ts is: ", parentInvoke.timestamp, parentInvoke);
             if (!parentInvoke.childAsyncSerialLinks) {
               parentInvoke.childAsyncSerialLinks = [];
             }
@@ -419,7 +426,7 @@ define([
               this.asyncSerialEdgeMap[edgeId] = asyncSerialEdge;
               if (parentInvoke.tick < childInvoke.tick){ // should we use fondue's tick instead?
                 this.asyncSerialEdges.push(asyncSerialEdge); 
-                console.log("pushed an async serial edge to: ", asyncSerialEdge.childInvoke.getLabel(), asyncSerialEdge);
+                //console.log("pushed an async serial edge to: ", asyncSerialEdge.childInvoke.getLabel(), asyncSerialEdge);
                 return false; // break out of loop
               }
             }
