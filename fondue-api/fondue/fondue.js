@@ -379,7 +379,7 @@ function instrument(src, options, errOpt, callback) {
     return src;
   }
 
-  console.log("before beautifyJS call, src: ", src);
+  console.log("before beautifyJS call 1, src: ", src);
   util.beautifyJS(src, options.path, function (beautifiedSrc) {
     if (beautifiedSrc === null) {
       if (errOpt) {

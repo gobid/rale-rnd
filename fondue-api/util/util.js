@@ -114,15 +114,19 @@ var util = {
     md5.update("beautify " + src);
     var digest = md5.digest("hex");
 
+    console.log("in beautifyJS call, src:", src);
+    console.log("before redis call, digest is:", digest);
     redisClient.get(digest, function (err, foundSrc) {
       if (foundSrc != null) {
         console.log("Retrieved beautification for " + path);
         return callback(foundSrc);
       } else {
         console.log("Beautifying " + path);
+        console.log("src: ", src);
 
         try {
           src = src.split("use strict").join("");
+          console.log("after split: ", src);
           src = UglifyJS.minify(src, {
             fromString: true,
             warnings: true,
@@ -130,12 +134,15 @@ var util = {
             compress: minifyJSCompressOpts,
             output: minifyJSOutputOpts
           }).code;
+          console.log("after uglify: ", src)
 
           if (src === "") {
+            console.log("in src is empty, calling cb");
             return callback(src);
           }
 
           try {
+            console.log("going to insert iso");
             src = falafel(src, {loc: true}, eselector.tester([
               {
                 selector: '.function > block',
@@ -146,6 +153,7 @@ var util = {
                 }
               }
             ])).toString();
+            console.log("after falafel inserts iso");
           } catch (err) {
             console.warn("Could not add function signatures:", err.message);
           }
@@ -193,7 +201,8 @@ var util = {
           //   anonFuncDecIndex = src.indexOf("function (");
           // }
 
-
+          console.log("after iso inserted src: ", src);
+          console.log("at the end of beautify");
           redisClient.set(digest, src, function (err, reply) {
             if (err) {
               console.log("Error on saving beautified source!");

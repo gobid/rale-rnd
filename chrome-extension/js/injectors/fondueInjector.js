@@ -111,6 +111,7 @@ define([], function () {
             node.endColumn = node.end.column;
             node.invokes = [];
           });
+          console.log("about to send nodeArr:", nodeArr);
 
           window.dispatchEvent(new CustomEvent("fondueDTO", {
             detail: {
@@ -183,6 +184,18 @@ define([], function () {
           // debugger; Ok here is where it gets emitted
           var invocations = this.emitBuffer.splice(0, FondueBridge.EMIT_INVOKE_COUNT);
           console.log("emitNodeActivity:", invocations.length, "invocations", invocations);
+          for (var i = 0; i < invocations.length; i++){
+            var curr_invoke = invocations[i];
+            if (curr_invoke.arguments) {
+              for (var j = 0; j < curr_invoke.arguments.length; j++){
+                if (curr_invoke.arguments[j].value.type == "function" &&
+                  curr_invoke.arguments[j].value.json == "function(){return a.apply(c,b||arguments);}") {
+                  console.log("curr_invoke:", curr_invoke);
+                  console.log("- found a function argument for this function: ", curr_invoke.arguments[j]);
+                }
+              }
+            }
+          }
 
           window.dispatchEvent(new CustomEvent("fondueDTO", {
               detail: {

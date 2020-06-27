@@ -249,13 +249,19 @@ define([
 
     handleFondueDto: function (fondueDTO) { // THIS IS THE MAIN FN THAT EMITS THE EVENT STR AND FONDUE OBJ
       console.log("PanelView.js, fondueDTO:", fondueDTO);
-      if (fondueDTO && fondueDTO.obj && fondueDTO.obj.invocations && fondueDTO.obj.invocations.length) {
+      /*if (fondueDTO && fondueDTO.obj && fondueDTO.obj.invocations && fondueDTO.obj.invocations.length) {
         for (var i in fondueDTO.obj.invocations) {
           var invoke = fondueDTO.obj.invocations[i];
-          console.log("invoke: ", invoke);
+          //console.log("in handleFondueDTO invoke (arg has function): ", invoke);
+          if (invoke.arguments && invoke.arguments[0].value.type == "function") 
+            console.log("in handleFondueDTO invoke (arg has function): ", invoke);
+          else if (invoke.arguments.length > 1 && invoke.arguments[1].value.type == "function")
+            console.log("in handleFondueDTO invoke (arg has function): ", invoke);
+          else if (invoke.arguments.length > 2 && invoke.arguments[2].value.type == "function")
+            console.log("in handleFondueDTO invoke (arg has function): ", invoke);
           console.log(invoke.nodeId, invoke.timestamp);
         }
-      }
+      }*/
       this.ibexSocketRouter.emit(fondueDTO.eventStr, fondueDTO.obj);
     },
 

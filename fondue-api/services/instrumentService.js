@@ -109,7 +109,7 @@ module.exports = {
         var $scriptEl = $(scriptNode);
         if (!$scriptEl.attr("src")) {
           var src = $scriptEl.html();
-          console.log("before beautifyJS call, src: ", src);
+          console.log("before beautifyJS call 3, src: ", src);
           util.beautifyJS(src, url, function (src) {
             arrJS.push({
               order: i,
@@ -203,12 +203,13 @@ module.exports = {
       rejectUnauthorized: false,
       gzip: true
     }, function (err, subRes, body) {
+      console.log("in instrumentJS, url: ", url, "body: ", body);
       if (err) {
         console.log("Error on fetching JS. Returning \"\" for:", url);
         callback("");
         return;
       }
-
+      console.log("after err check");
       if (_(blockedDomains).find(function (domain) {
           if (url.indexOf(domain) > -1) {
             return true;
@@ -219,12 +220,14 @@ module.exports = {
         callback(body);
         return;
       }
+      console.log("after blockedDomains check");
 
       var fondueOptions = {
         path: url,
         include_prefix: false
       };
 
+      console.log("about to call fondueService.instrumentJavaScript");
       fondueService.instrumentJavaScript(body, fondueOptions, function (src) {
         callback(src);
       });
