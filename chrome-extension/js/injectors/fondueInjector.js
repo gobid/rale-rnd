@@ -94,7 +94,8 @@ define([], function () {
 
           this.interval2 = setInterval(unravelAgent._.bind(function () {
             this.emitNodeActivity();
-          }, this), FondueBridge.EMIT_INTERVAL_MILLIS);
+          }, this), FondueBridge.EMIT_INTERVAL_MILLIS); 
+          // so every FondueBridge.EMIT_NODE_MILLIS it detects new invokes
 
           this.interval3 = setInterval(unravelAgent._.bind(function () {
             this.emitNodeList();
@@ -188,8 +189,8 @@ define([], function () {
             var curr_invoke = invocations[i];
             if (curr_invoke.arguments) {
               for (var j = 0; j < curr_invoke.arguments.length; j++){
-                if (curr_invoke.arguments[j].value.type == "function" &&
-                  curr_invoke.arguments[j].value.json == "function(){return a.apply(c,b||arguments);}") {
+                if (curr_invoke.arguments[j].value.type == "function") {
+                  //&& curr_invoke.arguments[j].value.json == "function(){return a.apply(c,b||arguments);}"
                   console.log("curr_invoke:", curr_invoke);
                   console.log("- found a function argument for this function: ", curr_invoke.arguments[j]);
                 }

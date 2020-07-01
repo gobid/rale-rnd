@@ -112,12 +112,29 @@ var Map=function($container){
 			var pos = eventPos(e);
 			scroll_delta=[position[0]-pos.pageX,position[1]-pos.pageY];
 			$(document).on(e.type == 'mousedown' ? 'mousemove' : 'touchmove', drag);
+			/*$(document).on(e.type == 'mousedown' ? 'mousemove' : 'touchmove', function(e){
+				if(scroll_delta){
+					var pos = eventPos(e);
+					position[0]=Math.round(clamp(pos.pageX+scroll_delta[0],-(size[1]+size[3])*tilesize+container_size[0],0));
+					position[1]=Math.round(clamp(pos.pageY+scroll_delta[1],-(size[0]+size[2])*tilesize+container_size[1],0));
+					update();
+				}
+			});*/
+
 			e.preventDefault();
 		})
 	;
 	$(document)
 		.on('mouseup touchend', function(e){
 			$(document).off('mousemove touchmove', drag)
+			/*$(document).off('mousemove touchmove', function(e){
+				if(scroll_delta){
+					var pos = eventPos(e);
+					position[0]=Math.round(clamp(pos.pageX+scroll_delta[0],-(size[1]+size[3])*tilesize+container_size[0],0));
+					position[1]=Math.round(clamp(pos.pageY+scroll_delta[1],-(size[0]+size[2])*tilesize+container_size[1],0));
+					update();
+				}
+			})*/
 			scroll_delta=null;
 		})
 	;

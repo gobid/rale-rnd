@@ -407,6 +407,7 @@ function instrument(src, options, errOpt, callback) {
     if (src.indexOf("/*theseus" + " instrument: false */") !== -1) {
       output = shebang + prefix + src;
     } else {
+      console.log("source before instrument but after iso tag:", src)
       var m = traceFilter(src, {
         prefix: prefix,
         path: options.path,
@@ -419,6 +420,7 @@ function instrument(src, options, errOpt, callback) {
       m.toString = function () {
         return shebang + oldToString();
       };
+      console.log("source after instrument:", m);
       return callback(m);
     }
 
