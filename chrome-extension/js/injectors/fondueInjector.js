@@ -112,7 +112,7 @@ define([], function () {
             node.endColumn = node.end.column;
             node.invokes = [];
           });
-          console.log("about to send nodeArr:", nodeArr);
+          //console.log("about to send nodeArr:", nodeArr);
 
           window.dispatchEvent(new CustomEvent("fondueDTO", {
             detail: {
@@ -191,8 +191,8 @@ define([], function () {
               for (var j = 0; j < curr_invoke.arguments.length; j++){
                 if (curr_invoke.arguments[j].value.type == "function") {
                   //&& curr_invoke.arguments[j].value.json == "function(){return a.apply(c,b||arguments);}"
-                  console.log("curr_invoke:", curr_invoke);
-                  console.log("- found a function argument for this function: ", curr_invoke.arguments[j]);
+                  //console.log("curr_invoke:", curr_invoke);
+                  //console.log("- found a function argument for this function: ", curr_invoke.arguments[j]);
                 }
               }
             }

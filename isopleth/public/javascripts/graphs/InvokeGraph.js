@@ -239,15 +239,14 @@ define([
         }, this);
 
         // getting node arguments
-        console.log("invoke: ", invoke.getLabel() , invoke);
-        console.log("invoke.arguments: ", invoke.arguments);
+        //console.log("invoke.arguments: ", invoke.arguments);
         _(invoke.arguments).each(function (arg) {
           if (arg.value && arg.value.type === "function" && arg.value.json) {
             // if we have a function passed as an argument
             var source;
             if (arg.value.json.indexOf("function") === -1) {
               var isoStr = arg.value.json;
-              console.log("isoStr:", isoStr);
+              //console.log("isoStr:", isoStr);
               var isoStartIndex = isoStr.indexOf("iso_");
               var isoEndIndex = isoStr.indexOf("_iso");
 
@@ -262,7 +261,7 @@ define([
             } else {
               source = arg.value.json;
             }
-            console.log("source:", source);
+            //console.log("source:", source);
          
             if (!this.argSourceToInvokes[source]) {
               this.argSourceToInvokes[source] = [];
@@ -388,8 +387,8 @@ define([
           return;
         }
 
-        console.log("childInvoke: ", childInvoke.getLabel());
-        console.log("childInvoke.node.source", childInvoke.node.source);
+        //console.log("childInvoke: ", childInvoke.getLabel());
+        //console.log("childInvoke.node.source", childInvoke.node.source);
         var parentInvokes = this.argSourceToInvokes[childInvoke.node.source]; 
         
         //console.log("childInvoke is:", childInvoke.getLabel(), childInvoke.timestamp);
