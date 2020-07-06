@@ -750,7 +750,7 @@ if (typeof {name} === 'undefined') {
 		this.topLevelInvocationId = undefined;
 		this.epochID = undefined;
 		this.epochDepth = undefined;
-		console.log("in Invocation, info.arguments: ", info.arguments, "this.id: ", this.id);
+		//console.log("in Invocation, info.arguments: ", info.arguments, "this.id: ", this.id);
 		this.arguments = info.arguments ? info.arguments.map(function (a) { return scrapeObject(a) }) : undefined;
 		this.this = (info.this && info.this !== globalThis) ? scrapeObject(info.this) : undefined;
 
@@ -1277,8 +1277,8 @@ if (typeof {name} === 'undefined') {
 	 *   b('foo') -> (traceFunCall({ func: b, nodeId: '...', vars: {}))('foo')
 	 */
 	this.traceFunCall = function (info) {
-		console.log("info at begginging of traceFunCall:", info);
-		console.log("outer arguments:", arguments);
+		//console.log("info at begginging of traceFunCall:", info);
+		//console.log("outer arguments:", arguments);
 		// debugger;
 		var customThis = false, fthis, func;
 
@@ -1289,7 +1289,7 @@ if (typeof {name} === 'undefined') {
 			fthis = info.this;
 			func = fthis[info.property];
 		}
-		console.log("customThis: ", customThis, "fthis:", fthis, "func:", func);
+		//console.log("customThis: ", customThis, "fthis:", fthis, "func:", func);
 
 		// if it doesn't look like a function, it's faster not to wrap it with
 		// all of the cruft below
@@ -1302,26 +1302,26 @@ if (typeof {name} === 'undefined') {
 			return _traceLogCall(info);
 		}
 
-		console.log("about to return the function");
+		//console.log("about to return the function");
 		return function () {
-			console.log("arguments:", arguments);
+			//console.log("arguments:", arguments);
 			info.arguments = Array.prototype.slice.apply(arguments); // XXX: mutating info may not be okay, but we want the arguments
 			// this code ^ simply converts this function's arguments to an array, but does this function have arguments?
-			console.log("info.arguments:", info.arguments);
+			//console.log("info.arguments:", info.arguments);
 			try {
 				// this used to be func.apply(t, arguments), but not all functions
 				// have apply. so we apply Function.apply instead.
-				console.log("at the beginning of the try except block");
+				//console.log("at the beginning of the try except block");
 				var t = customThis ? fthis : this;
-				console.log("customThis: ", customThis, "fthis:", fthis, "this: ", this);
-		        console.log("t:", t);
-		        console.log("func:", func);
+				//console.log("customThis: ", customThis, "fthis:", fthis, "this: ", this);
+		        //console.log("t:", t);
+		        //console.log("func:", func);
 		        var returnValue = Function.apply.apply(func, [t].concat(arguments));
-		        console.log("returnValue: ", returnValue);
+		        //console.log("returnValue: ", returnValue);
 		        info.returnValue = returnValue;
 		        return returnValue;
 			} finally {
-				console.log("in traceFunCall info:", info);
+				//console.log("in traceFunCall info:", info);
 				pushNewInvocation(info, 'callsite');
 				popInvocation();
 			}
@@ -1342,7 +1342,7 @@ if (typeof {name} === 'undefined') {
 		if(info.nodeId.includes("https://www.mapstd.com/js/mapstd-1.2.0.js-function-1655-9")){
 			//debugger;
 		}
-		console.log("in traceEnter, info:", info);
+		//console.log("in traceEnter, info:", info);
 		pushNewInvocation(info, 'function');
 	};
 
@@ -1702,7 +1702,7 @@ if (typeof {name} === 'undefined') {
 
 	// okay, the second argument is kind of a hack
 	function makeLogEntry(invocation, parents) {
-		console.log("going to run makeLogEntry on this invocation: ", invocation, "ID:", invocation.id);
+		//console.log("going to run makeLogEntry on this invocation: ", invocation, "ID:", invocation.id);
 		parents = (parents || []);
 		var entry = {
 			timestamp: invocation.timestamp,
@@ -1711,7 +1711,7 @@ if (typeof {name} === 'undefined') {
 			topLevelInvocationId: invocation.topLevelInvocationId,
 			nodeId: invocation.f.id,
 		};
-		console.log("entry: ", entry)
+		//console.log("entry: ", entry)
 		if (invocation.epochID !== undefined) {
 			var epoch = _epochsById[invocation.epochID];
 			entry.epoch = {
@@ -1732,8 +1732,8 @@ if (typeof {name} === 'undefined') {
 			entry.arguments = [];
 			var params = invocation.f.params || [];
 			//console.log("params: ", params);
-			console.log("params.length:", params.length);
-			console.log("invocation.arguments.length:", invocation.arguments.length);
+			//console.log("params.length:", params.length);
+			//console.log("invocation.arguments.length:", invocation.arguments.length);
 			for (var i = 0; i < params.length; i++) {
 				var param = params[i];
 				entry.arguments.push({
@@ -1797,7 +1797,7 @@ if (typeof {name} === 'undefined') {
       		var entry;
 
       		try {
-      			console.log("tracer invocation: ", invocation);
+      			//console.log("tracer invocation: ", invocation);
         		entry = makeLogEntry(invocation, findParentsInQuery(invocation, _logQueries[0]));
       		} catch (ig) {
       			//console.log("in catch .. couldn't make log entry: ", invocation)
@@ -1812,8 +1812,8 @@ if (typeof {name} === 'undefined') {
 	              for (var j = 0; j < curr_invoke.arguments.length; j++){
 	                if (curr_invoke.arguments[j].value.type == "function") {
 	                  //&& curr_invoke.arguments[j].value.json == "function(){return a.apply(c,b||arguments);}"
-	                  console.log("tracer curr_invoke:", curr_invoke);
-	                  console.log("- tracer found a function argument for this function: ", curr_invoke.arguments[j]);
+	                  //console.log("tracer curr_invoke:", curr_invoke);
+	                  //console.log("- tracer found a function argument for this function: ", curr_invoke.arguments[j]);
 	                }
 	              }
 	            }
