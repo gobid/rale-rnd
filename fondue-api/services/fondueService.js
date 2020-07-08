@@ -66,6 +66,7 @@ module.exports = {
           console.log("Instrumenting ", fondueOptions.path);
 
           doInstrument(function (instrumentedSrc) {
+            console.log("in doInstrument of fondueService:", instrumentedSrc)
             redisClient.set(digest, instrumentedSrc, function (err, reply) {
               if (err) {
                 console.log("Error on saving source!");

@@ -432,8 +432,8 @@ define([
             // only show nodes that are top level calls or they have async children
             
             // TEMPORARILY REMOVING FOR FIGURING OUT MAP
-            //this.hideInvokeIdMap[invoke.invocationId] = true;
-            //return displayNodes;
+            this.hideInvokeIdMap[invoke.invocationId] = true;
+            return displayNodes;
           }
         }
 
@@ -451,7 +451,7 @@ define([
         var node = {
           data: {
             id: invoke.invocationId,
-            label: label + " " + (invoke.timestamp).toString(),
+            label: label + " " + (invoke.timestamp).toString() + " " + (invoke.tick).toString(),
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };

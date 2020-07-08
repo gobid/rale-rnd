@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.coronaffect.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORONAFFECT - COVID-19 Corona virus</title>
+    
+    <link rel="shortcut icon" href="http://www.coronaffect.com/images/fav.png">
+    
+    <meta property="og:title" content="Coronaffect">
+    <meta property="og:description" content="Make more sense of the Coronavirus data across the globe by mapping it with other data points to identify the trends and patterns.">
+    <meta property="og:image" content="http://coronaffect.com/images/artboard.png">
+    <meta property="og:url" content="http://coronaffect.com">
+
+    <meta name="twitter:title" content="Coronaffect ">
+    <meta name="twitter:description" content="Make more sense of the Coronavirus data across the globe by mapping it with other data points to identify the trends and patterns.">
+    <meta name="twitter:image" content="http://coronaffect.com/images/artboard.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="./index_files/style.css">
+
+    <script type="text/javascript" async="" src="./index_files/analytics.js"></script><script src="./index_files/jquery-3.4.1.min.js"></script>
+    
+    <script src="./index_files/moment.min.js"></script>
+    <script src="./index_files/Chart.min.js"></script>
+    <script src="./index_files/hammer.js"></script>
+    <script src="./index_files/chartjs-plugin-zoom@0.7.5"></script>
+<style type="text/css">/* Chart.js */
+@keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
+
+<body tmp_domain="www.coronaffect.com">
+    <div class="preloader" style="display: none;">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36.753" height="36.753" viewBox="0 0 36.753 36.753">
+                <g id="Group_41" data-name="Group 41" transform="translate(-482.313 -63.862)">
+                <g id="Group_17" data-name="Group 17" transform="translate(483.313 79.377)">
+                    <circle id="Ellipse_17" data-name="Ellipse 17" cx="2.861" cy="2.861" r="2.861" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                    <circle id="Ellipse_18" data-name="Ellipse 18" cx="2.861" cy="2.861" r="2.861" transform="translate(29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                </g>
+                <g id="Group_18" data-name="Group 18" transform="translate(497.828 64.862)">
+                    <circle id="Ellipse_19" data-name="Ellipse 19" cx="2.861" cy="2.861" r="2.861" transform="translate(0 29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                    <circle id="Ellipse_20" data-name="Ellipse 20" cx="2.861" cy="2.861" r="2.861" transform="translate(0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                </g>
+                <g id="Group_19" data-name="Group 19" transform="translate(487.564 69.113)">
+                    <line id="Line_37" data-name="Line 37" x1="2.558" y2="2.558" transform="translate(4.884 18.808)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                    <line id="Line_38" data-name="Line 38" x1="2.574" y2="2.574" transform="translate(18.792 4.884)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                    <circle id="Ellipse_21" data-name="Ellipse 21" cx="2.861" cy="2.861" r="2.861" transform="translate(0 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                    <circle id="Ellipse_22" data-name="Ellipse 22" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                </g>
+                <g id="Group_20" data-name="Group 20" transform="translate(487.564 69.113)">
+                    <circle id="Ellipse_23" data-name="Ellipse 23" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                    <circle id="Ellipse_24" data-name="Ellipse 24" cx="2.861" cy="2.861" r="2.861" transform="translate(0 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                </g>
+                <circle id="Ellipse_25" data-name="Ellipse 25" cx="8.025" cy="8.025" r="8.025" transform="translate(492.664 74.228)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <section class="main-wrapper">
+        <aside class="side">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36.753" height="36.753" viewBox="0 0 36.753 36.753">
+                        <g id="Group_41" data-name="Group 41" transform="translate(-482.313 -63.862)">
+                        <g id="Group_17" data-name="Group 17" transform="translate(483.313 79.377)">
+                            <circle id="Ellipse_17" data-name="Ellipse 17" cx="2.861" cy="2.861" r="2.861" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_18" data-name="Ellipse 18" cx="2.861" cy="2.861" r="2.861" transform="translate(29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_18" data-name="Group 18" transform="translate(497.828 64.862)">
+                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="2.861" cy="2.861" r="2.861" transform="translate(0 29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="2.861" cy="2.861" r="2.861" transform="translate(0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_19" data-name="Group 19" transform="translate(487.564 69.113)">
+                            <line id="Line_37" data-name="Line 37" x1="2.558" y2="2.558" transform="translate(4.884 18.808)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                            <line id="Line_38" data-name="Line 38" x1="2.574" y2="2.574" transform="translate(18.792 4.884)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="2.861" cy="2.861" r="2.861" transform="translate(0 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_22" data-name="Ellipse 22" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_20" data-name="Group 20" transform="translate(487.564 69.113)">
+                            <circle id="Ellipse_23" data-name="Ellipse 23" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_24" data-name="Ellipse 24" cx="2.861" cy="2.861" r="2.861" transform="translate(0 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <circle id="Ellipse_25" data-name="Ellipse 25" cx="8.025" cy="8.025" r="8.025" transform="translate(492.664 74.228)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                    </svg><label>Coronaffect</label>
+                </div>
+
+                <label class="btn share-btn"><svg xmlns="http://www.w3.org/2000/svg" width="10.601" height="10.601" viewBox="0 0 10.601 10.601">
+                    <g id="Group_33" data-name="Group 33" transform="translate(-1249.145 -1397.561) rotate(45)">
+                      <g id="Group_32" data-name="Group 32" transform="translate(1775.556 81.394) rotate(-45)">
+                        <g id="Group_2" data-name="Group 2">
+                          <line id="Line_1" data-name="Line 1" x2="8" transform="translate(53.5 85.5)" fill="none" stroke="#fff" stroke-width="2"></line>
+                          <line id="Line_17" data-name="Line 17" x2="8" transform="translate(60.793 84.793) rotate(90)" fill="none" stroke="#fff" stroke-width="2"></line>
+                        </g>
+                      </g>
+                      <path id="Path_25" data-name="Path 25" d="M10168,7592v11.442" transform="translate(-8289 -7492)" fill="none" stroke="#fff" stroke-width="2"></path>
+                    </g>
+                  </svg></label>
+            </div>
+
+            <p id="typedtext"> Make more sense of the Coronavirus data across the globe by mapping it with other data points to identify the trends and patterns._</p>
+
+            <div class="select-topic">
+                <label class="topicsInfo-btn">SELECT TOPIC TO COMPARE WITH COVID 19<svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17">
+                      <g id="Group_60" data-name="Group 60" transform="translate(15302 11726)">
+                        <g id="Rectangle_153" data-name="Rectangle 153" transform="translate(-15302 -11726)" fill="none" stroke="#fff" stroke-width="1">
+                          <rect width="18" height="17" rx="2" stroke="none"></rect>
+                          <rect x="0.5" y="0.5" width="17" height="16" rx="1.5" fill="none"></rect>
+                        </g>
+                        <rect id="Rectangle_151" data-name="Rectangle 151" width="2" height="6" transform="translate(-15294 -11718)" fill="#fff"></rect>
+                        <rect id="Rectangle_152" data-name="Rectangle 152" width="2" height="3" transform="translate(-15294 -11723)" fill="#fff"></rect>
+                      </g>
+                    </svg></label>
+                <div class="selection-area">
+                    <div class="top-shadow"></div>
+                    <div class="topics-list-container">
+                        <ul class="topics-list"><li data-id="4" title="Bitcoin" price="">Bitcoin Price</li><li data-id="6" title="Entertainment" revenue="">Entertainment Revenue</li><li data-id="7" title="FMCG" revenue="">FMCG Revenue</li><li data-id="8" title="Government" measures="">Government Measures</li><li data-id="9" title="Number" of="" flights="">Number of Flights</li><li data-id="10" title="Number" of="" lockdowns="">Number of Lockdowns</li><li data-id="11" title="Restaurants" booking="">Restaurants booking</li><li data-id="12" title="School" national="" closure="">School National Closure</li><li data-id="13" title="Travel" transactions="">Travel Transactions</li><li data-id="14" title="Nasdaq">Nasdaq</li><li data-id="15" title="Oil" price="">Oil Price</li><li data-id="16" title="S&amp;P" 500="">S&amp;P 500</li><li data-id="17" title="Zoom" stock="" price="">Zoom Stock Price</li></ul>
+                    </div>
+                    <div class="bottom-shadow"></div>
+                </div>
+                <div class="upload-file">
+                    <label class="upload-btn">Upload YOUR data<svg xmlns="http://www.w3.org/2000/svg" width="11.624" height="11.624" viewBox="0 0 11.624 11.624">
+                        <g id="Group_43" data-name="Group 43" transform="translate(-1948.794 -42.201)">
+                          <path id="Path_26" data-name="Path 26" d="M1949.606,43.2V54.825" transform="translate(5 -1)" fill="none" stroke="#fff" stroke-width="2"></path>
+                          <path id="Path_27" data-name="Path 27" d="M1949.606,43.2V54.825" transform="translate(2003.619 -1901.594) rotate(90)" fill="none" stroke="#fff" stroke-width="2"></path>
+                        </g>
+                      </svg></label>
+                </div>
+            </div>
+
+            <div class="visual-container">
+                <div class="fileName">
+                    <svg id="pdf" xmlns="http://www.w3.org/2000/svg" width="31.078" height="41.437" viewBox="0 0 31.078 41.437">
+                        <g id="Group_54" data-name="Group 54">
+                          <g id="Group_53" data-name="Group 53">
+                            <path id="Path_58" data-name="Path 58" d="M94.825,8.886,86.192.253A.863.863,0,0,0,85.582,0H67.453A3.456,3.456,0,0,0,64,3.453V37.984a3.456,3.456,0,0,0,3.453,3.453H91.625a3.456,3.456,0,0,0,3.453-3.453V9.5A.863.863,0,0,0,94.825,8.886Zm-8.38-5.938L92.13,8.633H88.171a1.729,1.729,0,0,1-1.727-1.727Zm6.906,35.036a1.729,1.729,0,0,1-1.727,1.727H67.453a1.729,1.729,0,0,1-1.727-1.727V3.453a1.729,1.729,0,0,1,1.727-1.727H84.718v5.18a3.456,3.456,0,0,0,3.453,3.453h5.18Z" transform="translate(-64)" fill="#0027ff"></path>
+                          </g>
+                        </g>
+                        <g id="Group_55" data-name="Group 55" transform="translate(9.766 16.544)">
+                          <line id="Line_59" data-name="Line 59" x2="11.436" transform="translate(0 2.753)" fill="none" stroke="#fff" stroke-width="1"></line>
+                          <line id="Line_60" data-name="Line 60" x2="11.436" transform="translate(0 5.718)" fill="none" stroke="#fff" stroke-width="1"></line>
+                          <line id="Line_61" data-name="Line 61" x2="11.436" transform="translate(0 8.683)" fill="none" stroke="#fff" stroke-width="1"></line>
+                          <line id="Line_62" data-name="Line 62" x2="11.436" transform="translate(9.106) rotate(90)" fill="none" stroke="#fff" stroke-width="1"></line>
+                          <line id="Line_63" data-name="Line 63" x2="11.436" transform="translate(5.718) rotate(90)" fill="none" stroke="#fff" stroke-width="1"></line>
+                          <line id="Line_64" data-name="Line 64" x2="11.436" transform="translate(2.33) rotate(90)" fill="none" stroke="#fff" stroke-width="1"></line>
+                        </g>
+                    </svg>
+                    <label class="file-name">Stocks 2020</label>
+
+                    <button class="close"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                        <g id="close_3_" transform="translate(0 -0.001)">
+                            <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+                        </g>
+                    </svg></button>
+                </div>
+
+                <input type="text" readonly="" id="generated-link" class="generated-link" value="Coronaffect.co/stocks2020jdasdasdfkfdf.xlsx">
+
+                <div class="link-btns">
+                    <a href="http://www.coronaffect.com/#" class="copy-link">Copy link<svg xmlns="http://www.w3.org/2000/svg" width="17.254" height="17.254" viewBox="0 0 17.254 17.254">
+                        <g id="link_1_" data-name="link (1)" transform="translate(1.243 1.25)">
+                          <g id="Group_64" data-name="Group 64" transform="translate(-0.993 -1)">
+                            <g id="Group_63" data-name="Group 63" transform="translate(0 0)">
+                              <path id="Path_69" data-name="Path 69" d="M5.952,183.932l-1.974,1.974a2.094,2.094,0,0,1-2.962-2.961L4.965,179a2.094,2.094,0,0,1,2.961,0,.7.7,0,0,0,.987-.987,3.49,3.49,0,0,0-4.936,0L.029,181.958a3.49,3.49,0,0,0,4.936,4.936l1.974-1.974a.7.7,0,1,0-.987-.987Z" transform="translate(0.993 -171.162)" fill="#fff" stroke="#fff" stroke-width="0.5"></path>
+                              <path id="Path_70" data-name="Path 70" d="M199.42.022a3.491,3.491,0,0,0-4.936,0L192.114,2.39a.7.7,0,0,0,.987.987l2.369-2.369a2.094,2.094,0,1,1,2.962,2.961l-4.344,4.344a2.094,2.094,0,0,1-2.961,0,.7.7,0,0,0-.987.987,3.49,3.49,0,0,0,4.936,0l4.344-4.344A3.49,3.49,0,0,0,199.42.022Z" transform="translate(-183.688 1)" fill="#fff" stroke="#fff" stroke-width="0.5"></path>
+                            </g>
+                          </g>
+                        </g>
+                      </svg>
+                      </a>
+
+                      <a href="http://www.coronaffect.com/#" class="share-btn visual">Share link<svg xmlns="http://www.w3.org/2000/svg" width="13.717" height="13.716" viewBox="0 0 13.717 13.716">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1247.22 -1399.02) rotate(45)">
+                          <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.394) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2" transform="translate(0 0)">
+                              <line id="Line_1" data-name="Line 1" x2="10.649" transform="translate(0 0.941)" fill="none" stroke="#fff" stroke-width="2.2"></line>
+                              <line id="Line_17" data-name="Line 17" x2="10.649" transform="translate(9.708 0) rotate(90)" fill="none" stroke="#fff" stroke-width="2.2"></line>
+                            </g>
+                          </g>
+                          <path id="Path_25" data-name="Path 25" d="M10168,7592v15.23" transform="translate(-8287.127 -7491.293)" fill="none" stroke="#fff" stroke-width="2.2"></path>
+                        </g>
+                      </svg>
+                      </a>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="f-logo">
+                    <a href="http://pixonal.com/" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="99.953" height="15.591" viewBox="0 0 99.953 15.591">
+                            <g id="Group_29" data-name="Group 29" transform="translate(-98.234 -118.986)">
+                            <g id="Group_27" data-name="Group 27" transform="translate(98.234 118.986)">
+                                <path id="Path_16" data-name="Path 16" d="M101.7,139.65H98.234V124.5h7.252c3.377,0,5.088,2.187,5.088,4.741a4.731,4.731,0,0,1-5.088,4.784H101.7Zm3.572-8.768c1.126,0,1.84-.585,1.84-1.624s-.714-1.624-1.84-1.624H101.7v3.247Z" transform="translate(-98.234 -124.278)" fill="#fff"></path>
+                                <path id="Path_17" data-name="Path 17" d="M444.073,124.5h3.464V139.65h-3.464Z" transform="translate(-430.392 -124.278)" fill="#fff"></path>
+                                <path id="Path_18" data-name="Path 18" d="M580.041,131.424,575.17,124.5h4.005l2.814,4.33,2.814-4.33h4.005l-4.871,6.928,5.737,8.227H585.67l-3.68-5.52-3.68,5.52H574.3Z" transform="translate(-555.471 -124.278)" fill="#fff"></path>
+                                <path id="Path_19" data-name="Path 19" d="M952.543,126.781a8.013,8.013,0,1,1-8.01-7.794A7.879,7.879,0,0,1,952.543,126.781Zm-3.464,0a4.546,4.546,0,1,0-4.546,4.546A4.376,4.376,0,0,0,949.079,126.781Z" transform="translate(-903.359 -118.986)" fill="#fff"></path>
+                                <path id="Path_20" data-name="Path 20" d="M1389.832,139.65h-3.464V124.5h5.932l5.542,12.838V124.5h3.464V139.65h-5.932l-5.542-12.838Z" transform="translate(-1335.41 -124.278)" fill="#fff"></path>
+                                <path id="Path_21" data-name="Path 21" d="M1810.388,124.5h4.979l5.953,15.154h-3.789l-1.169-3.139h-6.971l-1.169,3.139h-3.789Zm4.806,8.876-2.316-6.192-2.316,6.192Z" transform="translate(-1736.937 -124.278)" fill="#fff"></path>
+                                <path id="Path_22" data-name="Path 22" d="M2275.214,124.5v12.015h8.508v3.139H2271.75V124.5Z" transform="translate(-2185.766 -124.278)" fill="#fff"></path>
+                            </g>
+                            <g id="Group_28" data-name="Group 28" transform="translate(191.86 118.986)">
+                                <path id="Path_23" data-name="Path 23" d="M2465.736,119.722h-.807v-.736h2.4v.736h-.807v1.848h-.79Z" transform="translate(-2464.929 -118.986)" fill="#fff"></path>
+                                <path id="Path_24" data-name="Path 24" d="M2538.888,121.569h-.79v-1.837l-.518,1.837h-.927l-.517-1.837v1.837h-.791v-2.583h1.253l.518,1.793.518-1.793h1.253Z" transform="translate(-2532.56 -118.986)" fill="#fff"></path>
+                            </g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <p>This data-driven experience is created by pixonal. All rights reserved 2020.</p>
+            </div>
+        </aside>
+
+        <section class="chart-area">
+            <div class="top-header">
+                <div>
+                    <div class="title">
+                        <h5>filter the covid-19 graph</h5>
+                        <label class="close-filter"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                            <g id="close_3_" transform="translate(0 -0.001)">
+                                <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#ffffff"></path>
+                            </g>
+                        </svg></label>
+                    </div>
+
+                    <div class="dropdown-list countries-dropdown">
+                        <label class="btn"><span>cases globally</span><svg xmlns="http://www.w3.org/2000/svg" width="15.604" height="9.216" viewBox="0 0 15.604 9.216">
+                                <path id="Path_7" data-name="Path 7" d="M903.92,4748.108l7.095,7.095,7.095-7.095" transform="translate(-903.213 -4747.401)" fill="none" stroke="#fff" stroke-width="2"></path>
+                            </svg>
+                        </label>
+                        <div class="dropdown">
+                            <ul><li data-id="1" class="active">cases globally</li><li data-id="2">Afghanistan</li><li data-id="3">Albania</li><li data-id="4">Algeria</li><li data-id="5">Andorra</li><li data-id="6">Angola</li><li data-id="7">Antigua and Barbuda</li><li data-id="8">Argentina</li><li data-id="9">Armenia</li><li data-id="10">Australia</li><li data-id="11">Austria</li><li data-id="12">Azerbaijan</li><li data-id="13">Bahamas</li><li data-id="14">Bahrain</li><li data-id="15">Bangladesh</li><li data-id="16">Barbados</li><li data-id="17">Belarus</li><li data-id="18">Belgium</li><li data-id="19">Benin</li><li data-id="20">Bhutan</li><li data-id="21">Bolivia</li><li data-id="22">Bosnia and Herzegovina</li><li data-id="23">Brazil</li><li data-id="24">Brunei</li><li data-id="25">Bulgaria</li><li data-id="26">Burkina Faso</li><li data-id="27">Cabo Verde</li><li data-id="28">Cambodia</li><li data-id="29">Cameroon</li><li data-id="30">Canada</li><li data-id="31">Central African Republic</li><li data-id="32">Chad</li><li data-id="33">Chile</li><li data-id="34">China</li><li data-id="35">Colombia</li><li data-id="36">Congo (Brazzaville)</li><li data-id="37">Congo (Kinshasa)</li><li data-id="38">Costa Rica</li><li data-id="39">Cote d'Ivoire</li><li data-id="40">Croatia</li><li data-id="41">Diamond Princess</li><li data-id="42">Cuba</li><li data-id="43">Cyprus</li><li data-id="44">Czechia</li><li data-id="45">Denmark</li><li data-id="46">Djibouti</li><li data-id="47">Dominican Republic</li><li data-id="48">Ecuador</li><li data-id="49">Egypt</li><li data-id="50">El Salvador</li><li data-id="51">Equatorial Guinea</li><li data-id="52">Eritrea</li><li data-id="53">Estonia</li><li data-id="54">Eswatini</li><li data-id="55">Ethiopia</li><li data-id="56">Fiji</li><li data-id="57">Finland</li><li data-id="58">France</li><li data-id="59">Gabon</li><li data-id="60">Gambia</li><li data-id="61">Georgia</li><li data-id="62">Germany</li><li data-id="63">Ghana</li><li data-id="64">Greece</li><li data-id="65">Guatemala</li><li data-id="66">Guinea</li><li data-id="67">Guyana</li><li data-id="68">Haiti</li><li data-id="69">Holy See</li><li data-id="70">Honduras</li><li data-id="71">Hungary</li><li data-id="72">Iceland</li><li data-id="73">India</li><li data-id="74">Indonesia</li><li data-id="75">Iran</li><li data-id="76">Iraq</li><li data-id="77">Ireland</li><li data-id="78">Israel</li><li data-id="79">Italy</li><li data-id="80">Jamaica</li><li data-id="81">Japan</li><li data-id="82">Jordan</li><li data-id="83">Kazakhstan</li><li data-id="84">Kenya</li><li data-id="85">Korea, South</li><li data-id="86">Kuwait</li><li data-id="87">Kyrgyzstan</li><li data-id="88">Latvia</li><li data-id="89">Lebanon</li><li data-id="90">Liberia</li><li data-id="91">Liechtenstein</li><li data-id="92">Lithuania</li><li data-id="93">Luxembourg</li><li data-id="94">Madagascar</li><li data-id="95">Malaysia</li><li data-id="96">Maldives</li><li data-id="97">Malta</li><li data-id="98">Mauritania</li><li data-id="99">Mauritius</li><li data-id="100">Mexico</li><li data-id="101">Moldova</li><li data-id="102">Monaco</li><li data-id="103">Mongolia</li><li data-id="104">Montenegro</li><li data-id="105">Morocco</li><li data-id="106">Namibia</li><li data-id="107">Nepal</li><li data-id="108">Netherlands</li><li data-id="109">New Zealand</li><li data-id="110">Nicaragua</li><li data-id="111">Niger</li><li data-id="112">Nigeria</li><li data-id="113">North Macedonia</li><li data-id="114">Norway</li><li data-id="115">Oman</li><li data-id="116">Pakistan</li><li data-id="117">Panama</li><li data-id="118">Papua New Guinea</li><li data-id="119">Paraguay</li><li data-id="120">Peru</li><li data-id="121">Philippines</li><li data-id="122">Poland</li><li data-id="123">Portugal</li><li data-id="124">Qatar</li><li data-id="125">Romania</li><li data-id="126">Russia</li><li data-id="127">Rwanda</li><li data-id="128">Saint Lucia</li><li data-id="129">Saint Vincent and the Grenadines</li><li data-id="130">San Marino</li><li data-id="131">Saudi Arabia</li><li data-id="132">Senegal</li><li data-id="133">Serbia</li><li data-id="134">Seychelles</li><li data-id="135">Singapore</li><li data-id="136">Slovakia</li><li data-id="137">Slovenia</li><li data-id="138">Somalia</li><li data-id="139">South Africa</li><li data-id="140">Spain</li><li data-id="141">Sri Lanka</li><li data-id="142">Sudan</li><li data-id="143">Suriname</li><li data-id="144">Sweden</li><li data-id="145">Switzerland</li><li data-id="146">Taiwan*</li><li data-id="147">Tanzania</li><li data-id="148">Thailand</li><li data-id="149">Togo</li><li data-id="150">Trinidad and Tobago</li><li data-id="151">Tunisia</li><li data-id="152">Turkey</li><li data-id="153">Uganda</li><li data-id="154">Ukraine</li><li data-id="155">United Arab Emirates</li><li data-id="156">United Kingdom</li><li data-id="157">Uruguay</li><li data-id="158">US</li><li data-id="159">Uzbekistan</li><li data-id="160">Venezuela</li><li data-id="161">Vietnam</li><li data-id="162">Zambia</li><li data-id="163">Zimbabwe</li><li data-id="164">Dominica</li><li data-id="165">Grenada</li><li data-id="166">Mozambique</li><li data-id="167">Syria</li><li data-id="168">Timor-Leste</li><li data-id="169">Belize</li><li data-id="170">Laos</li><li data-id="171">Libya</li><li data-id="172">West Bank and Gaza</li><li data-id="173">Guinea-Bissau</li><li data-id="174">Mali</li><li data-id="175">Saint Kitts and Nevis</li><li data-id="176">Kosovo</li><li data-id="177">Burma</li><li data-id="178">MS Zaandam</li><li data-id="179">Botswana</li><li data-id="180">Burundi</li><li data-id="181">Sierra Leone</li><li data-id="182">Malawi</li><li data-id="183">South Sudan</li><li data-id="184">Western Sahara</li><li data-id="185">Sao Tome and Principe</li><li data-id="186">Yemen</li></ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-list corona-filter">
+                        <label class="btn"><span>confirmed Cases</span><svg xmlns="http://www.w3.org/2000/svg" width="15.604" height="9.216" viewBox="0 0 15.604 9.216">
+                                <path id="Path_7" data-name="Path 7" d="M903.92,4748.108l7.095,7.095,7.095-7.095" transform="translate(-903.213 -4747.401)" fill="none" stroke="#fff" stroke-width="2"></path>
+                            </svg>
+                        </label>
+                        <div class="dropdown">
+                            <ul><li data-id="1" class="active">confirmed Cases</li><li data-id="2">death Cases</li><li data-id="3">recovered Cases</li></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="share-btn-con">
+                    <label class="btn about-btn"><span>About</span>
+                        <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" width="23" height="13" viewBox="0 0 23 13">
+                          <g id="Group_71" data-name="Group 71" transform="translate(-1730 -44)">
+                            <g id="Ellipse_39" data-name="Ellipse 39" transform="translate(1730 44)" fill="none" stroke="#fff" stroke-width="1.7">
+                              <circle cx="6.5" cy="6.5" r="6.5" stroke="none"></circle>
+                              <circle cx="6.5" cy="6.5" r="5.65" fill="none"></circle>
+                            </g>
+                            <g id="Ellipse_40" data-name="Ellipse 40" transform="translate(1737 48) rotate(-30)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.7" stroke-dasharray="13 15">
+                              <circle cx="6.5" cy="6.5" r="6.5" stroke="none"></circle>
+                              <circle cx="6.5" cy="6.5" r="5.65" fill="none"></circle>
+                            </g>
+                          </g>
+                        </svg>
+                    </label>
+
+                    <label class="btn share-btn"><span>share</span><svg xmlns="http://www.w3.org/2000/svg" width="10.601" height="10.601" viewBox="0 0 10.601 10.601">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1249.145 -1397.561) rotate(45)">
+                          <g id="Group_32" data-name="Group 32" transform="translate(1775.556 81.394) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                              <line id="Line_1" data-name="Line 1" x2="8" transform="translate(53.5 85.5)" fill="none" stroke="#fff" stroke-width="2"></line>
+                              <line id="Line_17" data-name="Line 17" x2="8" transform="translate(60.793 84.793) rotate(90)" fill="none" stroke="#fff" stroke-width="2"></line>
+                            </g>
+                          </g>
+                          <path id="Path_25" data-name="Path 25" d="M10168,7592v11.442" transform="translate(-8289 -7492)" fill="none" stroke="#fff" stroke-width="2"></path>
+                        </g>
+                      </svg>
+                    </label>
+                </div>
+            </div>
+            <div class="mobile-header">
+                <div class="zoom-btns">
+                    <button class="btn reset-zoom" title="Reset zoom" onclick="resetZoom()" style="display: none;">
+                        <svg width="35.229" height="31.627" viewBox="0 0 35.229 31.627">
+                            <g id="add_1_" data-name="add (1)" transform="translate(0.001 1.675)">
+                                <path id="Subtraction_3" data-name="Subtraction 3" d="M13344,8676.873a14.97,14.97,0,1,1,13.939-20.455h-2.034a13.1,13.1,0,1,0-.157,11.289h2.057a15,15,0,0,1-13.8,9.166Z" transform="translate(-13329.022 -8646.921)" fill="#898989"></path>
+                                <path id="Path_68" data-name="Path 68" d="M903.92,4748.109l7.711,7.711,7.711-7.711" transform="translate(-3978.993 -2708.172) rotate(-45)" fill="none" stroke="#898989" stroke-width="1.7"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    <button class="btn zoom-out" title="Zoom out" onclick="zoomOut()">
+                        <svg width="29.953" height="29.954" viewBox="0 0 29.953 29.954">
+                            <path id="Path_8" data-name="Path 8" d="M14.977,0A14.977,14.977,0,1,0,29.954,14.977,14.994,14.994,0,0,0,14.977,0Zm0,28.082a13.1,13.1,0,1,1,13.1-13.1A13.119,13.119,0,0,1,14.977,28.082Z" fill="#898989"></path>
+                            <path id="Path_9" data-name="Path 9" d="M144.334,144.895h-6.552v1.872h14.977v-1.872h-8.424Z" transform="translate(-130.294 -130.854)" fill="#898989"></path>
+                        </svg>
+                    </button>
+                    <button class="btn zoom-in" title="Zoom In" onclick="zoomIn()">
+                        <svg width="29.953" height="29.954" viewBox="0 0 29.953 29.954">
+                            <path id="Path_8" data-name="Path 8" d="M14.977,0A14.977,14.977,0,1,0,29.954,14.977,14.994,14.994,0,0,0,14.977,0Zm0,28.082a13.1,13.1,0,1,1,13.1-13.1A13.119,13.119,0,0,1,14.977,28.082Z" fill="#898989"></path>
+                            <path id="Path_9" data-name="Path 9" d="M146.206,137.783h-1.872v6.552h-6.552v1.872h6.552v6.552h1.872v-6.552h6.552v-1.872h-6.552Z" transform="translate(-130.294 -130.295)" fill="#898989"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="btn-filter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.959" height="16.677" viewBox="0 0 20.959 16.677">
+                        <g id="Layer_2" data-name="Layer 2" transform="translate(-26.944 39.926) rotate(-90)">
+                          <path id="Path_62" data-name="Path 62" d="M30.746,38.947a3.889,3.889,0,0,0-2.623-2.185v-9.81c-.506,0-1.451-.016-1.9,0v9.805a4.413,4.413,0,0,0-.666.228,3.922,3.922,0,0,0,.666,7.378V47.9c.61.009,1.509,0,1.9,0V44.369a3.914,3.914,0,0,0,2.623-5.422Zm-1.68,2.332a2.023,2.023,0,1,1-2.727-2.556,1.971,1.971,0,0,1,.828-.181,2.028,2.028,0,0,1,1.847,1.19,2,2,0,0,1,.062,1.547Z" fill="#fff"></path>
+                          <path id="Path_64" data-name="Path 64" d="M47.058,30.76c-.143-.052-.286-.1-.433-.133V26.952c-.474-.013-1.489,0-1.9,0v3.689a3.927,3.927,0,0,0-.433,7.483c.143.052.29.1.433.133V47.9c.7.018,1.389-.009,1.9,0V38.252a3.67,3.67,0,0,0,.666-.228,3.922,3.922,0,0,0-.233-7.264Zm.524,4.4a2.023,2.023,0,1,1-1.894-2.737,2.056,2.056,0,0,1,.714.129,2.009,2.009,0,0,1,1.114,1.061h0A2,2,0,0,1,47.582,35.163Z" transform="translate(-9.696)" fill="#fff"></path>
+                        </g>
+                      </svg>
+                      
+                </button>
+            </div>
+            
+            <div class="chart-section" style="min-height: 100vh;">
+                <div id="grid">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="chart-container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <canvas id="canvas" style="display: block; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 787px; width: 971px;" width="1942" height="1574" class="chartjs-render-monitor"></canvas>
+                    <div class="chartjs-tooltip" id="tooltip-0" style="opacity: 0; top: 718.755px; left: 392.3px;"></div>
+                    <div class="chartjs-tooltip" id="tooltip-1" style="opacity: 0; top: 428.149px; left: 820.035px;">7,627,733 case</div>
+                    <div class="chartjs-tooltip" id="tooltip-2" style="opacity: 0;"></div>
+                </div>
+                <div class="filter-topic">
+                    <h5>Covid-19 <span>WITH</span> <span></span></h5>
+                </div>
+                <div class="total-cases" style="display: none;">2.3k Cases</div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="f-logo">
+                <a href="http://pixonal.com/" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="99.953" height="15.591" viewBox="0 0 99.953 15.591">
+                        <g id="Group_29" data-name="Group 29" transform="translate(-98.234 -118.986)">
+                        <g id="Group_27" data-name="Group 27" transform="translate(98.234 118.986)">
+                            <path id="Path_16" data-name="Path 16" d="M101.7,139.65H98.234V124.5h7.252c3.377,0,5.088,2.187,5.088,4.741a4.731,4.731,0,0,1-5.088,4.784H101.7Zm3.572-8.768c1.126,0,1.84-.585,1.84-1.624s-.714-1.624-1.84-1.624H101.7v3.247Z" transform="translate(-98.234 -124.278)" fill="#fff"></path>
+                            <path id="Path_17" data-name="Path 17" d="M444.073,124.5h3.464V139.65h-3.464Z" transform="translate(-430.392 -124.278)" fill="#fff"></path>
+                            <path id="Path_18" data-name="Path 18" d="M580.041,131.424,575.17,124.5h4.005l2.814,4.33,2.814-4.33h4.005l-4.871,6.928,5.737,8.227H585.67l-3.68-5.52-3.68,5.52H574.3Z" transform="translate(-555.471 -124.278)" fill="#fff"></path>
+                            <path id="Path_19" data-name="Path 19" d="M952.543,126.781a8.013,8.013,0,1,1-8.01-7.794A7.879,7.879,0,0,1,952.543,126.781Zm-3.464,0a4.546,4.546,0,1,0-4.546,4.546A4.376,4.376,0,0,0,949.079,126.781Z" transform="translate(-903.359 -118.986)" fill="#fff"></path>
+                            <path id="Path_20" data-name="Path 20" d="M1389.832,139.65h-3.464V124.5h5.932l5.542,12.838V124.5h3.464V139.65h-5.932l-5.542-12.838Z" transform="translate(-1335.41 -124.278)" fill="#fff"></path>
+                            <path id="Path_21" data-name="Path 21" d="M1810.388,124.5h4.979l5.953,15.154h-3.789l-1.169-3.139h-6.971l-1.169,3.139h-3.789Zm4.806,8.876-2.316-6.192-2.316,6.192Z" transform="translate(-1736.937 -124.278)" fill="#fff"></path>
+                            <path id="Path_22" data-name="Path 22" d="M2275.214,124.5v12.015h8.508v3.139H2271.75V124.5Z" transform="translate(-2185.766 -124.278)" fill="#fff"></path>
+                        </g>
+                        <g id="Group_28" data-name="Group 28" transform="translate(191.86 118.986)">
+                            <path id="Path_23" data-name="Path 23" d="M2465.736,119.722h-.807v-.736h2.4v.736h-.807v1.848h-.79Z" transform="translate(-2464.929 -118.986)" fill="#fff"></path>
+                            <path id="Path_24" data-name="Path 24" d="M2538.888,121.569h-.79v-1.837l-.518,1.837h-.927l-.517-1.837v1.837h-.791v-2.583h1.253l.518,1.793.518-1.793h1.253Z" transform="translate(-2532.56 -118.986)" fill="#fff"></path>
+                        </g>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            <div>
+                <div class="btn footer-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17.723" height="10.275" viewBox="0 0 17.723 10.275">
+                        <path id="Path_7" data-name="Path 7" d="M903.92,4756.263l8.155-8.154,8.155,8.154" transform="translate(-903.212 -4746.694)" fill="none" stroke="#fff" stroke-width="2"></path>
+                    </svg>                      
+                </div>
+            </div>
+        </footer>
+
+        <div class="footer-pop">
+            <div class="close-footer">
+                <button class="btn-close-footer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17.723" height="10.275" viewBox="0 0 17.723 10.275">
+                        <path id="Path_7" data-name="Path 7" d="M903.92,4748.108l8.154,8.154,8.154-8.154" transform="translate(-903.212 -4747.401)" fill="none" stroke="#fff" stroke-width="2"></path>
+                    </svg>                      
+                </button>
+            </div>
+            <div>
+                <h5>Upload your data</h5>
+                <p>you can use the desktop version to upload your own dataset</p>
+            </div>
+            <div>
+                <div class="f-logo">
+                    <a href="http://pixonal.com/" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="99.953" height="15.591" viewBox="0 0 99.953 15.591">
+                            <g id="Group_29" data-name="Group 29" transform="translate(-98.234 -118.986)">
+                            <g id="Group_27" data-name="Group 27" transform="translate(98.234 118.986)">
+                                <path id="Path_16" data-name="Path 16" d="M101.7,139.65H98.234V124.5h7.252c3.377,0,5.088,2.187,5.088,4.741a4.731,4.731,0,0,1-5.088,4.784H101.7Zm3.572-8.768c1.126,0,1.84-.585,1.84-1.624s-.714-1.624-1.84-1.624H101.7v3.247Z" transform="translate(-98.234 -124.278)" fill="#fff"></path>
+                                <path id="Path_17" data-name="Path 17" d="M444.073,124.5h3.464V139.65h-3.464Z" transform="translate(-430.392 -124.278)" fill="#fff"></path>
+                                <path id="Path_18" data-name="Path 18" d="M580.041,131.424,575.17,124.5h4.005l2.814,4.33,2.814-4.33h4.005l-4.871,6.928,5.737,8.227H585.67l-3.68-5.52-3.68,5.52H574.3Z" transform="translate(-555.471 -124.278)" fill="#fff"></path>
+                                <path id="Path_19" data-name="Path 19" d="M952.543,126.781a8.013,8.013,0,1,1-8.01-7.794A7.879,7.879,0,0,1,952.543,126.781Zm-3.464,0a4.546,4.546,0,1,0-4.546,4.546A4.376,4.376,0,0,0,949.079,126.781Z" transform="translate(-903.359 -118.986)" fill="#fff"></path>
+                                <path id="Path_20" data-name="Path 20" d="M1389.832,139.65h-3.464V124.5h5.932l5.542,12.838V124.5h3.464V139.65h-5.932l-5.542-12.838Z" transform="translate(-1335.41 -124.278)" fill="#fff"></path>
+                                <path id="Path_21" data-name="Path 21" d="M1810.388,124.5h4.979l5.953,15.154h-3.789l-1.169-3.139h-6.971l-1.169,3.139h-3.789Zm4.806,8.876-2.316-6.192-2.316,6.192Z" transform="translate(-1736.937 -124.278)" fill="#fff"></path>
+                                <path id="Path_22" data-name="Path 22" d="M2275.214,124.5v12.015h8.508v3.139H2271.75V124.5Z" transform="translate(-2185.766 -124.278)" fill="#fff"></path>
+                            </g>
+                            <g id="Group_28" data-name="Group 28" transform="translate(191.86 118.986)">
+                                <path id="Path_23" data-name="Path 23" d="M2465.736,119.722h-.807v-.736h2.4v.736h-.807v1.848h-.79Z" transform="translate(-2464.929 -118.986)" fill="#fff"></path>
+                                <path id="Path_24" data-name="Path 24" d="M2538.888,121.569h-.79v-1.837l-.518,1.837h-.927l-.517-1.837v1.837h-.791v-2.583h1.253l.518,1.793.518-1.793h1.253Z" transform="translate(-2532.56 -118.986)" fill="#fff"></path>
+                            </g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <p>This data-driven experience is created by pixonal. All rights reserved 2020.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="popup" id="sharePop">
+        <div class="pop-content">
+            <label class="close-pop"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                <g id="close_3_" transform="translate(0 -0.001)">
+                    <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+                </g>
+            </svg></label>
+
+            <h4 class="title-1">Share coronaffect project on social media</h4>
+            <h4 class="title-2">share graph</h4>
+            <ul class="share-list">
+                <li><a target="_blank" data-href="https://www.facebook.com/sharer/sharer.php?u={URL}" class="facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                      <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                          <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                          </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                      </g>
+                    </svg>Facebook</a></li>
+                <li><a target="_blank" data-href="https://twitter.com/share?url={URL}&amp;text={TITLE}" class="twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                        </g>
+                    </svg>Twitter</a></li>
+                <li><a target="_blank" data-href="https://reddit.com/submit?url={URL}&amp;title={TITLE}" class="reddit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                        </g>
+                    </svg>Reddit</a></li>
+                <li><a target="_blank" data-href="https://www.linkedin.com/shareArticle?url={URL}&amp;title={TITLE}" class="linkedin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                        </g>
+                    </svg>Linkedin</a></li>
+                <li><a target="_blank" data-href="https://pinterest.com/pin/create/button/?url={URL}&amp;media=&amp;description={TITLE}" class="pinterest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                        </g>
+                    </svg>Pinterest</a></li>
+                <li><a target="_blank" data-href="whatsapp://send?text={URL}" data-action="share/whatsapp/share" class="whatsapp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.065" height="14.065" viewBox="0 0 14.065 14.065">
+                        <g id="Group_33" data-name="Group 33" transform="translate(-1246.963 -1399.394) rotate(45)">
+                        <g id="Group_32" data-name="Group 32" transform="translate(1873.344 105.724) rotate(-45)">
+                            <g id="Group_2" data-name="Group 2">
+                            <line id="Line_1" data-name="Line 1" x2="11.115" transform="translate(0 0.982)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            <line id="Line_17" data-name="Line 17" x2="11.115" transform="translate(10.133) rotate(90)" fill="none" stroke="#3560be" stroke-width="2"></line>
+                            </g>
+                        </g>
+                        <path id="Path_25" data-name="Path 25" d="M10168,7592v16.24" transform="translate(-8286.797 -7491.512)" fill="none" stroke="#3560be" stroke-width="2"></path>
+                        </g>
+                    </svg>WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="popup" id="topicsInfo">
+        <div class="pop-content">
+            <label class="close-pop"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                <g id="close_3_" transform="translate(0 -0.001)">
+                    <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+                </g>
+            </svg></label>
+
+            <h4>Topics data resources</h4>
+            <p>Pixonal is not responsible of the data 
+                presented in the visualization</p>
+            <ul>
+                <li>
+                    <h5>Covid-19</h5>
+                    <p>The Covid-19 data is populated through API from github.com/pomber/covid19</p>
+                </li>
+                <li>
+                    <h5>Number of flights</h5>
+                    <p>Daily flights data is exported and updated 
+                        weekly from flightradar24.com</p>
+                </li>
+                <li>
+                    <h5>Bitcoin</h5>
+                    <p>The BTC daily price is exported and updated 
+                        weekly from Yahoo Finance</p>
+                </li>
+                <li>
+                    <h5>Zoom Stock Price</h5>
+                    <p>ZM stock price is exported and updated 
+                        weekly from Yahoo Finance</p>
+                </li>
+                <li>
+                    <h5>Nasdaq</h5>
+                    <p>Nasdaq Index is exported and updated  weekly from Yahoo Finance</p>
+                </li>
+                <li>
+                    <h5>S&amp;P 500</h5>
+                    <p>S&amp;P 500 Index is exported and updated  weekly from Yahoo Finance</p>
+                </li>
+                <li>
+                    <h5>Oil Price</h5>
+                    <p>Crude Oil daily price is exported and updated 
+                        weekly from Yahoo Finance</p>
+                </li>
+                <li>
+                    <h5>Box Office</h5>
+                    <p>Daily Box Office domestic sales in the US is 
+                        exported and updated weekly from 
+                        boxofficemojo.com</p>
+                </li>
+                <li>
+                    <h5>Entertainment Revenue</h5>
+                    <p>Entertainment revenue data is collected and  aggregated by Debt Agency</p>
+                </li>
+                <li>
+                    <h5>FMCG Revenue</h5>
+                    <p>FMCG Revenue data is collected and  aggregated by Debt Agency</p>
+                </li>
+                <li>
+                    <h5>Travel Transactions</h5>
+                    <p>Travel Transactions data is collected  and aggregated by Debt Agency</p>
+                </li>
+                <li>
+                    <h5>Government Measures</h5>
+                    <p>Global government measures is collected  and exported from ACAPS</p>
+                </li>
+                <li>
+                    <h5>Number of Lockdowns</h5>
+                    <p>National Lockdowns is collected and  exported from ACAPS</p>
+                </li>
+                <li>
+                    <h5>Restaurant Bookings</h5>
+                    <p>The change in restaurant bookings is 
+                        collected from Open Table</p>
+                </li>
+                <li>
+                    <h5>School National Closures</h5>
+                    <p>Number of school closures locally and 
+                        nationally is exported from UNESCO</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="popup" id="uploadPop">
+        <div class="pop-content">
+            <label class="close-pop"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                <g id="close_3_" transform="translate(0 -0.001)">
+                    <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+                </g>
+            </svg></label>
+
+            <h4>Upload your data</h4>
+            <p>The uploaded data is only accessible through this link. The uploaded data and the generated links are private and we’ll not have any access to it. Please note to start your data no earlier than 06/JAN/2020</p>
+            <div class="download-upload">
+                <div class="download-side">
+                    <h4><span>1.</span>Download the template below to use it for your data</h4>
+                    <div class="icon-wrapper">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="pdf" width="60.211" height="80.281" viewBox="0 0 60.211 80.281">
+                                <g id="Group_54" data-name="Group 54">
+                                  <g id="Group_53" data-name="Group 53">
+                                    <path id="Path_58" data-name="Path 58" d="M123.721,17.215,107,.49A1.671,1.671,0,0,0,105.813,0H70.69A6.7,6.7,0,0,0,64,6.69v66.9a6.7,6.7,0,0,0,6.69,6.69h46.831a6.7,6.7,0,0,0,6.69-6.69V18.4A1.671,1.671,0,0,0,123.721,17.215ZM107.486,5.71,118.5,16.725h-7.67a3.349,3.349,0,0,1-3.345-3.345Zm13.38,67.881a3.349,3.349,0,0,1-3.345,3.345H70.69a3.349,3.349,0,0,1-3.345-3.345V6.69A3.349,3.349,0,0,1,70.69,3.345h33.45V13.38a6.7,6.7,0,0,0,6.69,6.69h10.035Z" transform="translate(-64)" fill="#fff"></path>
+                                  </g>
+                                </g>
+                                <g id="Group_55" data-name="Group 55" transform="translate(18.922 29.422)">
+                                  <line id="Line_59" data-name="Line 59" x2="22.156" transform="translate(0 5.334)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_60" data-name="Line 60" x2="22.156" transform="translate(0 11.078)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_61" data-name="Line 61" x2="22.156" transform="translate(0 16.822)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_62" data-name="Line 62" x2="22.156" transform="translate(17.643) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_63" data-name="Line 63" x2="22.156" transform="translate(11.078) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_64" data-name="Line 64" x2="22.156" transform="translate(4.513) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                </g>
+                            </svg>
+                        </div>
+                        <div><label>Data template</label></div>
+                        <div><a href="http://www.coronaffect.com/CoronaffectTemplate.xlsx" download="">download</a></div>
+                    </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="30.415" viewBox="0 0 47 30.415">
+                    <g id="Group_62" data-name="Group 62" transform="translate(-932.5 -602.244)">
+                      <path id="Path_7" data-name="Path 7" d="M0,0,14.5,14.5,29,0" transform="translate(963.584 631.952) rotate(-90)" fill="none" stroke="#fff" stroke-width="2"></path>
+                      <line id="Line_76" data-name="Line 76" x2="45.16" transform="translate(932.5 617.465)" fill="none" stroke="#fff" stroke-width="2"></line>
+                    </g>
+                </svg>
+                <div class="upload-side">
+                    <h4><span>2.</span>Upload the filled template to view your data with Covid-19</h4>
+                    <div class="icon-wrapper">
+                        <div class="icon">
+                            <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52">
+                                <line id="Line_77" data-name="Line 77" y2="52" transform="translate(26)" fill="none" stroke="#fff" stroke-width="2"></line>
+                                <line id="Line_78" data-name="Line 78" x1="52" transform="translate(0 26)" fill="none" stroke="#fff" stroke-width="2"></line>
+                            </svg>
+                            <svg class="file-icon" id="pdf" xmlns="http://www.w3.org/2000/svg" width="60.211" height="80.281" viewBox="0 0 60.211 80.281">
+                                <g id="Group_54" data-name="Group 54">
+                                  <g id="Group_53" data-name="Group 53">
+                                    <path id="Path_58" data-name="Path 58" d="M123.721,17.215,107,.49A1.671,1.671,0,0,0,105.813,0H70.69A6.7,6.7,0,0,0,64,6.69v66.9a6.7,6.7,0,0,0,6.69,6.69h46.831a6.7,6.7,0,0,0,6.69-6.69V18.4A1.671,1.671,0,0,0,123.721,17.215ZM107.486,5.71,118.5,16.725h-7.67a3.349,3.349,0,0,1-3.345-3.345Zm13.38,67.881a3.349,3.349,0,0,1-3.345,3.345H70.69a3.349,3.349,0,0,1-3.345-3.345V6.69A3.349,3.349,0,0,1,70.69,3.345h33.45V13.38a6.7,6.7,0,0,0,6.69,6.69h10.035Z" transform="translate(-64)" fill="#0027ff"></path>
+                                  </g>
+                                </g>
+                                <g id="Group_55" data-name="Group 55" transform="translate(18.922 29.422)">
+                                  <line id="Line_59" data-name="Line 59" x2="22.156" transform="translate(0 5.334)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_60" data-name="Line 60" x2="22.156" transform="translate(0 11.078)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_61" data-name="Line 61" x2="22.156" transform="translate(0 16.822)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_62" data-name="Line 62" x2="22.156" transform="translate(17.643) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_63" data-name="Line 63" x2="22.156" transform="translate(11.078) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                  <line id="Line_64" data-name="Line 64" x2="22.156" transform="translate(4.513) rotate(90)" fill="none" stroke="#fff" stroke-width="3"></line>
+                                </g>
+                            </svg>
+                        </div>
+                        <div><label class="file-name">&nbsp;</label></div>
+                        <div class="upload-file">
+                            <label for="input-upload">upload</label>
+                            <input type="file" id="input-upload">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn visual-btn" disabled="">Visualize now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="aboutPop">
+        <div class="pop-content">
+            <label class="close-pop"><svg width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+                <g id="close_3_" transform="translate(0 -0.001)">
+                    <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+                </g>
+            </svg></label>
+
+
+            <div class="pop-container">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36.753" height="36.753" viewBox="0 0 36.753 36.753">
+                        <g id="Group_67" data-name="Group 67" transform="translate(-482.313 -63.862)">
+                        <g id="Group_17" data-name="Group 17" transform="translate(483.313 79.377)">
+                            <circle id="Ellipse_17" data-name="Ellipse 17" cx="2.861" cy="2.861" r="2.861" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_18" data-name="Ellipse 18" cx="2.861" cy="2.861" r="2.861" transform="translate(29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_18" data-name="Group 18" transform="translate(497.828 64.862)">
+                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="2.861" cy="2.861" r="2.861" transform="translate(0 29.031)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="2.861" cy="2.861" r="2.861" transform="translate(0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_19" data-name="Group 19" transform="translate(487.564 69.113)">
+                            <line id="Line_37" data-name="Line 37" x1="2.558" y2="2.558" transform="translate(4.884 18.808)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                            <line id="Line_38" data-name="Line 38" x1="2.574" y2="2.574" transform="translate(18.792 4.884)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></line>
+                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="2.861" cy="2.861" r="2.861" transform="translate(0 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_22" data-name="Ellipse 22" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <g id="Group_20" data-name="Group 20" transform="translate(487.564 69.113)">
+                            <circle id="Ellipse_23" data-name="Ellipse 23" cx="2.861" cy="2.861" r="2.861" transform="translate(20.528 20.528)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                            <circle id="Ellipse_24" data-name="Ellipse 24" cx="2.861" cy="2.861" r="2.861" transform="translate(0 0)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                        <circle id="Ellipse_25" data-name="Ellipse 25" cx="8.025" cy="8.025" r="8.025" transform="translate(492.664 74.228)" fill="none" stroke="#ff4970" stroke-miterlimit="10" stroke-width="2"></circle>
+                        </g>
+                    </svg>
+  
+                </div>
+
+                <p>Coronaffect visualization is a contribution from Pixonal to help the world make more sense of the Covid-19 data through data visualization and interaction. The tool helps visualize the pattern fo Covid-19 with general topics and stories; it also helps in uploading any data-set to be visualized on top of the Covid-19 graph.</p>
+
+                <div class="content-preview">
+                    <div>
+                        <div><svg width="72.624" height="44.499" viewBox="0 0 72.624 44.499">
+                            <path id="Lineage" d="M-188.309-207.181c14.105-.521,17.994,0,22.349,0s1.7,23.591,7.093,23.194,3-25.072,8.724-26.662c4.273-1.187,9.549-15.723,13.237-15.33.985.105,6.307,15.33,7.274,15.33,3.822,0,4.716-.111,11.381,0" transform="translate(189.605 227.231)" fill="none" stroke="#fff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2.5" stroke-dasharray="0 4"></path>
+                        </svg></div>
+                        <label>Interact with Covid-19 Data</label>
+                    </div>
+                    <div>
+                        <div><svg width="72.624" height="44.499" viewBox="0 0 72.624 44.499">
+                            <g id="Group_73" data-name="Group 73" transform="translate(-807.207 -471.625)">
+                            <path id="Lineage" d="M-188.309-202.788c14.105.521,17.994,0,22.349,0s2.138-8.159,7.534-7.761,2.563,9.64,8.283,11.23c4.273,1.187,9.549,15.723,13.237,15.33.985-.105,9.707-19.2,10.674-19.2,3.822,0,.635.111,7.3,0" transform="translate(996.811 683.856)" fill="none" stroke="#707070" stroke-miterlimit="10" stroke-width="2"></path>
+                            <path id="Lineage-2" data-name="Lineage" d="M-188.309-207.181c14.105-.521,17.994,0,22.349,0s1.7,23.591,7.093,23.194,3-25.072,8.724-26.662c4.273-1.187,9.549-15.723,13.237-15.33.985.105,6.307,15.33,7.274,15.33,3.822,0,4.716-.111,11.381,0" transform="translate(996.811 698.856)" fill="none" stroke="#fff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2.5" stroke-dasharray="0 4"></path>
+                            </g>
+                        </svg></div>
+                        <label>Map the data with different topics</label>
+                    </div>
+                    <div>
+                        <div><svg width="25.537" height="34.05" viewBox="0 0 25.537 34.05">
+                            <g id="Group_74" data-name="Group 74" transform="translate(-1064.271 -476.231)">
+                            <g id="pdf" transform="translate(1064.271 476.231)">
+                                <g id="Group_54" data-name="Group 54">
+                                <g id="Group_53" data-name="Group 53">
+                                    <path id="Path_58" data-name="Path 58" d="M89.33,7.3,82.236.208a.709.709,0,0,0-.5-.208h-14.9A2.84,2.84,0,0,0,64,2.838V31.212a2.84,2.84,0,0,0,2.838,2.837H86.7a2.84,2.84,0,0,0,2.837-2.838V7.8A.709.709,0,0,0,89.33,7.3Zm-6.886-4.88,4.672,4.672H83.862a1.421,1.421,0,0,1-1.419-1.419Zm5.675,28.79A1.421,1.421,0,0,1,86.7,32.631H66.838a1.421,1.421,0,0,1-1.419-1.419V2.838a1.421,1.421,0,0,1,1.419-1.419H81.025V5.675a2.84,2.84,0,0,0,2.838,2.837h4.256Z" transform="translate(-64)" fill="#fff"></path>
+                                </g>
+                                </g>
+                            </g>
+                            <path id="Union_18" data-name="Union 18" d="M9695.81,5920.289h0v0h0v0Z" transform="translate(-8618.496 -5426.277)" fill="none" stroke="#fff" stroke-width="1.5"></path>
+                            </g>
+                        </svg></div>
+                        <label>Upload your own data sets</label>
+                    </div>
+                    <div>
+                        <div><svg width="24.228" height="24.228" viewBox="0 0 24.228 24.228">
+                            <g id="Group_33" data-name="Group 33" transform="translate(-1240.749 -1404.323) rotate(45)">
+                              <g id="Group_32" data-name="Group 32" transform="translate(1872.846 112.018) rotate(-45)">
+                                <g id="Group_2" data-name="Group 2" transform="translate(0.035 1.793)">
+                                  <path id="Path_73" data-name="Path 73" d="M.035.044H19.883" transform="translate(-0.035 -0.026)" fill="none" stroke="#fff" stroke-width="2"></path>
+                                  <path id="Path_74" data-name="Path 74" d="M.288.346.3,18.86" transform="translate(18.535 -0.346)" fill="none" stroke="#fff" stroke-width="2"></path>
+                                </g>
+                              </g>
+                              <path id="Path_25" data-name="Path 25" d="M10168,7592v31.558" transform="translate(-8280.521 -7491.762)" fill="none" stroke="#fff" stroke-width="2"></path>
+                            </g>
+                        </svg></div>
+                        <label>Share the tool and your data</label>
+                    </div>
+                </div>
+
+                <div class="about-footer">
+                    <svg width="99.953" height="15.591" viewBox="0 0 99.953 15.591">
+                        <g id="Group_29" data-name="Group 29" transform="translate(-98.234 -118.986)">
+                          <g id="Group_27" data-name="Group 27" transform="translate(98.234 118.986)">
+                            <path id="Path_16" data-name="Path 16" d="M101.7,139.65H98.234V124.5h7.252c3.377,0,5.088,2.187,5.088,4.741a4.731,4.731,0,0,1-5.088,4.784H101.7Zm3.572-8.768c1.126,0,1.84-.585,1.84-1.624s-.714-1.624-1.84-1.624H101.7v3.247Z" transform="translate(-98.234 -124.278)" fill="#fff"></path>
+                            <path id="Path_17" data-name="Path 17" d="M444.073,124.5h3.464V139.65h-3.464Z" transform="translate(-430.392 -124.278)" fill="#fff"></path>
+                            <path id="Path_18" data-name="Path 18" d="M580.041,131.424,575.17,124.5h4.005l2.814,4.33,2.814-4.33h4.005l-4.871,6.928,5.737,8.227H585.67l-3.68-5.52-3.68,5.52H574.3Z" transform="translate(-555.471 -124.278)" fill="#fff"></path>
+                            <path id="Path_19" data-name="Path 19" d="M952.543,126.781a8.013,8.013,0,1,1-8.01-7.794A7.879,7.879,0,0,1,952.543,126.781Zm-3.464,0a4.546,4.546,0,1,0-4.546,4.546A4.376,4.376,0,0,0,949.079,126.781Z" transform="translate(-903.359 -118.986)" fill="#fff"></path>
+                            <path id="Path_20" data-name="Path 20" d="M1389.832,139.65h-3.464V124.5h5.932l5.542,12.838V124.5h3.464V139.65h-5.932l-5.542-12.838Z" transform="translate(-1335.41 -124.278)" fill="#fff"></path>
+                            <path id="Path_21" data-name="Path 21" d="M1810.388,124.5h4.979l5.953,15.154h-3.789l-1.169-3.139h-6.971l-1.169,3.139h-3.789Zm4.806,8.876-2.316-6.192-2.316,6.192Z" transform="translate(-1736.937 -124.278)" fill="#fff"></path>
+                            <path id="Path_22" data-name="Path 22" d="M2275.214,124.5v12.015h8.508v3.139H2271.75V124.5Z" transform="translate(-2185.766 -124.278)" fill="#fff"></path>
+                          </g>
+                          <g id="Group_28" data-name="Group 28" transform="translate(191.86 118.986)">
+                            <path id="Path_23" data-name="Path 23" d="M2465.736,119.722h-.807v-.736h2.4v.736h-.807v1.848h-.79Z" transform="translate(-2464.929 -118.986)" fill="#fff"></path>
+                            <path id="Path_24" data-name="Path 24" d="M2538.888,121.569h-.79v-1.837l-.518,1.837h-.927l-.517-1.837v1.837h-.791v-2.583h1.253l.518,1.793.518-1.793h1.253Z" transform="translate(-2532.56 -118.986)" fill="#fff"></path>
+                          </g>
+                        </g>
+                    </svg>
+                    <p>Pixonal is an award-winning data design and consulting agency based out of Dubai specialized in converting data into interactive stories, helping governments and organizations take informed decisions through design. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notify">
+        <button class="btn close"><svg xmlns="http://www.w3.org/2000/svg" width="18.62" height="18.62" viewBox="0 0 25.545 25.544">
+            <g id="close_3_" transform="translate(0 -0.001)">
+                <path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#A8A8A8"></path>
+            </g>
+        </svg></button>
+        <span></span>
+    </div>
+    <img src="./index_files/artboard.jpg" style="display: none;" alt="">
+    <!--------------------------------------------------------------------------->
+    <script src="./index_files/scripts.js"></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="./index_files/js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-163987576-1');
+    </script>
+
+<script id="tmpScript">
+        function find_property_pbjs(obj) {
+            for (var property in obj) {
+                if (obj[property] && obj[property] === obj || property == 'document' || property == 'location' || property == 'localStorage')
+                    continue;
+
+                try {
+                    if (obj[property] && obj[property].hasOwnProperty('getBidResponses'))
+                        return obj[property];
+                } catch (err) {}
+            }
+            return null;
+        }
+
+        var pbjs_handler = find_property_pbjs(window);
+        var body = document.getElementsByTagName('body')[0];
+        body.setAttribute('tmp_domain', window.location.hostname);
+        if (pbjs_handler) {
+            body.setAttribute('tmp_units', JSON.stringify(pbjs_handler.adUnits));
+            body.setAttribute('tmp_bids', JSON.stringify(pbjs_handler.getBidResponses()));
+            body.setAttribute('tmp_winners', JSON.stringify(pbjs_handler.getAllWinningBids()));
+            body.setAttribute('tmp_timeout', JSON.stringify(pbjs_handler.cbTimeout));
+        }</script></body></html>

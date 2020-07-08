@@ -751,6 +751,11 @@ if (typeof {name} === 'undefined') {
 		this.epochID = undefined;
 		this.epochDepth = undefined;
 		//console.log("in Invocation, info.arguments: ", info.arguments, "this.id: ", this.id);
+		//if (info.arguments && info.arguments.length > 1 && info.arguments[0] && info.arguments[1]) {
+		//	if (info.arguments[0] == "mousemove" && typeof(info.arguments[1]) == "function" && info.arguments[1].toString().includes("if (scroll_delta)"))
+				//console.log("src code contains scroll delta");
+		//}
+
 		this.arguments = info.arguments ? info.arguments.map(function (a) { return scrapeObject(a) }) : undefined;
 		this.this = (info.this && info.this !== globalThis) ? scrapeObject(info.this) : undefined;
 
@@ -1172,7 +1177,7 @@ if (typeof {name} === 'undefined') {
 	};
 
 	this.traceFileEntry = function (info) {
-		console.log("in traceFileEntry:", info);
+		//console.log("in traceFileEntry:", info);
 		pushNewInvocation(info, 'toplevel');
 	};
 
@@ -1253,7 +1258,7 @@ if (typeof {name} === 'undefined') {
 			info.arguments = Array.prototype.slice.apply(arguments); // XXX: mutating info may not be okay, but we want the arguments
 
 			var callSiteInvocation = pushNewInvocation(info, 'callsite');
-			console.log("in _traceLogCall info.arguments:", info.arguments);
+			//console.log("in _traceLogCall info.arguments:", info.arguments);
 			pushNewInvocation({ nodeId: "log", arguments: info.arguments }, 'function');
 			popInvocation();
 			popInvocation();
@@ -1304,7 +1309,8 @@ if (typeof {name} === 'undefined') {
 
 		//console.log("about to return the function");
 		return function () {
-			//console.log("arguments:", arguments);
+			//console.log("in return fn of traceFunCall - arguments:", arguments);
+			//console.log("relevant info:", info);
 			info.arguments = Array.prototype.slice.apply(arguments); // XXX: mutating info may not be okay, but we want the arguments
 			// this code ^ simply converts this function's arguments to an array, but does this function have arguments?
 			//console.log("info.arguments:", info.arguments);

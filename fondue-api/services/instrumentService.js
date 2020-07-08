@@ -72,6 +72,12 @@ var blockedDomains = [
   "https://ssl.google-analytics.com/__utm.gif?utmwv=5.7.2&utms=4&utmn=682748143&utmhn=www.mapstd.com&utmcs=windows-1252&utmsr=1440x900&utmvp=1440x766&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=MapsTD&utmhid=2020346644&utmr=-&utmp=%2F&utmht=1583517621999&utmac=UA-29746608-1&utmcc=__utma%3D97885443.1537363129.1579129450.1583514582.1583517299.22%3B%2B__utmz%3D97885443.1579129450.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
   "https://syndication.twitter.com/i/jot?l=%7B%22widget_origin%22%3A%22https%3A%2F%2Fwww.mapstd.com%2F%22%2C%22widget_frame%22%3Afalse%2C%22language%22%3A%22en%22%2C%22message%22%3A%22m%3Anocount%3A%22%2C%22_category_%22%3A%22tfw_client_event%22%2C%22triggered_on%22%3A1583517625360%2C%22dnt%22%3Afalse%2C%22client_version%22%3A%22fc3e851%3A1583358213678%22%2C%22format_version%22%3A1%2C%22event_namespace%22%3A%7B%22client%22%3A%22tfw%22%2C%22page%22%3A%22button%22%2C%22section%22%3A%22share%22%2C%22action%22%3A%22impression%22%7D%7D",
   "https://maps.googleapis.com/maps/api/js?key=AIzaSyC782k-SFBeK0nx99t6l3eMOiK-cQD8DRI&sensor=false&libraries=geometry&v=3.40",
+  "jquery-3.4.1.min.js",
+  "style.css.map",
+  "Chart.min.js",
+  "chartjs",
+  "hammer",
+  "moment",
 ];
 
 
