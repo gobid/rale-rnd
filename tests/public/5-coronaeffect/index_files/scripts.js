@@ -26,7 +26,7 @@ $(document)
     })
     .on('click', '.dropdown-list label', function(e) {
         e.stopPropagation();
-        let parent = $(this).parent('.dropdown-list');
+        var parent = $(this).parent('.dropdown-list');
         if(!parent.hasClass('open')) {
             $('.dropdown-list').removeClass('open');
             parent.addClass('open');
@@ -36,8 +36,8 @@ $(document)
     })
     .on('click', '.dropdown li', function(e) {
         e.stopPropagation();
-        let me = $(this);
-        let dropdown = me.parents('.dropdown-list');
+        var me = $(this);
+        var dropdown = me.parents('.dropdown-list');
         me.siblings().removeClass('active');
         me.addClass('active');
         dropdown.find('> label > span').html(me.html());
@@ -427,7 +427,7 @@ var config = {
         }
     }
 }
-let draw = Chart.controllers.line.prototype.draw;
+var draw = Chart.controllers.line.prototype.draw;
 Chart.defaults.LineWithLine = Chart.defaults.line;
 Chart.controllers.LineWithLine = Chart.controllers.line.extend({
     draw: function(ease) {

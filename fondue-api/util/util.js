@@ -210,6 +210,7 @@ var util = {
           });
           return callback(src);
         } catch (ig) {
+          console.log("error was: ", ig);
           console.warn("Could not JS beautify, passing original source through.", path ? " (" + path + ")" : "");
           src = null;
           return callback(src);
