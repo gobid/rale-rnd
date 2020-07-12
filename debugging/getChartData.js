@@ -1,0 +1,20 @@
+function getChartData(topicId) { try {{__tracer.traceEnter({nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-270-0-289-1",arguments: __tracer.Array.prototype.slice.apply(arguments),this: this});{
+ "iso_8304c99e-f042-446f-b588-38ae95427ce0_iso";
+  __tracer.traceFunCall({ this: (__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-272-1-272-20"}))(".corona-filter"), property: "show", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-272-1-272-27" })();
+ var country =  __tracer.traceFunCall({ this: (__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-273-15-273-64"}))(".countries-dropdown .dropdown > ul li.active"), property: "data", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-273-15-273-75" })("id");
+ var coronaFilter =  __tracer.traceFunCall({ this: (__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-274-20-274-64"}))(".corona-filter .dropdown > ul li.active"), property: "data", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-274-20-274-75" })("id");
+ if (topicId) {
+  coronaFilter = topicId;
+ }
+  __tracer.traceFunCall({ this: (__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-278-1-278-16"}))(".preloader"), property: "fadeIn", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-278-1-278-25" })();
+ (__tracer.traceFunCall({ func: (updateDropdown), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-279-1-279-50"}))((__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-279-16-279-40"}))(".countries-dropdown"), country);
+ (__tracer.traceFunCall({ func: (updateDropdown), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-280-1-280-50"}))((__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-280-16-280-35"}))(".corona-filter"), coronaFilter);
+  __tracer.traceFunCall({ this:  __tracer.traceFunCall({ this: $, property: "ajax", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-281-1-284-3" })({
+  url: "http://pixonal.com/corona/public/api/data?country_id=" + country +
+   "&chart_id=" + coronaFilter
+ }), property: "done", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-281-1-288-3" })((__tracer.traceFunCreate(function (data) { try {{__tracer.traceEnter({nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-284-9-288-2",arguments: __tracer.Array.prototype.slice.apply(arguments),this: this});{
+  "iso_3dc1c292-765b-4309-a569-bee1417673e5_iso";
+   __tracer.traceFunCall({ this: (__tracer.traceFunCall({ func: ($), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-286-2-286-17"}))(".preloader"), property: "fadeOut", nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-286-2-286-27" })();
+  (__tracer.traceFunCall({ func: (bindChartData), nodeId: "http://localhost:3004/5-coronaeffect/index_files/scripts.js-callsite-287-2-287-30"}))(data, topicId);
+ }}} catch (__e) {__tracer.traceExceptionThrown({"nodeId":"http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-284-9-288-2"}, __e);throw __e;} finally {__tracer.traceExit({"nodeId":"http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-284-9-288-2"});} }, "function (data) {\n  \"iso_3dc1c292-765b-4309-a569-bee1417673e5_iso\";\n  $(\".preloader\").fadeOut();\n  bindChartData(data, topicId);\n }")));
+}}} catch (__e) {__tracer.traceExceptionThrown({"nodeId":"http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-270-0-289-1"}, __e);throw __e;} finally {__tracer.traceExit({"nodeId":"http://localhost:3004/5-coronaeffect/index_files/scripts.js-function-270-0-289-1"});} }

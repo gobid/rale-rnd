@@ -1,8 +1,13 @@
 var closeSvg = '<svg width="18.62" height="18.62" viewBox="0 0 25.545 25.544"><g id="close_3_"transform="translate(0 -0.001)"><path id="Path_23" data-name="Path 23" d="M15.032,12.773,25.077,2.728A1.6,1.6,0,0,0,22.818.469L12.773,10.514,2.727.469A1.6,1.6,0,0,0,.468,2.728L10.514,12.773.468,22.819a1.6,1.6,0,1,0,2.259,2.258L12.773,15.032,22.818,25.077a1.6,1.6,0,1,0,2.259-2.259Z" transform="translate(0 0)" fill="#28EDE5"></path></g></svg>';
 
 var visualId = false;
+var myLine = null;
+
 $(document)
     .ready(function () {
+        console.log("in ready function, myLine: ", myLine, " window: ", window);
+        var ctx = document.getElementById("canvas").getContext("2d");
+        myLine = new Chart(ctx, config);
         getChartFilters();
         typewriter();
 
@@ -197,11 +202,12 @@ function UpdateChartDim() {
     }
 }
 function getChartFilters() {
+    console.log("in getChartFilters, myLine: ", myLine, " window: ", window);
     $.ajax({
         url: "http://pixonal.com/corona/public/api/charts"
     }).done(function(data) {
         $('.topics-list, .corona-filter .dropdown > ul').html("");
-        data.data.forEach(element => {
+        data.data.forEach(function(element) {
             if(element.is_corona == "1")
                 $('.corona-filter .dropdown > ul').append('<li data-id='+element.id+'>'+element.name.replace('corona_', '')+' Cases</li>');
             if(element.is_corona == "0")
@@ -219,7 +225,7 @@ function getCountries() {
         url: "http://pixonal.com/corona/public/api/countries"
     }).done(function(data) {
         var html = "";
-        data.data.forEach(element => {
+        data.data.forEach(function(element) {
             html += '<li data-id='+element.id+'>'+element.name.replace('Global', 'cases globally')+'</li>';
         });
         $('.countries-dropdown .dropdown > ul').html(html);
@@ -242,7 +248,86 @@ function updateDropdown(dropdown, value) {
         dropdown.find('> label.btn > span').html(selected.text());
     }
 }
+function bindChartData(data, topic) {
+    console.log("in bindChartData, myLine: ", myLine, " window: ", window);
+    if(topic) {
+        if(data.data.length) {
+            var secondDataset = {
+                fill: false,
+                borderWidth: 2,
+                borderColor: "#1EEDE5",
+                pointRadius: 0,
+                data: [],
+                yAxisID: 'y-axis-2'
+            }
+            yAxesSuggestedMin2 = yAxesSuggestedMax2 = 0;
+            data.data.forEach(function(element) {
+                secondDataset.data.push({x: moment(element.date).toDate(), y: element.value, label: element.label});
+                if(element.value < yAxesSuggestedMin2) yAxesSuggestedMin2 = element.value; // get min value
+                if(element.value > yAxesSuggestedMax2) yAxesSuggestedMax2 = element.value; // get max value
+            })
+            config.options.scales.yAxes[1].ticks.suggestedMin = yAxesSuggestedMin2 - (yAxesSuggestedMax2*0.1);
+            config.options.scales.yAxes[1].ticks.suggestedMax = (yAxesSuggestedMax2 + (yAxesSuggestedMax2*0.4));
+
+            config.data.datasets[2] = secondDataset;
+            if($('.topics-list .active').length) {
+                $('.filter-topic span:last').html($('.topics-list .active').text());
+                $('.filter-topic span').show();
+            }
+        } else {
+            removeDataSet();
+        }
+    } else {
+        var MilestoneDataset = {
+            fill: false,
+            borderWidth: 2,
+            borderRadius: 15,
+            pointRadius: 10,
+            pointHoverRadius: 15,
+            showLine: false,
+            backgroundColor: "#0027FF",
+            data: [],
+            yAxisID: 'y-axis-1'
+        };
+        var firstDataset = {
+            fill: false,
+            borderDash: [2, 4],
+            borderWidth: 2,
+            pointRadius: 0,
+            borderColor: "#FFFFFF",
+            backgroundColor: "#0027FF",
+            pointBorderColor: "#0027FF",
+            pointBackgroundColor: "#0027FF",
+            data: [],
+            yAxisID: 'y-axis-1'
+        };
+        yAxesSuggestedMin1 = yAxesSuggestedMax1 = 0;
+        data.data.forEach(function(element, index) {
+            if(element.milestone)
+                MilestoneDataset.data.push({x: element.date, y: element.value, label: element.label, milestone: element.milestone});
+            else
+                MilestoneDataset.data.push({x: element.date, y: null, label: element.label, milestone: element.milestone});
+            firstDataset.data.push({x: element.date, y: element.value, label: element.label, milestone: element.milestone}); // push to chart dataset
+            if(index == 0) firstDate = moment(element.date).subtract(5, 'day').toDate(); // first date in data array
+            if (index == (data.data.length-1)) lastDate = moment(element.date).add(5, 'day').toDate(); // last date in data array
+            if(element.value < yAxesSuggestedMin1) yAxesSuggestedMin1 = element.value; // get min value
+            if(element.value > yAxesSuggestedMax1) yAxesSuggestedMax1 = element.value; // get max value
+        });
+        config.options.pan.rangeMin.x = config.options.scales.xAxes[0].ticks.min = firstDate;
+        config.options.pan.rangeMax.x = config.options.scales.xAxes[0].ticks.max = lastDate;
+        config.options.scales.yAxes[0].ticks.suggestedMin = yAxesSuggestedMin1 - (yAxesSuggestedMax1*0.1);
+        config.options.scales.yAxes[0].ticks.suggestedMax = (yAxesSuggestedMax1 + (yAxesSuggestedMax1*0.4));
+        config.data.datasets[0] = MilestoneDataset;
+        config.data.datasets[1] = firstDataset;
+        // removeDataSet();
+        if (visualId) getChartData(visualId);
+    }
+
+    resetZoom();
+    myLine.update();
+}
 function getChartData(topicId) {
+    console.log("in getChartData, myLine: ", myLine, " window: ", window);
     $('.corona-filter').show();
     var country = $('.countries-dropdown .dropdown > ul li.active').data('id');
     var coronaFilter = $('.corona-filter .dropdown > ul li.active').data('id');
@@ -283,6 +368,7 @@ var sContents = ''; // initialise contents variable
 var iRow; // initialise current row
 
 function typewriter() {
+    console.log("in typewriter, myLine: ", myLine, " window: ", window);
     sContents = ' ';
     iRow = Math.max(0, iIndex - iScrollAt);
     var destination = document.getElementById("typedtext");
@@ -461,86 +547,11 @@ Chart.controllers.LineWithLine = Chart.controllers.line.extend({
    }
 });
 window.onload = function () {
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myLine = new Chart(ctx, config);
+    console.log("in window.onload, myLine: ", myLine, " window: ", window);
+    //var ctx = document.getElementById("canvas").getContext("2d");
+    //myLine = new Chart(ctx, config);
+    console.log("in window.onload2, myLine: ", myLine, " window: ", window);
 };
-function bindChartData(data, topic) {
-    if(topic) {
-        if(data.data.length) {
-            var secondDataset = {
-                fill: false,
-                borderWidth: 2,
-                borderColor: "#1EEDE5",
-                pointRadius: 0,
-                data: [],
-                yAxisID: 'y-axis-2'
-            }
-            yAxesSuggestedMin2 = yAxesSuggestedMax2 = 0;
-            data.data.forEach((element) => {
-                secondDataset.data.push({x: moment(element.date).toDate(), y: element.value, label: element.label});
-                if(element.value < yAxesSuggestedMin2) yAxesSuggestedMin2 = element.value; // get min value
-                if(element.value > yAxesSuggestedMax2) yAxesSuggestedMax2 = element.value; // get max value
-            })
-            config.options.scales.yAxes[1].ticks.suggestedMin = yAxesSuggestedMin2 - (yAxesSuggestedMax2*0.1);
-            config.options.scales.yAxes[1].ticks.suggestedMax = (yAxesSuggestedMax2 + (yAxesSuggestedMax2*0.4));
-
-            config.data.datasets[2] = secondDataset;
-            if($('.topics-list .active').length) {
-                $('.filter-topic span:last').html($('.topics-list .active').text());
-                $('.filter-topic span').show();
-            }
-        } else {
-            removeDataSet();
-        }
-    } else {
-        var MilestoneDataset = {
-            fill: false,
-            borderWidth: 2,
-            borderRadius: 15,
-            pointRadius: 10,
-            pointHoverRadius: 15,
-            showLine: false,
-            backgroundColor: "#0027FF",
-            data: [],
-            yAxisID: 'y-axis-1'
-        };
-        var firstDataset = {
-            fill: false,
-            borderDash: [2, 4],
-            borderWidth: 2,
-            pointRadius: 0,
-            borderColor: "#FFFFFF",
-            backgroundColor: "#0027FF",
-            pointBorderColor: "#0027FF",
-            pointBackgroundColor: "#0027FF",
-            data: [],
-            yAxisID: 'y-axis-1'
-        };
-        yAxesSuggestedMin1 = yAxesSuggestedMax1 = 0;
-        data.data.forEach((element, index) => {
-            if(element.milestone)
-                MilestoneDataset.data.push({x: element.date, y: element.value, label: element.label, milestone: element.milestone});
-            else
-                MilestoneDataset.data.push({x: element.date, y: null, label: element.label, milestone: element.milestone});
-            firstDataset.data.push({x: element.date, y: element.value, label: element.label, milestone: element.milestone}); // push to chart dataset
-            if(index == 0) firstDate = moment(element.date).subtract(5, 'day').toDate(); // first date in data array
-            if (index == (data.data.length-1)) lastDate = moment(element.date).add(5, 'day').toDate(); // last date in data array
-            if(element.value < yAxesSuggestedMin1) yAxesSuggestedMin1 = element.value; // get min value
-            if(element.value > yAxesSuggestedMax1) yAxesSuggestedMax1 = element.value; // get max value
-        });
-        config.options.pan.rangeMin.x = config.options.scales.xAxes[0].ticks.min = firstDate;
-        config.options.pan.rangeMax.x = config.options.scales.xAxes[0].ticks.max = lastDate;
-        config.options.scales.yAxes[0].ticks.suggestedMin = yAxesSuggestedMin1 - (yAxesSuggestedMax1*0.1);
-        config.options.scales.yAxes[0].ticks.suggestedMax = (yAxesSuggestedMax1 + (yAxesSuggestedMax1*0.4));
-        config.data.datasets[0] = MilestoneDataset;
-        config.data.datasets[1] = firstDataset;
-        // removeDataSet();
-        if (visualId) getChartData(visualId);
-    }
-
-    resetZoom();
-    window.myLine.update();
-}
 var zoomArray = ['noZoom', '3month', '1month'];
 var isScrolling, currentZoomIndex = 1;
 document.getElementById("canvas").addEventListener('wheel', function(event) {
@@ -556,6 +567,7 @@ document.getElementById("canvas").addEventListener('wheel', function(event) {
 	}, 200);
 });
 function zoomChart() {
+    console.log("in zoomChart, myLine: ", myLine, " window: ", window);
     switch (currentZoomIndex) {
         case 1: // default
             resetZoom();
@@ -575,7 +587,7 @@ function zoomChart() {
             $('.reset-zoom').show();
             break;
     }
-    window.myLine.update();
+    myLine.update();
 }
 function zoomIn() {
     $('.reset-zoom').show();
@@ -588,21 +600,23 @@ function zoomOut() {
     zoomChart();
 }
 function resetZoom() {
+    console.log("in resetZoom, myLine: ", myLine, " window: ", window);
     currentZoomIndex = 1;
     $('.reset-zoom').hide();
     $('#grid').removeAttr('class');
     config.options.scales.xAxes[0].time.unit = 'month';
     config.options.scales.xAxes[0].ticks.min = firstDate;
     config.options.scales.xAxes[0].ticks.max = lastDate;
-    window.myLine.resetZoom();
+    myLine.resetZoom();
 }
 function removeDataSet() {
+    console.log("in removeDataSet, myLine: ", myLine, " window: ", window);
     visualId = false;
     $('.topics-list li').removeClass('active');
     $('.topics-list li svg').remove();
     $('.filter-topic span').hide();
     if(config.data.datasets.length == 3) {
         config.data.datasets.pop();
-        window.myLine.update();
+        myLine.update();
     }
 }
