@@ -83,7 +83,7 @@ var Map=function($container){
 				if(tile.length)
 					$remove=$remove.not(tile);
 				else{
-					$image=$('<img class="tile'+name+'" src="http://imgs.xkcd.com/clickdrag/'+name+'.png" style="top:'+((centre[1]+y)*tilesize)+'px;left:'+((centre[0]+x)*tilesize)+'px; z-index: -1; position: absolute;;" style="display:none" />');
+					$image=$('<img class="tile'+name+'" src="./xkcd_files/'+name+'.png" style="top:'+((centre[1]+y)*tilesize)+'px;left:'+((centre[0]+x)*tilesize)+'px; z-index: -1; position: absolute;;" style="display:none" />');
 					$image.load(function(){$(this).show()}).error(function(){$(this).remove();});
 					$map.append($image);
 				}
