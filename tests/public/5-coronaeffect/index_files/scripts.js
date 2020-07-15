@@ -8,7 +8,7 @@ $(document)
         console.log("in ready function, myLine: ", myLine, " window: ", window);
         var ctx = document.getElementById("canvas").getContext("2d");
         myLine = new Chart(ctx, config);
-        getChartFilters();
+        //getChartFilters();
         typewriter();
 
         var params = (new URL(document.location)).searchParams;
@@ -214,7 +214,7 @@ function getChartFilters() {
                 $('.topics-list').append('<li data-id='+element.id+' title='+element.name+'>'+element.name+'</li>');
         });
         UpdateChartDim();
-        getCountries();
+        //getCountries();
         if($('.topics-list-container ul').height() == $('.topics-list-container').height()) {
             $('.selection-area .top-shadow, .selection-area .bottom-shadow').hide();
         }
@@ -339,7 +339,8 @@ function getChartData(topicId) {
     updateDropdown($('.corona-filter'), coronaFilter);
 
     $.ajax({
-        url: "http://pixonal.com/corona/public/api/data?country_id="+country+"&chart_id="+coronaFilter
+        //url: "http://pixonal.com/corona/public/api/data?country_id="+country+"&chart_id="+coronaFilter
+        url: "/5-coronaeffect/index_files/"+country+".json"
     }).done(function(data) {
         $('.preloader').fadeOut();
         bindChartData(data, topicId);
