@@ -184,7 +184,7 @@ define([], function () {
         emitNodeActivity: function () {
           // debugger; Ok here is where it gets emitted
           var invocations = this.emitBuffer.splice(0, FondueBridge.EMIT_INVOKE_COUNT);
-          console.log("emitNodeActivity:", invocations.length, "invocations", invocations);
+          //console.log("emitNodeActivity:", invocations.length, "invocations", invocations);
           for (var i = 0; i < invocations.length; i++){
             var curr_invoke = invocations[i];
             if (curr_invoke.arguments) {

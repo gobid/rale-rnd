@@ -69,7 +69,7 @@ require([
       } else if (message && message.target == "page" && message.name == "JSTrace") {
         router.trigger("JSTrace", message.data);
       } else if (message && message.target == "page" && message.name == "fondueDTO") {
-        console.log("requreConfig.js, message.data:", message.data);
+        //console.log("requreConfig.js, message.data:", message.data);
         router.trigger("fondueDTO", message.data);
       } else if (message && message.target == "page" && message.name == "ContentScriptReloaded") {
         router.trigger("ContentScriptReloaded", message.data);

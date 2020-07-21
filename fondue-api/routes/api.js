@@ -20,16 +20,16 @@ module.exports = function (app) {
     var fmt = req.param("fmt");
     var basePath = req.param("basePath");
     var beautifyOnly = req.param("beautifyOnly");  //deprecated
-    console.log("in regular instrumentation of ", url);
-    console.log("html:", html, "js:", js);
+    //console.log("in regular instrumentation of ", url);
+    //console.log("html:", html, "js:", js);
 
     if (html === "true") {
       try {
-        console.log("about to run instrumentHTML");
+        //console.log("about to run instrumentHTML");
         instrumentService.instrumentHTML(url, basePath, function (html) {
-          console.log("in callback of instrumentHTML which returns non messed up html")
+          //console.log("in callback of instrumentHTML which returns non messed up html")
           if (fmt === "json") {
-            console.log("in if, so going to send json");
+            //console.log("in if, so going to send json");
             var $ = cheerio.load(html);
 
             var $body = $('body');
@@ -110,7 +110,7 @@ module.exports = function (app) {
             });
             res.send(jsonRes);
           } else {
-            console.log("in else, so going to send html");
+            //console.log("in else, so going to send html");
             res.send(html);
           }
 
@@ -121,9 +121,9 @@ module.exports = function (app) {
       }
     } else if (js === "true") {
       try {
-        console.log("about to run instrumentJS on url: ", url);
+        //console.log("about to run instrumentJS on url: ", url);
         instrumentService.instrumentJS(url, basePath, function (js) {
-          console.log("in api js has iso?:", js);
+          //console.log("in api js has iso?:", js);
           res.send(js);
         });
       } catch (err) {
@@ -153,7 +153,7 @@ module.exports = function (app) {
   app.get(routes.BEAUTIFY_JS, function (req, res) {
     var url = req.param("url");
 
-    console.log("before beautifyJS call 2, url: ", url);
+    //console.log("before beautifyJS call 2, url: ", url);
     beautifyService.beautifyJS(url, function (beautifiedJS) {
       res.send(beautifiedJS);
     });

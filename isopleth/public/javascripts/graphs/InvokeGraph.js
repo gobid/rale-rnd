@@ -158,7 +158,7 @@ define([
       var n_nodes_printed = 0;
       // Parse through invokes and populate simple lists of native/lib/top-levels
       _(this.rawInvokes).each(function (rawInvoke) {
-        console.log("rawInvoke before label announcement: ", rawInvoke);
+        //console.log("rawInvoke before label announcement: ", rawInvoke);
         // Make a copy to leave the original
         var invoke = JSON.parse(JSON.stringify(rawInvoke));
         // invoke doesn't have the node yet
@@ -202,10 +202,10 @@ define([
         // adds the node
 
         if (invoke.rootInvoke){ // node may not be set yet ... 
-          console.log("rootInvoke property true, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
+          //console.log("rootInvoke property true, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(), "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
         }
         else {
-          console.log("rootInvoke property false, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(),  "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
+          //console.log("rootInvoke property false, invoke.nodeModel name: ", invoke.nodeModel.attributes.name, n_nodes_printed, "invoke getLabel(): ", invoke.getLabel(),  "invocationId:", invoke.invocationId, "timestamp:", invoke.timestamp); // invoke
         }
         n_nodes_printed++;
 

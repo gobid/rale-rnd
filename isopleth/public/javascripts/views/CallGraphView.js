@@ -365,6 +365,19 @@ define([
         .data("label", this.invokeGraph.invokeIdMap[invokeId].getLabel());
     },
 
+    childrenHaveAsyncChild: function childrenHaveAsyncChild(invoke) {
+      if (invoke.childAsyncSerialLinks && invoke.childAsyncSerialLinks.length > 0)
+        return true;
+      if (invoke.childCalls) {
+        for (var i = 0; i < invoke.childCalls.length; i++) {
+          var child_invoke = invoke.childCalls[i];
+          if (childrenHaveAsyncChild(child_invoke))
+            return true;
+        }
+      }
+      return false;
+    },
+
     drawGraph: function () {
       //console.log("Emptying old graph.")
       this.$("#invokeGraph").empty();
@@ -427,13 +440,19 @@ define([
         //console.log("considering invoke: ", invoke.getLabel());
         //console.log("invoke.nativeRootInvoke: ", invoke.nativeRootInvoke);
         //console.log("invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
+        //console.log("invoke: ", invoke);
         if (!invoke.nativeRootInvoke){
+          // only show nodes that are top level calls
           if (!invoke.childAsyncSerialLinks || invoke.childAsyncSerialLinks.length < 1) { 
-            // only show nodes that are top level calls or they have async children
-            
-            // TEMPORARILY REMOVING FOR FIGURING OUT MAP
-            this.hideInvokeIdMap[invoke.invocationId] = true;
-            return displayNodes;
+            // or they have async children
+            //console.log("childrenHaveAsyncChild(invoke):", this.childrenHaveAsyncChild(invoke));
+            if (!this.childrenHaveAsyncChild(invoke)) {
+              // or they have descendents that have async children
+              
+              // COMMMENT FOLLOWING LINES TO TEMPORARILY DEBUG:
+              this.hideInvokeIdMap[invoke.invocationId] = true;
+              return displayNodes;
+            }
           }
         }
 
@@ -451,7 +470,7 @@ define([
         var node = {
           data: {
             id: invoke.invocationId,
-            label: label + " " + (invoke.timestamp).toString() + " " + (invoke.tick).toString(),
+            label: label,
             color: this.getNodeColor(invoke) // "#d13r23"
           }
         };
@@ -546,6 +565,21 @@ define([
           edges: edges
         },
       });
+      //console.log("cy:", this.cy);
+      //console.log("cy.nodes:", this.cy.nodes());
+      // get all the nodes and stagger them
+      // Returns a random number between min (inclusive) and max (exclusive)
+      function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      } // thanks to http://man.hubwiz.com/docset/JavaScript.docset/Contents/Resources/Documents/developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random.html
+
+      this.cy.nodes().forEach(function(ele){
+        //console.log("in cy nodes each: ", ele);
+        //console.log("in cy nodes each node pos: ", ele.position());
+        ele_pos = ele.position();
+        ele_pos.y += getRandomArbitrary(-50, 50);
+        ele.position(ele_pos);
+      })
 
       var callGraphView = this;
 

@@ -5,7 +5,7 @@ var myLine = null;
 
 $(document)
     .ready(function () {
-        console.log("in ready function, myLine: ", myLine, " window: ", window);
+        //console.log("in ready function, myLine: ", myLine, " window: ", window);
         var ctx = document.getElementById("canvas").getContext("2d");
         myLine = new Chart(ctx, config);
         //getChartFilters();
@@ -202,7 +202,7 @@ function UpdateChartDim() {
     }
 }
 function getChartFilters() {
-    console.log("in getChartFilters, myLine: ", myLine, " window: ", window);
+    //console.log("in getChartFilters, myLine: ", myLine, " window: ", window);
     $.ajax({
         url: "http://pixonal.com/corona/public/api/charts"
     }).done(function(data) {
@@ -249,7 +249,7 @@ function updateDropdown(dropdown, value) {
     }
 }
 function bindChartData(data, topic) {
-    console.log("in bindChartData, myLine: ", myLine, " window: ", window);
+    //console.log("in bindChartData, myLine: ", myLine, " window: ", window);
     if(topic) {
         if(data.data.length) {
             var secondDataset = {
@@ -327,7 +327,7 @@ function bindChartData(data, topic) {
     myLine.update();
 }
 function getChartData(topicId) {
-    console.log("in getChartData, myLine: ", myLine, " window: ", window);
+    //console.log("in getChartData, myLine: ", myLine, " window: ", window);
     $('.corona-filter').show();
     var country = $('.countries-dropdown .dropdown > ul li.active').data('id');
     var coronaFilter = $('.corona-filter .dropdown > ul li.active').data('id');
@@ -369,7 +369,7 @@ var sContents = ''; // initialise contents variable
 var iRow; // initialise current row
 
 function typewriter() {
-    console.log("in typewriter, myLine: ", myLine, " window: ", window);
+    //console.log("in typewriter, myLine: ", myLine, " window: ", window);
     sContents = ' ';
     iRow = Math.max(0, iIndex - iScrollAt);
     var destination = document.getElementById("typedtext");
@@ -548,10 +548,10 @@ Chart.controllers.LineWithLine = Chart.controllers.line.extend({
    }
 });
 window.onload = function () {
-    console.log("in window.onload, myLine: ", myLine, " window: ", window);
+    //console.log("in window.onload, myLine: ", myLine, " window: ", window);
     //var ctx = document.getElementById("canvas").getContext("2d");
     //myLine = new Chart(ctx, config);
-    console.log("in window.onload2, myLine: ", myLine, " window: ", window);
+    //console.log("in window.onload2, myLine: ", myLine, " window: ", window);
 };
 var zoomArray = ['noZoom', '3month', '1month'];
 var isScrolling, currentZoomIndex = 1;
@@ -568,7 +568,7 @@ document.getElementById("canvas").addEventListener('wheel', function(event) {
 	}, 200);
 });
 function zoomChart() {
-    console.log("in zoomChart, myLine: ", myLine, " window: ", window);
+    //console.log("in zoomChart, myLine: ", myLine, " window: ", window);
     switch (currentZoomIndex) {
         case 1: // default
             resetZoom();
@@ -601,7 +601,7 @@ function zoomOut() {
     zoomChart();
 }
 function resetZoom() {
-    console.log("in resetZoom, myLine: ", myLine, " window: ", window);
+    //console.log("in resetZoom, myLine: ", myLine, " window: ", window);
     currentZoomIndex = 1;
     $('.reset-zoom').hide();
     $('#grid').removeAttr('class');
@@ -611,7 +611,7 @@ function resetZoom() {
     myLine.resetZoom();
 }
 function removeDataSet() {
-    console.log("in removeDataSet, myLine: ", myLine, " window: ", window);
+    //console.log("in removeDataSet, myLine: ", myLine, " window: ", window);
     visualId = false;
     $('.topics-list li').removeClass('active');
     $('.topics-list li svg').remove();

@@ -379,7 +379,7 @@ function instrument(src, options, errOpt, callback) {
     return src;
   }
 
-  console.log("before beautifyJS call 1, src: ", src);
+  //console.log("before beautifyJS call 1, src: ", src);
   util.beautifyJS(src, options.path, function (beautifiedSrc) {
     if (beautifiedSrc === null) {
       if (errOpt) {
@@ -407,7 +407,7 @@ function instrument(src, options, errOpt, callback) {
     if (src.indexOf("/*theseus" + " instrument: false */") !== -1) {
       output = shebang + prefix + src;
     } else {
-      console.log("source before instrument but after iso tag:", src)
+      //console.log("source before instrument but after iso tag:", src)
       var m = traceFilter(src, {
         prefix: prefix,
         path: options.path,
@@ -420,7 +420,7 @@ function instrument(src, options, errOpt, callback) {
       m.toString = function () {
         return shebang + oldToString();
       };
-      console.log("source after instrument:", m);
+      //console.log("source after instrument:", m);
       return callback(m);
     }
 

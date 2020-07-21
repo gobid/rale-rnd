@@ -16,10 +16,10 @@ module.exports = {
   instrumentJavaScript: function (src, fondueOptions, callback, passedSource, i, iterLoc) {
     // TODO-CACHING move to config
     var caching = true;
-    console.log("in instrumentJavaScript, src: ", src);
+    //console.log("in instrumentJavaScript, src: ", src);
 
     var doInstrument = function (instrumentedCallback) {
-      console.log("in doInstrument, about to call fondue.instrument, src:", src);
+      //console.log("in doInstrument, about to call fondue.instrument, src:", src);
       fondue.instrument(src, fondueOptions, errOpt, function (src) {
         console.log("Instrument Start:\t", fondueOptions.path);
 
@@ -36,7 +36,7 @@ module.exports = {
     };
 
     if (caching) {
-      console.log("in caching");
+      //console.log("in caching");
       var md5 = crypto.createHash("md5");
       var store = {
         passedSource: passedSource,
@@ -50,9 +50,9 @@ module.exports = {
       var digest = md5.digest("hex");
       var errOpt = {};
 
-      console.log("before redis call, digest is: ", digest);
+      //console.log("before redis call, digest is: ", digest);
       redisClient.get(digest, function (err, foundSrc) {
-        console.log("digest: ", digest);
+        //console.log("digest: ", digest);
         if (foundSrc != null) {
           console.log("Retrieved instrumentation for", fondueOptions.path);
           //console.log("--- passed source ---\n")
@@ -62,11 +62,11 @@ module.exports = {
           //console.log("--- ------------- ---\n")
           callback(foundSrc, passedSource, i, iterLoc, errOpt);
         } else {
-          console.log("didn't find in cache, digest", digest);
+          //console.log("didn't find in cache, digest", digest);
           console.log("Instrumenting ", fondueOptions.path);
 
           doInstrument(function (instrumentedSrc) {
-            console.log("in doInstrument of fondueService:", instrumentedSrc)
+            //console.log("in doInstrument of fondueService:", instrumentedSrc)
             redisClient.set(digest, instrumentedSrc, function (err, reply) {
               if (err) {
                 console.log("Error on saving source!");
@@ -76,7 +76,7 @@ module.exports = {
         }
       });
     } else {
-      console.log("about to do doInstrument");
+      //console.log("about to do doInstrument");
       doInstrument();
     }
   },
@@ -144,7 +144,7 @@ module.exports = {
       for (var i = scriptLocs.length - 1; i >= 0; i--) {
         var loc = scriptLocs[i];
         var script = src.slice(loc.start, loc.end);
-        console.log("script src", i, ":", script);
+        //console.log("script src", i, ":", script);
 
         var options = util.mergeInto(fondueOptions, {});
         options.path = options.path + "-script-" + i;
