@@ -473,12 +473,14 @@ define([
             ev = events_to_parse_out[i];
             if (label.includes("[" + ev)) {
               // deal with xN
-              label = ev + " callback."; // *
+              var xn = label.search(/\s×\s[0-9]/i)
+              var xn_text = label.substr(xn)
+              label = ev + " callback" + xn_text; // *
               break;
             }
           }
         }
-
+// Hi Gobi! Thanks for letting me control yyour screen. You're pretty great! Thanks Garrett :) !!
         console.log("label:", label, "invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
         if (invoke.childAsyncSerialLinks){
           var label_has_been_set = false;
@@ -490,7 +492,9 @@ define([
               ev = events_to_parse_out[i];
               if (async_child.getLabel().includes("[" + ev)) {
                 // deal with xN
-                label = ev + " binding";
+                var xn = label.search(/\s×\s[0-9]/i)
+                var xn_text = label.substr(xn)
+                label = ev + " binding" + xn_text;
                 label_has_been_set = true;
                 break;
               }
