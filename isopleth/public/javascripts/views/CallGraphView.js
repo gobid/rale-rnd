@@ -466,6 +466,39 @@ define([
         }
 
         var label = invoke.getLabel();
+        
+        if (invoke.nativeRootInvoke) { // considering only top level calls
+          var events_to_parse_out = ["load", "resize", "scroll", "unload", "change", "copy", "focus", "keydown, keypress, keyup", "paste", "reset", "select", "submit", "copy, cut, paste", "keydown", "keypress", "keyup", "click", "contextmenu", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "right click", "scrolling"]
+          for (i = 0; i < events_to_parse_out.length; i++) {
+            ev = events_to_parse_out[i];
+            if (label.includes("[" + ev)) {
+              // deal with xN
+              label = ev + " callback."; // *
+              break;
+            }
+          }
+        }
+
+        console.log("label:", label, "invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
+        if (invoke.childAsyncSerialLinks){
+          var label_has_been_set = false;
+          for (var aci = 0; aci < invoke.childAsyncSerialLinks.length; aci++){
+            async_child = invoke.childAsyncSerialLinks[aci];
+            console.log("async_child:", async_child);
+            var events_to_parse_out = ["load", "resize", "scroll", "unload", "change", "copy", "focus", "keydown, keypress, keyup", "paste", "reset", "select", "submit", "copy, cut, paste", "keydown", "keypress", "keyup", "click", "contextmenu", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "right click", "scrolling"]
+            for (i = 0; i < events_to_parse_out.length; i++) {
+              ev = events_to_parse_out[i];
+              if (async_child.getLabel().includes("[" + ev)) {
+                // deal with xN
+                label = ev + " binding";
+                label_has_been_set = true;
+                break;
+              }
+            }
+            if (label_has_been_set) break;
+          }
+        }
+        
         //console.log("node to be drawn:", invoke);
         var node = {
           data: {
