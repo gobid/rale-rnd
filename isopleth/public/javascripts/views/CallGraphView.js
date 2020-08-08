@@ -473,14 +473,16 @@ define([
             ev = events_to_parse_out[i];
             if (label.includes("[" + ev)) {
               // deal with xN
+              var fn = label.search(/]/i)
               var xn = label.search(/\s×\s[0-9]/i)
+              var fn_text = label.substr(fn+1, xn-(fn+1)).trim()
               var xn_text = label.substr(xn)
-              label = ev + " callback" + xn_text; // *
+              label = "[" + ev + " callback] " + fn_text + xn_text; // *
               break;
             }
           }
         }
-// Hi Gobi! Thanks for letting me control yyour screen. You're pretty great! Thanks Garrett :) !!
+
         console.log("label:", label, "invoke.childAsyncSerialLinks: ", invoke.childAsyncSerialLinks);
         if (invoke.childAsyncSerialLinks){
           var label_has_been_set = false;
@@ -492,10 +494,25 @@ define([
               ev = events_to_parse_out[i];
               if (async_child.getLabel().includes("[" + ev)) {
                 // deal with xN
+                var fn = label.search(/]/i)
                 var xn = label.search(/\s×\s[0-9]/i)
+                var fn_text = label.substr(fn+1, xn-(fn+1)).trim()
                 var xn_text = label.substr(xn)
-                label = ev + " binding" + xn_text;
-                label_has_been_set = true;
+
+                console.log("invoke.node.source:", invoke.node.source);
+                if (invoke.node.source.includes(".off(") || invoke.node.source.includes(".unbind(")) {
+                  label = "[" + ev + " unbinding] " + fn_text + xn_text; // *
+                  console.log("label:", label);
+                  label_has_been_set = true;
+                }
+                else {
+                  label = "[" + ev + " binding] " + fn_text + xn_text; // *
+                  console.log("label:", label);
+                  label_has_been_set = true; 
+                }
+
+                //if (label.includes("mousemove")) 
+                //  console.log("mousemove invoke: ", invoke);
                 break;
               }
             }
