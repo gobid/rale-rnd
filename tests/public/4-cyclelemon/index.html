@@ -28,6 +28,32 @@ $(window).load(function(){
 </script>
 <script type="text/javascript">
 
+
+$(document).ready(function(){
+	$('#nav li a,#exp,#traveler a').click(function(){
+                var el = $(this).attr('href');
+                var elWrapped = $(el);
+                scrollToDiv(elWrapped,40);
+                return false;
+            });
+
+	$('#intro a').click(function(){
+                var el = $(this).attr('href');
+                var elWrapped = $(el);
+                scrollToDiv(elWrapped,40);
+                return false;
+            });
+
+            function scrollToDiv(element,navheight){
+                var offset = element.offset();
+                var offsetTop = offset.top;
+                var totalScroll = offsetTop - $("header").outerHeight() + "px";
+
+                $('body,html').animate({scrollTop: totalScroll}, 700);
+
+            }
+})
+
 $(document).ready(function(){	
 		
 		
@@ -51,23 +77,6 @@ $(document).ready(function(){
 	$('#fond16').parallax("50%", 0.5);
 	$('#fond17').parallax("50%", 0.5);
 	$('#fond19').parallax("50%", 0.5);
-	
-	
-	/*$('#intro a,#nav li a,#exp,#traveler a').click(function(){
-                var el = $(this).attr('href');
-                var elWrapped = $(el);
-                scrollToDiv(elWrapped,40);
-                return false;
-            });
-
-            function scrollToDiv(element,navheight){
-                var offset = element.offset();
-                var offsetTop = offset.top;
-                var totalScroll = offsetTop - $("header").outerHeight() + "px";
-
-                $('body,html').animate({scrollTop: totalScroll}, 700);
-
-            }*/
 	
 		$("#n1").css({opacity:'1'}, 1);
 			
