@@ -13,7 +13,7 @@
     "URIjs": "1.16.1",
     "body-parser": "1.14.0",
     "cheerio": "0.19.0",
-    "express": "4.8.0",
+    "express": "4.17.3",
     "falafel": "0.1.4",
     "falafel-map": "0.3.2",
     "fondue": "^0.6.1",
